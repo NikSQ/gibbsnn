@@ -22,7 +22,18 @@ def load_dataset(dataset_name):
     t_va[np.arange(t_va.shape[0]), data['t_va']] = 1
     t_te = np.zeros((data['t_te'].shape[0], 10))
     t_te[np.arange(t_te.shape[0]), data['t_te']] = 1
-    return (data['x_tr'], t_tr, data['x_va'], t_va, data['x_te'], t_te)
+    return (binarize_data(data['x_tr']), t_tr, binarize_data(data['x_va']), t_va, 
+            binarize_data(data['x_te']), t_te)
+
+
+def binarize_data(data):
+    data[data < 0.3] = -1
+    data[data >= 0.3] = 1
+    return data
+
+
+
+
     
 
 

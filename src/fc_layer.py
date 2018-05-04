@@ -201,11 +201,11 @@ class FCLayer:
         if log_pw is None:
             log_probs = tf.reduce_sum(log_probs, axis=0) / self.config['flat_factor'][self.layer_idx]
         else:
-            log_probs = (tf.reduce_sum(log_probs, axis=0)) / self.config['flat_factor'][self.layer_idx]
+            log_probs = (tf.reduce_sum(log_probs, axis=0) + log_pw) / self.config['flat_factor'][self.layer_idx]
 
         probs = tf.cumsum(tf.exp(log_probs - tf.reduce_max(log_probs)))
         sample_idx = tf.reduce_sum(tf.cast(tf.less(probs, tf.random_uniform((1,))*tf.reduce_max(probs)), tf.int32))
-        sample_idx = tf.argmax(log_probs)
+        #sample_idx = tf.argmax(log_probs)
         return sample_idx
 
 

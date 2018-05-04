@@ -12,25 +12,29 @@ from src.mnist_data import load_dataset
 
 # TODO: job name should include the actual index of the job
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
-dir_name = 'ternary_act'
+dir_name = 'archs'
 job_name = 'job_' + str(task_id)
-n_epochs = 10
+n_epochs = 20
 block_size = 4
 store_activations = True
 store_acts_every = 1
 
-act_func = get_activation_function('extended_ternary_sign')
-act_func.set_params([1 + 2 * task_id])
+size_layer1 = 50 + (int(task_id / 3)  * 10)
+size_layer2 = 30 + (int(task_id % 3) * 10)
+print('Neurons in layer 1: {}, layer2: {}'.format(size_layer1, size_layer2))
+
+act_func = get_activation_function('binary_sign')
+act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
 
-config = {'layout': [x_tr.shape[1], 5, 5, y_tr.shape[1]],
+config = {'layout': [x_tr.shape[1], size_layer1, size_layer2, y_tr.shape[1]],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
-          'keep_probs': [1.0, 1.0],
-          'flat_factor': [1.0, 1.0, 1.0],
+          'keep_probs': [.7, .7],
+          'flat_factor': [1.1, 1.1, 1.1],
           'sampling_sequence': 'stochastic'}
 
 saver = Saver(dir_name, job_name)
@@ -51,11 +55,11 @@ with tf.Session() as sess:
     for i in range(n_epochs):
         if store_activations and i % store_acts_every == 0:
             tr_acts_hists.append(nn.get_activation_histogram(sess))
-        #    tr_acts_epochs.append(i)
+            tr_acts_epochs.append(i)
 
         tr_mis.append(nn.get_misclassification(sess, False))
         va_mis.append(nn.get_misclassification(sess, True))
-        nn.perform_gibbs_iteration(sess)
+        #nn.perform_gibbs_iteration(sess)
 
 print('Train misclassification')
 print(tr_mis)

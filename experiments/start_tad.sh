@@ -11,7 +11,7 @@
 #SBATCH --gres=gpu
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-#SBATCH --array=0-7
+#SBATCH --array=0-9
 
 #################
 # configuration #
@@ -173,7 +173,7 @@ export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
 echo -e "\n\nStarting Test\n"
 
-python3 ../experiments/ternary_activations.py
+python3 ../experiments/ternary_activations_dropout.py
 ##################
 # END: user code #
 ##################

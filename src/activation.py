@@ -34,8 +34,6 @@ class ActivationFunction:
         self.n_values = len(self.values)
 
 
-# Here we just create some activation functions.
-function_list = []
 
 # Binary Sign Function
 def bs_value_function(X, params):
@@ -54,7 +52,6 @@ def bs_meta_function(params):
     return [-1, 1]
 
 
-function_list.append(ActivationFunction('binary_sign', bs_value_function, bs_index_function, bs_meta_function))
 
 
 # Ternary Sign Function
@@ -70,7 +67,6 @@ def ts_meta_function(params):
     return [-1, 0, 1]
 
 
-function_list.append(ActivationFunction('ternary_sign', ts_value_function, ts_index_function, ts_meta_function))
 
 
 # Extended Ternary Sign Function (param[0] = one-sided length of 0 stair)
@@ -89,9 +85,6 @@ def ets_index_function(X, params):
 def ets_meta_function(params):
     return [-1, 0, 1]
 
-
-function_list.append(ActivationFunction('extended_ternary_sign', ets_value_function, ets_index_function,
-                                        ets_meta_function))
 
 
 # Staircase Function (param[0] = scale, param[1] = bits)
@@ -119,12 +112,21 @@ def stair_meta_function(params):
     return np.arange(1 - 2**(params[1] - 1), 2**(params[1] - 1) + 1).astype(np.int32)
 
 
-function_list.append(ActivationFunction('stair', stair_value_function, stair_index_function, stair_meta_function))
-
 
 def get_activation_function(name):
-    for func in function_list:
-        if func.name == name:
-            return func
+    if name == 'stair':
+        return ActivationFunction('stair', stair_value_function, stair_index_function, stair_meta_function)
+    elif name == 'binary_sign':
+        return ActivationFunction('binary_sign', bs_value_function, bs_index_function, bs_meta_function)
+    elif name == 'ternary_sign':
+        return ActivationFunction('ternary_sign', ts_value_function, ts_index_function, ts_meta_function)
+    elif name == 'extended_ternary_sign':
+        return ActivationFunction('extended_ternary_sign', ets_value_function, ets_index_function,
+                                  ets_meta_function)
+   
+        
+
+
+
 
 

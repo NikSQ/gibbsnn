@@ -9,9 +9,10 @@
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
+#SBATCH --begin=now+8hour
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-#SBATCH --array=0-7
+#SBATCH --array=0-9
 
 #################
 # configuration #
@@ -173,7 +174,7 @@ export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
 echo -e "\n\nStarting Test\n"
 
-python3 ../experiments/ternary_activations.py
+python3 ../experiments/architectures.py
 ##################
 # END: user code #
 ##################
