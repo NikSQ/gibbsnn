@@ -13,7 +13,8 @@ class Plotter:
             plt.title('Activation histogram of layer ' + str(idx))
             plt.xlabel('activation')
             plt.ylabel('amount')
-            plt.savefig(self.path_name + name + '_layer_' + str(idx), bbox_inches='tight')
+            plt.show()
+            #plt.savefig(self.path_name + name + '_layer_' + str(idx), bbox_inches='tight')
 
     def plot_activation_function(self, act_func, input_vals):
         X = tf.constant(input_vals, dtype=tf.int32)
@@ -50,6 +51,7 @@ class Plotter:
         plt.xlabel('epochs')
         plt.ylabel('misclassification rate')
         plt.title('Misclassification rate')
+        plt.show()
         plt.savefig(self.path_name + 'error', bbox_inches='tight')
 
 

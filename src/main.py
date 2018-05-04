@@ -4,6 +4,15 @@ import tensorflow as tf
 from src.activation import get_activation_function
 import src.nlp_data as data_handler
 from src.plot_tools import Plotter
+from src.storage_tools import Loader
+
+exp_name = 'ternary_act'
+job_name = 'job_1'
+loader = Loader(exp_name, job_name)
+loader.load_act_hists('tr_acts')
+print(loader.load_sequence('tr_mis'))
+loader.generate_plots()
+quit()
 
 # Here just a dummy task is implemented, to test whether training works
 # Dropout is currently only partially implemented, namely when creating the entries in the lookup table
@@ -42,7 +51,7 @@ config = {'layout': [X_tr.shape[1], 30, 30, Y_tr.shape[1]],
 
 
 nn = NN(config)
-nn.create_gibbs_graph(n_samples, 2, n_val_samples)
+nn.create_gibbs_graph(n_samples, n_val_samples, 2)
 
 train_mis = []
 val_mis = []
@@ -62,3 +71,4 @@ with tf.Session() as sess:
         nn.perform_gibbs_iteration(sess)
 
 plotter.plot_misclassification(np.arange(10), train_mis, val_mis)
+

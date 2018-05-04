@@ -45,7 +45,7 @@ class NN:
 
     # This function creates the execution graph for Gibbs Sampling (lookup table updates, weight update, bias update)
     # TODO: Load validation set into gpu
-    def create_gibbs_graph(self, batch_size, block_size, n_val_samples):
+    def create_gibbs_graph(self, batch_size, n_val_samples, block_size):
         with tf.variable_scope('global'):
             self.X_placeholder = tf.placeholder(tf.int32, [None, self.config['layout'][0]])
             self.Y_placeholder = tf.placeholder(tf.float32, [None, self.config['layout'][self.n_layers]])
@@ -132,9 +132,9 @@ class NN:
 
         # This network allows for a fast forward pass using all current weights. This network is not affected
         # and does not affect the layer variables that store input, activation and ouput
-        X = tf.cond(self.validate, lambda: self.X_val, lambda: self.X_tr)
-        Y = tf.cond(self.validate, lambda: self.Y_val, lambda: self.Y_tr)
-        self.full_network = SubNN(self.layers, X, Y, True)
+        x = tf.cond(self.validate, lambda: self.X_val, lambda: self.X_tr)
+        y = tf.cond(self.validate, lambda: self.Y_val, lambda: self.Y_tr)
+        self.full_network = SubNN(self.layers, x, y, True)
 
     def get_misclassification(self, sess, validation):
         return 1 - sess.run(self.full_network.accuracy, feed_dict={self.validate: validation})
@@ -142,15 +142,11 @@ class NN:
 
     # Performs a forward pass using the dataset X and returns a list containing the histograms (one per layer) of the
     # activations
-    def get_activation_histogram(self, sess, X):
+    def get_activation_histogram(self, sess):
         layer_activations = []
         for layer_idx in range(self.n_layers):
             curr_layer = self.layers[layer_idx]
-
-            if layer_idx == 0:
-                sess.run(curr_layer.forward_op, feed_dict={self.X_tr: X})
-            else:
-                sess.run(curr_layer.forward_op)
+            sess.run(curr_layer.forward_op)
 
             activation = sess.run(curr_layer.activation)
             unique, counts = np.unique(activation, return_counts=True)
