@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import sys
+import os
 
 sys.path.append('../')
 
@@ -10,25 +11,19 @@ from src.storage_tools import Saver
 from src.mnist_data import load_dataset
 
 # TODO: job name should include the actual index of the job
-id = 1
+task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 dir_name = 'ternary_act'
-job_name = 'job_' + str(id)
-n_epochs = 3
+job_name = 'job_' + str(task_id)
+n_epochs = 10
 block_size = 4
 store_activations = True
 store_acts_every = 1
 
 act_func = get_activation_function('extended_ternary_sign')
-act_func.set_params([1 + 2 * id])
+act_func.set_params([1 + 2 * task_id])
 act_funcs = [act_func, act_func]
 
-#x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
-import src.nlp_data as data_handler
-nlp_dataset_names = data_handler.get_nlp_names()
-x_tr, y_tr, x_va, y_va = data_handler.get_dataset(nlp_dataset_names[0])
-
-x_tr = x_tr[:, :20]
-x_va = x_va[:, :20]
+x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
 
 config = {'layout': [x_tr.shape[1], 40, 40, y_tr.shape[1]],
           'weight_type': 'binary',
