@@ -29,9 +29,11 @@ class FCLayer:
         self.lookup_op = None
         self.lookup_table = None
         self.bias_vals = config['bias_vals'][layer_idx]
+        self.var_summary_op = None
 
         if self.bias_vals is None:
-            self.bias_vals = np.arange(-shape[0], shape[0]).astype(np.int32)
+            bits = int(np.log2(shape[0]))
+            self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
 
         self.n_bias_vals = len(self.bias_vals)
 
@@ -54,6 +56,12 @@ class FCLayer:
             self.b = tf.get_variable(name='b', shape=self.bias_shape, initializer=b_init, dtype=tf.int32)
             self.neuron_idx = tf.placeholder(name='neuron_idx', dtype=np.int32)
             self.input_indices = None
+
+            summary_ops = []
+            summary_ops.append(tf.summary.histogram('weights', self.W))
+            summary_ops.append(tf.summary.histogram('biases', self.b))
+            self.var_summary_op = tf.summary.merge(summary_ops)
+
 
     # Creates the execution graph for setting all the entries in the lookup table for a given neuron (this neuron is
     # given via a placeholder, which means that it can be set at runtime)
@@ -259,15 +267,20 @@ class FCLayer:
     # No TF variables are used to store any interim values here. It can be used also when the current layer holds
     # different values for input, activation or output in it's variables. But it reuses the weights.
     # Number of return values depends on whether it's an output layer or not
-    def forward_pass(self, layer_input, targets=None):
+    def forward_pass(self, layer_input, record_variables, targets=None):
         activation = tf.matmul(layer_input, self.W) + self.b
+        act_summary = None
+        if record_variables:
+            with tf.variable_scope(self.var_scope):
+                act_summary = tf.summary.histogram('activations', activation)
+
         if self.is_output:
             activation = tf.cast(activation, dtype=tf.float32)
             return tf.nn.softmax(activation), \
-                   tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets)
+                   tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary
         else:
             layer_output = self.act_func.get_output(activation)
-            return tf.multiply(layer_output, self.dropout_mask)
+            return tf.multiply(layer_output, self.dropout_mask), act_summary
 
 
 

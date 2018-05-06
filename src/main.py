@@ -45,7 +45,6 @@ val_mis = []
 
 with tf.Session() as sess:
     writer = tf.summary.FileWriter("../results/demo_graph")
-    writer.add_graph(sess.graph)
     sess.run(tf.global_variables_initializer())
     sess.run(nn.load_train_set_op, feed_dict={nn.X_placeholder: x_tr, nn.Y_placeholder: y_tr})
     sess.run(nn.load_val_set_op, feed_dict={nn.X_placeholder: x_va, nn.Y_placeholder: y_va})

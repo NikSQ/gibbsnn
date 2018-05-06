@@ -23,6 +23,7 @@ class NN:
         # Number of weights that are sampled at once
         self.block_size = None
         self.full_network = None
+        self.var_summary_op = None
 
         for layer_idx in range(self.n_layers):
             shape = (config['layout'][layer_idx], config['layout'][layer_idx+1])
@@ -124,12 +125,16 @@ class NN:
 
         # Iterate through all layers and create the graph for updating the lookup table aswell as the graph that
         # performs the sampling
+        # also collect summary ops
+        var_summary_ops = []
         for layer_idx in range(self.n_layers):
             if layer_idx != self.n_layers - 1:
                 self.layers[layer_idx].create_lookup_graph(self.lookup_table, lookup_indices,
                                                            self.layers[layer_idx+1:], self.Y_tr)
             self.layers[layer_idx].create_sampling_graph(block_size, connection_matrix, batch_range, log_pw,
                                                          self.Y_tr)
+            var_summary_ops.append(self.layers[layer_idx].var_summary_op)
+        self.var_summary_op = tf.summary.merge(var_summary_ops)
 
         # This network allows for a fast forward pass using all current weights. This network is not affected
         # and does not affect the layer variables that store input, activation and ouput

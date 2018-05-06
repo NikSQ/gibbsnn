@@ -14,10 +14,13 @@ class SubNN:
 
         # Iterates over all layers and build a forward pass graph
         layer_input = self.input
+        summary_ops = []
         for layer_idx in range(self.n_layers - 1):
-            layer_input = self.layers[layer_idx].forward_pass(layer_input)
+            layer_input, act_summary_op = self.layers[layer_idx].forward_pass(layer_input, full_network)
+            summary_ops.append(act_summary_op)
 
-        output, cross_entropy = self.layers[self.n_layers - 1].forward_pass(layer_input, targets=self.targets)
+        output, cross_entropy, act_summary_op = self.layers[self.n_layers - 1].forward_pass(layer_input, full_network, targets=self.targets)
+        summary_ops.append(act_summary_op)
         self.likelihoods = -cross_entropy
         self.total_likelihood = tf.reduce_sum(self.likelihoods)
 
@@ -26,6 +29,8 @@ class SubNN:
             self.prediction = tf.argmax(output, axis=1)
             self.accuracy = tf.reduce_mean(tf.cast(tf.equal(self.prediction, tf.argmax(self.targets, axis=1)),
                                            dtype=tf.float32))
+            summary_ops.append(tf.summary.scalar('accuracy', self.accuracy))
+            self.summary_op = tf.summary.merge(summary_ops)
 
 
 
