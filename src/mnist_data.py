@@ -27,8 +27,8 @@ def load_dataset(dataset_name):
 
 
 def binarize_data(data):
-    data[data < 0.3] = -1
-    data[data >= 0.3] = 1
+    data[data < 0.5] = -1
+    data[data >= 0.5] = 1
     return data
 
 

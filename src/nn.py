@@ -1,4 +1,5 @@
 import tensorflow as tf
+from tensorflow.python.client import timeline
 import numpy as np
 from src.fc_layer import FCLayer
 from src.sub_nn import SubNN
@@ -220,4 +221,107 @@ class NN:
                     sess.run(curr_layer.w_sample_op,
                              feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx],
                                         curr_layer.input_indices: input_perm[block_range, :]})
+
+    def profile_gibbs_iteration(self, sess, options, run_metadata, epoch, filepath):
+        trace_path = filepath + 'e_' + str(epoch) + '_'
+        # Compute dropout masks for each layer
+        dropout_masks = []
+        for layer_idx in range(self.n_layers-1):
+            tries = 20
+            while tries > 0:
+                mask = np.random.binomial(n=1, p=self.config['keep_probs'][layer_idx],
+                                          size=(1, self.config['layout'][layer_idx + 1]))
+                if np.sum(mask) >= self.block_size:
+                    dropout_masks.append(mask)
+                    break
+
+                tries -= 1
+                if tries == 0:
+                    raise Exception('Could not generate dropout mask with at least block_size neurons active')
+        sess.run(self.set_dropout_masks_op, feed_dict={i: d for i, d in zip(self.dropout_masks, dropout_masks)},
+                 options=options, run_metadata=run_metadata)
+
+        do_trace = timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format()
+        pass_traces = []
+        lookup_traces = []
+        sample_block_traces  = []
+        sample_bias_traces = []
+
+        for layer_idx in range(self.n_layers):
+            print('layer {}'.format(layer_idx))
+            curr_layer = self.layers[layer_idx]
+
+            if layer_idx > 0:
+                n_inputs = np.sum(dropout_masks[layer_idx-1])
+                input_perm = np.flatnonzero(dropout_masks[layer_idx-1])
+            else:
+                n_inputs = self.config['layout'][layer_idx]
+                input_perm = np.arange(n_inputs)
+            input_perm = np.expand_dims(input_perm, axis=1)
+
+            if layer_idx < self.n_layers - 1:
+                n_neurons = np.sum(dropout_masks[layer_idx])
+                neuron_perm = np.flatnonzero(dropout_masks[layer_idx])
+            else:
+                n_neurons = self.config['layout'][layer_idx+1]
+                neuron_perm = np.arange(n_neurons)
+
+            # forward_op updates the variables containing input, activation and output of the current layer, using
+            # either the output of the previous layer or the input data
+            sess.run(curr_layer.forward_op, options=options, run_metadata=run_metadata)
+            pass_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
+
+            if self.config['sampling_sequence'] == 'stochastic':
+                np.random.shuffle(neuron_perm)
+
+            profile_neuron_idx = np.random.randint(0, n_neurons)
+            profile_block_idx = np.random.randint(0, n_inputs - self.block_size)
+
+            for neuron_idx in range(n_neurons):
+                # Perform the lookup operation for non output layers and do the bias sampling first
+                if layer_idx != self.n_layers - 1:
+                    sess.run(curr_layer.lookup_op,
+                             feed_dict={curr_layer.neuron_idx: np.expand_dims(neuron_perm[neuron_idx], axis=1)},
+                             options=options, run_metadata=run_metadata)
+                    if neuron_idx == profile_neuron_idx:
+                        lookup_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
+
+                sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]},
+                         options=options, run_metadata=run_metadata)
+                if neuron_idx == profile_neuron_idx:
+                    sample_bias_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
+
+                # For each block of input connections sample the weights
+                if self.config['sampling_sequence'] == 'stochastic':
+                    np.random.shuffle(input_perm)
+
+                for block_idx in range(0, n_inputs, self.block_size):
+                    if block_idx + self.block_size > n_inputs:
+                        block_start_idx = n_inputs - self.block_size
+                    else:
+                        block_start_idx = block_idx
+                    block_end_idx = block_start_idx + self.block_size
+                    block_range = range(block_start_idx, block_end_idx)
+
+                    sess.run(curr_layer.w_sample_op,
+                             feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx],
+                                        curr_layer.input_indices: input_perm[block_range, :]},
+                             options=options, run_metadata=run_metadata)
+                    if neuron_idx == profile_neuron_idx and block_end_idx > profile_block_idx:
+                        sample_block_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
+
+        with open(trace_path + 'dropout.json', 'w') as f:
+            f.write(do_trace)
+
+        for layer_idx in range(len(lookup_traces)):
+            path = trace_path + 'l' + str(layer_idx) + '_'
+            with open(path + 'lookup.json', 'w') as f:
+                f.write(lookup_traces[layer_idx])
+            with open(path + 'pass.json', 'w') as f:
+                f.write(pass_traces[layer_idx])
+            with open(path + 'bsample.json', 'w') as f:
+                f.write(sample_bias_traces[layer_idx])
+            with open(path + 'blocksample.json', 'w') as f:
+                f.write(sample_block_traces[layer_idx])
+
 

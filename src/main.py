@@ -2,17 +2,10 @@ from src.nn import NN
 import numpy as np
 import tensorflow as tf
 from src.activation import get_activation_function
-import src.nlp_data as data_handler
-from src.plot_tools import Plotter
-from src.storage_tools import Loader
+from src.mnist_data import load_dataset
+import matplotlib.pyplot as plt
 
-exp_name = 'ternary_act'
-job_name = 'job_1'
-loader = Loader(exp_name, job_name)
-loader.load_act_hists('tr_acts')
-print(loader.load_sequence('tr_mis'))
-loader.generate_plots()
-quit()
+
 
 # Here just a dummy task is implemented, to test whether training works
 # Dropout is currently only partially implemented, namely when creating the entries in the lookup table
@@ -20,7 +13,6 @@ quit()
 # That can be easily changed though.
 file_names = {''}
 dir_name = 'test'
-plotter = Plotter(dir_name)
 
 # Create activation functions
 act_funcs = []
@@ -34,14 +26,9 @@ act_funcs.append(act_func)
 
 
 # data_handler.transform_nlp_data()
-nlp_dataset_names = data_handler.get_nlp_names()
-X_tr, Y_tr, X_val, Y_val = data_handler.get_dataset(nlp_dataset_names[0])
-X_tr = X_tr[:, :20]
-X_val = X_val[:, :20]
-n_samples = X_tr.shape[0]
-n_val_samples = X_val.shape[0]
+x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
 
-config = {'layout': [X_tr.shape[1], 30, 30, Y_tr.shape[1]],
+config = {'layout': [x_tr.shape[1], 30, 30, y_tr.shape[1]],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
@@ -51,24 +38,26 @@ config = {'layout': [X_tr.shape[1], 30, 30, Y_tr.shape[1]],
 
 
 nn = NN(config)
-nn.create_gibbs_graph(n_samples, n_val_samples, 2)
+nn.create_gibbs_graph(x_tr.shape[0], y_tr.shape[0], 2)
 
 train_mis = []
 val_mis = []
 
 with tf.Session() as sess:
+    writer = tf.summary.FileWriter("../results/demo_graph")
+    writer.add_graph(sess.graph)
     sess.run(tf.global_variables_initializer())
-    sess.run(nn.load_train_set_op, feed_dict={nn.X_placeholder: X_tr, nn.Y_placeholder: Y_tr})
-    sess.run(nn.load_val_set_op, feed_dict={nn.X_placeholder: X_val, nn.Y_placeholder: Y_val})
+    sess.run(nn.load_train_set_op, feed_dict={nn.X_placeholder: x_tr, nn.Y_placeholder: y_tr})
+    sess.run(nn.load_val_set_op, feed_dict={nn.X_placeholder: x_va, nn.Y_placeholder: y_va})
 
     for i in range(10):
-        if i % 3 == 0:
-            plotter.save_activation_plots(nn.get_activation_histogram(sess, X_tr), str(i))
+        #if i % 3 == 0:
+            #plotter.save_activation_plots(nn.get_activation_histogram(sess, X_tr), str(i))
         #quit()
         #print(np.sum(sess.run(nn.full_network.likelihoods, feed_dict={nn.X: X_tr, nn.Y: Y_tr})))
         train_mis.append(nn.get_misclassification(sess, False))
         val_mis.append(nn.get_misclassification(sess, True))
         nn.perform_gibbs_iteration(sess)
 
-plotter.plot_misclassification(np.arange(10), train_mis, val_mis)
+
 
