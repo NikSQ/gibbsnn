@@ -12,7 +12,7 @@
 ##SBATCH --begin=now+8hour
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-#SBATCH --array=0-1
+#SBATCH --array=0-2
 
 #################
 # configuration #

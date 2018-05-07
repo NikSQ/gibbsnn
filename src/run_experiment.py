@@ -16,8 +16,8 @@ def run_experiment(exp_config, nn_config, dataset):
     nn.create_gibbs_graph(x_tr.shape[0], x_va.shape[0], exp_config['block_size'])
 
     with tf.Session() as sess:
-        writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr')
-        writer_va = tf.summary.FileWriter(exp_config['path'] + 'va')
+        writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
+        writer_va = tf.summary.FileWriter(exp_config['path'] + 'va/')
 
         sess.run(tf.global_variables_initializer())
         sess.run(nn.load_train_set_op, feed_dict={nn.X_placeholder: x_tr, nn.Y_placeholder: y_tr})
