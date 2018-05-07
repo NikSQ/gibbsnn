@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name="nn_training"
+#SBATCH --job-name="tf_profiling"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
 #SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/job%5a.out
 #SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/job%5a.err
@@ -9,10 +9,9 @@
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-##SBATCH --begin=now+8hour
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-#SBATCH --array=0-1
+##SBATCH --array=0-9
 
 #################
 # configuration #
@@ -174,7 +173,7 @@ export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
 echo -e "\n\nStarting Test\n"
 
-python3 ../experiments/architectures.py
+python3 ../experiments/tf_profiler.py
 ##################
 # END: user code #
 ##################

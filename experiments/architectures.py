@@ -6,13 +6,11 @@ sys.path.append('../')
 from src.activation import get_activation_function
 from src.run_experiment import run_experiment
 
-# TODO: job name should include the actual index of the job
-#task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
-task_id = 0
-path = '../results/archs/job_' + str(task_id)
+task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
+path = '../results/archs/job_' + str(task_id) + '_'
 
-run_config = {'n_epochs': 4,
-              'block_size': 2,
+run_config = {'n_epochs': 3,
+              'block_size': 4,
               'store_acts': True,
               'store_acts_every': 1,
               'store_vars': True,
