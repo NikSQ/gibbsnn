@@ -114,21 +114,21 @@ class FCLayer:
         # gather_nd (creates a new tensor by only taking those elements of the reference tensor, that are specified
         # in the index variable)
         # scatter_nd_update (updates elements - specified by indices - of a TF variable with the given update values)
-        input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input), self.input_indices))
+        input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
         weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
-                                                                (block_size, 1))], axis=1)
-        weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices), axis=1)
-        neuron_activation = tf.slice(self.activation, begin=[0, self.neuron_idx], size=[self.batch_size, 1])
+                                                                (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
+        weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices, name='w_block_gather'), axis=1)
+        neuron_activation = tf.slice(self.activation, begin=[0, self.neuron_idx], size=[self.batch_size, 1], name='extract_neuron_activation')
 
-        w_removed_activation = neuron_activation - tf.matmul(input_block, weight_block)
-        w_added_activation = tf.matmul(input_block, connection_matrix) + w_removed_activation
+        w_removed_activation = neuron_activation - tf.matmul(input_block, weight_block, name='curr_inp_block_influence')
+        w_added_activation = tf.matmul(input_block, connection_matrix, name='calc_inp_block_influence') + w_removed_activation
 
-        b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx])
+        b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx], name='extract_bias_activation')x)
         b_added_activation = self.bias_vals + b_removed_activation
 
         update_var_indices = tf.concat([np.reshape(np.arange(self.batch_size), newshape=(-1, 1)),
                                        tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
-                                               (self.batch_size, 1))], axis=1)
+                                               (self.batch_size, 1), name='var_indices_tile')], axis=1, name='var_indices_concat')
 
         if self.is_output:
             activation = tf.cast(self.activation, dtype=tf.float32)
@@ -170,23 +170,23 @@ class FCLayer:
         else:
             output_values = self.act_func.get_output(w_added_activation)
             lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
-            g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2)
-            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices), log_pw)
-            new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1])
+            g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
+            new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
             new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
             new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights))
+            sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
             self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
                                                             new_output_vals)
 
             output_values = self.act_func.get_output(b_added_activation)
             lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
-            g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2)
-            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices))
-            new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx])
+            g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
+            new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
             new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
             new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight])
+            sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
             self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
                                                             new_output_vals)
 
@@ -196,9 +196,9 @@ class FCLayer:
     def create_update_var_graph(self, control_op, update_indices, new_activation_vals, new_output_vals=None):
         new_ops = []
         with tf.control_dependencies([control_op]):
-            new_ops.append(tf.scatter_nd_update(self.activation, update_indices, tf.squeeze(new_activation_vals)))
+            new_ops.append(tf.scatter_nd_update(self.activation, update_indices, tf.squeeze(new_activation_vals), name='activation_update'))
             if new_output_vals is not None:
-                new_ops.append(tf.scatter_nd_update(self.output, update_indices, tf.squeeze(new_output_vals)))
+                new_ops.append(tf.scatter_nd_update(self.output, update_indices, tf.squeeze(new_output_vals), name='output_update'))
             op = tf.group(*new_ops)
         return op
 
@@ -207,9 +207,9 @@ class FCLayer:
     # TODO: After testing remove taking the mode and add those priors
     def calc_sample_idx(self, log_probs, log_pw=None):
         if log_pw is None:
-            log_probs = tf.reduce_sum(log_probs, axis=0) / self.config['flat_factor'][self.layer_idx]
+            log_probs = tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') / self.config['flat_factor'][self.layer_idx]
         else:
-            log_probs = (tf.reduce_sum(log_probs, axis=0) + log_pw) / self.config['flat_factor'][self.layer_idx]
+            log_probs = (tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') + log_pw) / self.config['flat_factor'][self.layer_idx]
 
         probs = tf.cumsum(tf.exp(log_probs - tf.reduce_max(log_probs)))
         sample_idx = tf.reduce_sum(tf.cast(tf.less(probs, tf.random_uniform((1,))*tf.reduce_max(probs)), tf.int32))
