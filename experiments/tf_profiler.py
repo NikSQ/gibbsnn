@@ -22,8 +22,10 @@ act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
+x_tr = x_tr[:, :40]
+x_va = x_va[:, :40]
 
-config = {'layout': [x_tr.shape[1], 20, 20, y_tr.shape[1]],
+config = {'layout': [x_tr.shape[1], 12, 20, y_tr.shape[1]],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],

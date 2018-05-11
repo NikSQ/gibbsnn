@@ -182,7 +182,7 @@ class NN:
             curr_layer = self.layers[layer_idx]
 
             if layer_idx > 0:
-                n_inputs = np.sum(dropout_masks[layer_idx-1])
+                n_inputs = np.sum(dropout_masks[layer_idx-1]).astype(np.int32)
                 input_perm = np.flatnonzero(dropout_masks[layer_idx-1])
             else:
                 n_inputs = self.config['layout'][layer_idx]
@@ -190,7 +190,7 @@ class NN:
             input_perm = np.expand_dims(input_perm, axis=1)
 
             if layer_idx < self.n_layers - 1:
-                n_neurons = np.sum(dropout_masks[layer_idx])
+                n_neurons = np.sum(dropout_masks[layer_idx]).astype(np.int32)
                 neuron_perm = np.flatnonzero(dropout_masks[layer_idx])
             else:
                 n_neurons = self.config['layout'][layer_idx+1]
@@ -257,7 +257,7 @@ class NN:
             curr_layer = self.layers[layer_idx]
 
             if layer_idx > 0:
-                n_inputs = np.sum(dropout_masks[layer_idx-1])
+                n_inputs = np.sum(dropout_masks[layer_idx-1]).astype(np.int32)
                 input_perm = np.flatnonzero(dropout_masks[layer_idx-1])
             else:
                 n_inputs = self.config['layout'][layer_idx]
