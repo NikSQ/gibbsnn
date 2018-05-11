@@ -2,2894 +2,2822 @@
     "traceEvents": [
         {
             "pid": 0,
-            "name": "process_name",
             "args": {
                 "name": "Allocators"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 1,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:15 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 2,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:15 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 3,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 4,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 5,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 6,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 7,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:all Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 8,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:all Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 9,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:14 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 10,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:14 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 11,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:13 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 12,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:13 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 13,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/memcpy Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 14,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/memcpy Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
+            "pid": 1,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352655787,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549894365,
             "args": {
-                "name": "edge_109_var_indices_tile",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_109_var_indices_tile"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
+            "pid": 1,
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062352656053,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549894550,
             "args": {
-                "name": "edge_36_w_ind_tile",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_36_w_ind_tile"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
+            "pid": 1,
+            "cat": "Op",
+            "ph": "X",
             "dur": 12,
-            "ts": 1526062352656698,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549895482,
             "args": {
-                "name": "edge_53_Cast_5",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_53_Cast_5"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
+            "pid": 1,
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062352658195,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549896758,
             "args": {
-                "name": "edge_80_Cast_6",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_80_Cast_6"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
-            "dur": 11,
-            "ts": 1526062352655268,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "NoOp",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 17,
+            "ts": 1526062549893743,
             "args": {
-                "name": "_SOURCE",
-                "op": "NoOp"
-            }
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "tid": 0,
+            "name": "NoOp"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062352655310,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
+            "ts": 1526062549893784,
             "args": {
-                "name": "Slice_1/begin/0",
-                "op": "Const"
-            }
+                "op": "Const",
+                "name": "Slice_1/begin/0"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 4,
-            "ts": 1526062352655320,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Const",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549893805,
             "args": {
-                "name": "Slice_1/size",
-                "op": "Const"
-            }
+                "op": "Const",
+                "name": "Slice_1/size"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 11,
-            "ts": 1526062352655326,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "layer1/output",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655338,
-            "ph": "X",
             "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "var_indices_concat/values_0",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 4,
-            "ts": 1526062352655344,
             "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "ExpandDims_5/dim",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655349,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "Equal_4/y",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655356,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "ones_like_4",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655362,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "add_10/y",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655369,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "get_new_weight/input",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 4,
-            "ts": 1526062352655375,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "Const_4",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655381,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/shape",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655386,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/sub",
-                "op": "Const"
-            }
-        },
-        {
             "dur": 14,
-            "ts": 1526062352655382,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Pack",
-            "tid": 1,
+            "ts": 1526062549893813,
             "args": {
-                "name": "extract_neuron_activation/begin",
+                "op": "VariableV2",
+                "name": "layer1/output"
+            },
+            "tid": 0,
+            "name": "VariableV2"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549893829,
+            "args": {
+                "op": "Const",
+                "name": "var_indices_concat/values_0"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 4,
+            "ts": 1526062549893835,
+            "args": {
+                "op": "Const",
+                "name": "ExpandDims_5/dim"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549893841,
+            "args": {
+                "op": "Const",
+                "name": "Equal_4/y"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 11,
+            "ts": 1526062549893848,
+            "args": {
+                "op": "Const",
+                "name": "ones_like_4"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549893861,
+            "args": {
+                "op": "Const",
+                "name": "add_10/y"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549893868,
+            "args": {
+                "op": "Const",
+                "name": "get_new_weight/input"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 4,
+            "ts": 1526062549893876,
+            "args": {
+                "op": "Const",
+                "name": "Const_4"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549893881,
+            "args": {
+                "op": "Const",
+                "name": "random_uniform/shape"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549893887,
+            "args": {
+                "op": "Const",
+                "name": "random_uniform/sub"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 17,
+            "ts": 1526062549893877,
+            "args": {
+                "input0": "Slice_1/begin/0",
                 "input1": "_arg_layer1/neuron_idx_0_0/_49",
                 "op": "Pack",
-                "input0": "Slice_1/begin/0"
-            }
-        },
-        {
-            "id": 0,
-            "ts": 1526062352655318,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/begin/0",
-            "tid": 0
-        },
-        {
-            "id": 0,
-            "ts": 1526062352655382,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/begin/0",
-            "tid": 1
-        },
-        {
-            "id": 1,
-            "ts": 1526062352655314,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 5,
-            "name": "_arg_layer1/neuron_idx_0_0",
-            "tid": 0
-        },
-        {
-            "id": 1,
-            "ts": 1526062352655382,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "_arg_layer1/neuron_idx_0_0",
-            "tid": 1
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352655392,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "global/lookup",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655400,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "look_ind_concat/values_0",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 7,
-            "ts": 1526062352655399,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ExpandDims",
+                "name": "extract_neuron_activation/begin"
+            },
             "tid": 1,
+            "name": "Pack"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893792,
+            "id": 0,
+            "tid": 0,
+            "name": "Slice_1/begin/0"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549893877,
+            "id": 0,
+            "tid": 1,
+            "name": "Slice_1/begin/0"
+        },
+        {
+            "pid": 5,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893791,
+            "id": 1,
+            "tid": 0,
+            "name": "_arg_layer1/neuron_idx_0_0"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549893877,
+            "id": 1,
+            "tid": 1,
+            "name": "_arg_layer1/neuron_idx_0_0"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 9,
+            "ts": 1526062549893894,
             "args": {
-                "name": "ExpandDims_4",
+                "op": "VariableV2",
+                "name": "global/lookup"
+            },
+            "tid": 0,
+            "name": "VariableV2"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062549893897,
+            "args": {
+                "input0": "_arg_layer1/neuron_idx_0_0/_49",
                 "input1": "Slice_1/begin/0",
                 "op": "ExpandDims",
-                "input0": "_arg_layer1/neuron_idx_0_0/_49"
-            }
-        },
-        {
-            "id": 2,
-            "ts": 1526062352655314,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 5,
-            "name": "_arg_layer1/neuron_idx_0_0",
-            "tid": 0
-        },
-        {
-            "id": 2,
-            "ts": 1526062352655399,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "_arg_layer1/neuron_idx_0_0",
-            "tid": 1
-        },
-        {
-            "id": 3,
-            "ts": 1526062352655318,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/begin/0",
-            "tid": 0
-        },
-        {
-            "id": 3,
-            "ts": 1526062352655399,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/begin/0",
-            "tid": 1
-        },
-        {
-            "dur": 7,
-            "ts": 1526062352655405,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "layer1/activation",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 10,
-            "ts": 1526062352655408,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ExpandDims",
+                "name": "ExpandDims_4"
+            },
             "tid": 1,
+            "name": "ExpandDims"
+        },
+        {
+            "pid": 5,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893791,
+            "id": 2,
+            "tid": 0,
+            "name": "_arg_layer1/neuron_idx_0_0"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549893897,
+            "id": 2,
+            "tid": 1,
+            "name": "_arg_layer1/neuron_idx_0_0"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893792,
+            "id": 3,
+            "tid": 0,
+            "name": "Slice_1/begin/0"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549893897,
+            "id": 3,
+            "tid": 1,
+            "name": "Slice_1/begin/0"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549893905,
             "args": {
-                "name": "ExpandDims_5",
+                "op": "Const",
+                "name": "look_ind_concat/values_0"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 12,
+            "ts": 1526062549893907,
+            "args": {
+                "input0": "ExpandDims_4",
                 "input1": "ExpandDims_5/dim",
                 "op": "ExpandDims",
-                "input0": "ExpandDims_4"
-            }
-        },
-        {
-            "id": 4,
-            "ts": 1526062352655348,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "ExpandDims_5/dim",
-            "tid": 0
-        },
-        {
-            "id": 4,
-            "ts": 1526062352655408,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "ExpandDims_5/dim",
-            "tid": 1
-        },
-        {
-            "dur": 7,
-            "ts": 1526062352655413,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "layer1/input",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352655421,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "layer1/W",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 4,
-            "ts": 1526062352655428,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "w_ind_tile/multiples",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 21,
-            "ts": 1526062352655433,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "add_9/y",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 5,
-            "ts": 1526062352655456,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "ExpandDims_6/dim",
-                "op": "Const"
-            }
-        },
-        {
-            "dur": 74,
-            "ts": 1526062352655462,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "RandomUniform",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/RandomUniform",
-                "op": "RandomUniform",
-                "input0": "random_uniform/shape"
-            }
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352655540,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Identity",
-            "tid": 0,
-            "args": {
-                "name": "global/lookup/read",
-                "op": "Identity",
-                "input0": "global/lookup"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655548,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Identity",
-            "tid": 0,
-            "args": {
-                "name": "layer1/activation/read",
-                "op": "Identity",
-                "input0": "layer1/activation"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655554,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Identity",
-            "tid": 0,
-            "args": {
-                "name": "layer1/input/read",
-                "op": "Identity",
-                "input0": "layer1/input"
-            }
-        },
-        {
-            "dur": 4,
-            "ts": 1526062352655559,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Identity",
-            "tid": 0,
-            "args": {
-                "name": "layer1/W/read",
-                "op": "Identity",
-                "input0": "layer1/W"
-            }
-        },
-        {
-            "dur": 34,
-            "ts": 1526062352655564,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/mul",
-                "input1": "random_uniform/sub",
-                "op": "Mul",
-                "input0": "random_uniform/RandomUniform"
-            }
-        },
-        {
-            "dur": 30,
-            "ts": 1526062352655602,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Slice",
-            "tid": 0,
-            "args": {
-                "name": "extract_neuron_activation",
-                "input2": "Slice_1/size",
-                "input1": "extract_neuron_activation/begin",
-                "op": "Slice",
-                "input0": "layer1/activation/read"
-            }
-        },
-        {
-            "id": 5,
-            "ts": 1526062352655396,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "extract_neuron_activation/begin",
-            "tid": 1
-        },
-        {
-            "id": 5,
-            "ts": 1526062352655602,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "extract_neuron_activation/begin",
-            "tid": 0
-        },
-        {
-            "dur": 4,
-            "ts": 1526062352655635,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Const",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans1/sub_1",
-                "op": "Const",
-                "input0": "^layer1/input/read"
-            }
-        },
-        {
-            "dur": 23,
-            "ts": 1526062352655641,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform",
-                "input1": "Equal_4/y",
-                "op": "Add",
-                "input0": "random_uniform/mul"
-            }
-        },
-        {
-            "dur": 38,
-            "ts": 1526062352655667,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Transpose",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans1",
-                "input1": "inp_block_trans1/sub_1",
-                "op": "Transpose",
-                "input0": "layer1/input/read"
-            }
-        },
-        {
-            "dur": 48,
-            "ts": 1526062352655689,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Tile",
+                "name": "ExpandDims_5"
+            },
             "tid": 1,
-            "args": {
-                "name": "var_indices_tile",
-                "input1": "Slice_1/size",
-                "op": "Tile",
-                "input0": "ExpandDims_5/_51"
-            }
+            "name": "ExpandDims"
         },
         {
-            "id": 6,
-            "ts": 1526062352655324,
+            "pid": 3,
+            "cat": "DataFlow",
             "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/size",
-            "tid": 0
-        },
-        {
-            "id": 6,
-            "ts": 1526062352655689,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "Slice_1/size",
-            "tid": 1
-        },
-        {
-            "dur": 45,
-            "ts": 1526062352655820,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "GatherNd",
+            "ts": 1526062549893839,
+            "id": 4,
             "tid": 0,
-            "args": {
-                "name": "inp_block_gather",
-                "input1": "_arg_layer1_2/input_indices_0_1/_47",
-                "op": "GatherNd",
-                "input0": "inp_block_trans1"
-            }
+            "name": "ExpandDims_5/dim"
         },
         {
-            "id": 7,
-            "ts": 1526062352655334,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 5,
-            "name": "_arg_layer1_2/input_indices_0_1",
-            "tid": 0
-        },
-        {
-            "id": 7,
-            "ts": 1526062352655820,
-            "ph": "t",
-            "cat": "DataFlow",
             "pid": 3,
-            "name": "_arg_layer1_2/input_indices_0_1",
-            "tid": 0
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549893907,
+            "id": 4,
+            "tid": 1,
+            "name": "ExpandDims_5/dim"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062352655868,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Rank",
-            "tid": 0,
+            "ts": 1526062549893913,
             "args": {
-                "name": "inp_block_trans2/Rank",
-                "op": "Rank",
-                "input0": "inp_block_gather"
-            }
+                "op": "VariableV2",
+                "name": "layer1/activation"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 6,
-            "ts": 1526062352655878,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Range",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 10,
+            "ts": 1526062549893922,
             "args": {
-                "name": "inp_block_trans2/Range",
-                "input2": "ExpandDims_5/dim",
-                "input1": "inp_block_trans2/Rank",
-                "op": "Range",
-                "input0": "Slice_1/begin/0"
-            }
+                "op": "VariableV2",
+                "name": "layer1/input"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 208,
+            "ts": 1526062549893934,
+            "args": {
+                "op": "VariableV2",
+                "name": "layer1/W"
+            },
+            "tid": 0,
+            "name": "VariableV2"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 7,
-            "ts": 1526062352655886,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549894145,
             "args": {
-                "name": "inp_block_trans2/sub",
-                "input1": "ExpandDims_5/dim",
-                "op": "Sub",
-                "input0": "inp_block_trans2/Rank"
-            }
+                "op": "Const",
+                "name": "w_ind_tile/multiples"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352655895,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549894155,
             "args": {
-                "name": "inp_block_trans2/sub_1",
-                "input1": "inp_block_trans2/Range",
-                "op": "Sub",
-                "input0": "inp_block_trans2/sub"
-            }
+                "op": "Const",
+                "name": "add_9/y"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 30,
-            "ts": 1526062352655903,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Transpose",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549894163,
             "args": {
-                "name": "inp_block_trans2",
-                "input1": "inp_block_trans2/sub_1",
-                "op": "Transpose",
-                "input0": "inp_block_gather"
-            }
+                "op": "Const",
+                "name": "ExpandDims_6/dim"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 50,
-            "ts": 1526062352655932,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Tile",
-            "tid": 1,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 57,
+            "ts": 1526062549894169,
             "args": {
-                "name": "w_ind_tile",
+                "input0": "random_uniform/shape",
+                "op": "RandomUniform",
+                "name": "random_uniform/RandomUniform"
+            },
+            "tid": 0,
+            "name": "RandomUniform"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894229,
+            "args": {
+                "input0": "global/lookup",
+                "op": "Identity",
+                "name": "global/lookup/read"
+            },
+            "tid": 0,
+            "name": "Identity"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549894237,
+            "args": {
+                "input0": "layer1/activation",
+                "op": "Identity",
+                "name": "layer1/activation/read"
+            },
+            "tid": 0,
+            "name": "Identity"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549894244,
+            "args": {
+                "input0": "layer1/input",
+                "op": "Identity",
+                "name": "layer1/input/read"
+            },
+            "tid": 0,
+            "name": "Identity"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062549894250,
+            "args": {
+                "input0": "layer1/W",
+                "op": "Identity",
+                "name": "layer1/W/read"
+            },
+            "tid": 0,
+            "name": "Identity"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 40,
+            "ts": 1526062549894257,
+            "args": {
+                "input0": "ExpandDims_5/_51",
                 "input1": "w_ind_tile/multiples",
                 "op": "Tile",
-                "input0": "ExpandDims_5/_51"
-            }
-        },
-        {
-            "id": 8,
-            "ts": 1526062352655432,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "w_ind_tile/multiples",
-            "tid": 0
-        },
-        {
-            "id": 8,
-            "ts": 1526062352655932,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "w_ind_tile/multiples",
-            "tid": 1
-        },
-        {
-            "dur": 63,
-            "ts": 1526062352655936,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "MatMul",
+                "name": "w_ind_tile"
+            },
             "tid": 0,
-            "args": {
-                "name": "calc_inp_block_influence",
-                "input1": "get_new_weight/input",
-                "op": "MatMul",
-                "input0": "inp_block_trans2"
-            }
+            "name": "Tile"
         },
         {
-            "dur": 16,
-            "ts": 1526062352656215,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "ConcatV2",
-            "tid": 0,
-            "args": {
-                "name": "w_ind_concat",
-                "input2": "ExpandDims_5/dim",
-                "input1": "w_ind_tile/_55",
-                "op": "ConcatV2",
-                "input0": "_arg_layer1_2/input_indices_0_1/_53"
-            }
-        },
-        {
-            "id": 9,
-            "ts": 1526062352655334,
+            "cat": "DataFlow",
             "ph": "s",
-            "cat": "DataFlow",
-            "pid": 5,
-            "name": "_arg_layer1_2/input_indices_0_1",
-            "tid": 0
-        },
-        {
-            "id": 9,
-            "ts": 1526062352656215,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "_arg_layer1_2/input_indices_0_1",
-            "tid": 0
-        },
-        {
-            "id": 10,
-            "ts": 1526062352655982,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "w_ind_tile",
-            "tid": 1
-        },
-        {
-            "id": 10,
-            "ts": 1526062352656215,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "w_ind_tile",
-            "tid": 0
-        },
-        {
-            "dur": 285,
-            "ts": 1526062352656007,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ConcatV2",
+            "ts": 1526062549893919,
+            "id": 5,
             "tid": 1,
+            "name": "ExpandDims_5"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549894257,
+            "id": 5,
+            "tid": 0,
+            "name": "ExpandDims_5"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 50,
+            "ts": 1526062549894263,
             "args": {
-                "name": "var_indices_concat",
-                "input2": "ExpandDims_5/dim",
-                "input1": "var_indices_tile/_65",
-                "op": "ConcatV2",
-                "input0": "var_indices_concat/values_0"
-            }
+                "input0": "ExpandDims_5/_51",
+                "input1": "Slice_1/size",
+                "op": "Tile",
+                "name": "var_indices_tile"
+            },
+            "tid": 1,
+            "name": "Tile"
         },
         {
-            "id": 11,
-            "ts": 1526062352655343,
+            "pid": 3,
+            "cat": "DataFlow",
             "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat/values_0",
-            "tid": 0
+            "ts": 1526062549893811,
+            "id": 6,
+            "tid": 0,
+            "name": "Slice_1/size"
         },
         {
-            "id": 11,
-            "ts": 1526062352656007,
+            "pid": 3,
+            "cat": "DataFlow",
             "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat/values_0",
-            "tid": 1
+            "ts": 1526062549894263,
+            "id": 6,
+            "tid": 1,
+            "name": "Slice_1/size"
         },
         {
-            "id": 12,
-            "ts": 1526062352655348,
-            "ph": "s",
-            "cat": "DataFlow",
             "pid": 3,
-            "name": "ExpandDims_5/dim",
-            "tid": 0
-        },
-        {
-            "id": 12,
-            "ts": 1526062352656007,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "ExpandDims_5/dim",
-            "tid": 1
-        },
-        {
+            "cat": "Op",
+            "ph": "X",
             "dur": 41,
-            "ts": 1526062352656374,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549894301,
             "args": {
-                "name": "w_block_gather",
-                "input1": "w_ind_concat/_57",
-                "op": "GatherNd",
-                "input0": "layer1/W/read"
-            }
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352656419,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ExpandDims",
-            "tid": 0,
-            "args": {
-                "name": "ExpandDims_3",
-                "input1": "ExpandDims_5/dim",
-                "op": "ExpandDims",
-                "input0": "w_block_gather"
-            }
-        },
-        {
-            "dur": 35,
-            "ts": 1526062352656427,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "MatMul",
-            "tid": 0,
-            "args": {
-                "name": "curr_inp_block_influence",
-                "input1": "ExpandDims_3",
-                "op": "MatMul",
-                "input0": "inp_block_trans2"
-            }
-        },
-        {
-            "dur": 28,
-            "ts": 1526062352656465,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sub",
-            "tid": 0,
-            "args": {
-                "name": "sub",
-                "input1": "curr_inp_block_influence",
-                "op": "Sub",
-                "input0": "extract_neuron_activation"
-            }
-        },
-        {
-            "dur": 28,
-            "ts": 1526062352656496,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "add_7",
-                "input1": "sub",
-                "op": "Add",
-                "input0": "calc_inp_block_influence"
-            }
-        },
-        {
-            "dur": 22,
-            "ts": 1526062352656527,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sign",
-            "tid": 0,
-            "args": {
-                "name": "Sign_4",
-                "op": "Sign",
-                "input0": "add_7"
-            }
-        },
-        {
-            "dur": 26,
-            "ts": 1526062352656555,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Equal",
-            "tid": 0,
-            "args": {
-                "name": "Equal_4",
-                "input1": "Equal_4/y",
-                "op": "Equal",
-                "input0": "Sign_4"
-            }
-        },
-        {
-            "dur": 20,
-            "ts": 1526062352656584,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "add_9",
-                "input1": "add_9/y",
-                "op": "Add",
-                "input0": "Sign_4"
-            }
-        },
-        {
-            "dur": 22,
-            "ts": 1526062352656609,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Select",
-            "tid": 0,
-            "args": {
-                "name": "Select_4",
-                "input2": "Sign_4",
-                "input1": "ones_like_4",
-                "op": "Select",
-                "input0": "Equal_4"
-            }
-        },
-        {
-            "dur": 13,
-            "ts": 1526062352656633,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sign",
-            "tid": 0,
-            "args": {
-                "name": "Sign_6",
-                "op": "Sign",
-                "input0": "add_9"
-            }
-        },
-        {
-            "dur": 16,
-            "ts": 1526062352656648,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Cast",
-            "tid": 0,
-            "args": {
-                "name": "Cast_5",
-                "op": "Cast",
-                "input0": "Sign_6"
-            }
-        },
-        {
-            "dur": 10,
-            "ts": 1526062352656746,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ExpandDims",
-            "tid": 0,
-            "args": {
-                "name": "ExpandDims_6",
-                "input1": "ExpandDims_6/dim",
-                "op": "ExpandDims",
-                "input0": "Cast_5/_59"
-            }
-        },
-        {
-            "dur": 873,
-            "ts": 1526062352656759,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ConcatV2",
-            "tid": 0,
-            "args": {
-                "name": "look_ind_concat",
-                "input2": "ExpandDims_6/dim",
-                "input1": "ExpandDims_6",
-                "op": "ConcatV2",
-                "input0": "look_ind_concat/values_0"
-            }
-        },
-        {
-            "dur": 43,
-            "ts": 1526062352657793,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "GatherNd",
-            "tid": 0,
-            "args": {
-                "name": "lookup_w",
-                "input1": "look_ind_concat/_61",
-                "op": "GatherNd",
-                "input0": "global/lookup/read"
-            }
-        },
-        {
-            "dur": 52,
-            "ts": 1526062352657843,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sum",
-            "tid": 0,
-            "args": {
-                "name": "calc_mean_log_prob",
-                "input1": "Slice_1/begin/0",
-                "op": "Sum",
-                "input0": "lookup_w"
-            }
-        },
-        {
-            "dur": 20,
-            "ts": 1526062352657897,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "add_10",
-                "input1": "add_10/y",
-                "op": "Add",
-                "input0": "calc_mean_log_prob"
-            }
-        },
-        {
-            "dur": 16,
-            "ts": 1526062352657918,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "truediv",
+                "input0": "random_uniform/RandomUniform",
                 "input1": "random_uniform/sub",
                 "op": "Mul",
-                "input0": "add_10"
-            }
+                "name": "random_uniform/mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
-            "dur": 20,
-            "ts": 1526062352657935,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Max",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 69,
+            "ts": 1526062549894346,
             "args": {
-                "name": "Max",
+                "input0": "layer1/activation/read",
+                "input1": "extract_neuron_activation/begin",
+                "op": "Slice",
+                "input2": "Slice_1/size",
+                "name": "extract_neuron_activation"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893894,
+            "id": 7,
+            "tid": 1,
+            "name": "extract_neuron_activation/begin"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549894346,
+            "id": 7,
+            "tid": 0,
+            "name": "extract_neuron_activation/begin"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894420,
+            "args": {
+                "input0": "^layer1/input/read",
+                "op": "Const",
+                "name": "inp_block_trans1/sub_1"
+            },
+            "tid": 0,
+            "name": "Const"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 30,
+            "ts": 1526062549894439,
+            "args": {
+                "input0": "random_uniform/mul",
+                "input1": "Equal_4/y",
+                "op": "Add",
+                "name": "random_uniform"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 34,
+            "ts": 1526062549894473,
+            "args": {
+                "input0": "layer1/input/read",
+                "input1": "inp_block_trans1/sub_1",
+                "op": "Transpose",
+                "name": "inp_block_trans1"
+            },
+            "tid": 0,
+            "name": "Transpose"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 61,
+            "ts": 1526062549894519,
+            "args": {
+                "input0": "inp_block_trans1",
+                "input1": "_arg_layer1_2/input_indices_0_1/_47",
+                "op": "GatherNd",
+                "name": "inp_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
+        },
+        {
+            "pid": 5,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893824,
+            "id": 8,
+            "tid": 0,
+            "name": "_arg_layer1_2/input_indices_0_1"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549894519,
+            "id": 8,
+            "tid": 0,
+            "name": "_arg_layer1_2/input_indices_0_1"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 9,
+            "ts": 1526062549894585,
+            "args": {
+                "input0": "inp_block_gather",
+                "op": "Rank",
+                "name": "inp_block_trans2/Rank"
+            },
+            "tid": 0,
+            "name": "Rank"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062549894597,
+            "args": {
+                "input0": "Slice_1/begin/0",
+                "input1": "inp_block_trans2/Rank",
+                "op": "Range",
+                "input2": "ExpandDims_5/dim",
+                "name": "inp_block_trans2/Range"
+            },
+            "tid": 0,
+            "name": "Range"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062549894607,
+            "args": {
+                "input0": "inp_block_trans2/Rank",
+                "input1": "ExpandDims_5/dim",
+                "op": "Sub",
+                "name": "inp_block_trans2/sub"
+            },
+            "tid": 0,
+            "name": "Sub"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062549894617,
+            "args": {
+                "input0": "inp_block_trans2/sub",
+                "input1": "inp_block_trans2/Range",
+                "op": "Sub",
+                "name": "inp_block_trans2/sub_1"
+            },
+            "tid": 0,
+            "name": "Sub"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 32,
+            "ts": 1526062549894627,
+            "args": {
+                "input0": "inp_block_gather",
+                "input1": "inp_block_trans2/sub_1",
+                "op": "Transpose",
+                "name": "inp_block_trans2"
+            },
+            "tid": 0,
+            "name": "Transpose"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 50,
+            "ts": 1526062549894662,
+            "args": {
+                "input0": "inp_block_trans2",
+                "input1": "get_new_weight/input",
+                "op": "MatMul",
+                "name": "calc_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 268,
+            "ts": 1526062549894720,
+            "args": {
+                "input0": "var_indices_concat/values_0",
+                "input1": "var_indices_tile/_65",
+                "op": "ConcatV2",
+                "input2": "ExpandDims_5/dim",
+                "name": "var_indices_concat"
+            },
+            "tid": 0,
+            "name": "ConcatV2"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549894313,
+            "id": 9,
+            "tid": 1,
+            "name": "var_indices_tile"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549894720,
+            "id": 9,
+            "tid": 0,
+            "name": "var_indices_tile"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 20,
+            "ts": 1526062549895050,
+            "args": {
+                "input0": "_arg_layer1_2/input_indices_0_1/_53",
+                "input1": "w_ind_tile/_55",
+                "op": "ConcatV2",
+                "input2": "ExpandDims_5/dim",
+                "name": "w_ind_concat"
+            },
+            "tid": 0,
+            "name": "ConcatV2"
+        },
+        {
+            "pid": 5,
+            "cat": "DataFlow",
+            "ph": "s",
+            "ts": 1526062549893824,
+            "id": 10,
+            "tid": 0,
+            "name": "_arg_layer1_2/input_indices_0_1"
+        },
+        {
+            "pid": 3,
+            "cat": "DataFlow",
+            "ph": "t",
+            "ts": 1526062549895050,
+            "id": 10,
+            "tid": 0,
+            "name": "_arg_layer1_2/input_indices_0_1"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 46,
+            "ts": 1526062549895146,
+            "args": {
+                "input0": "layer1/W/read",
+                "input1": "w_ind_concat/_57",
+                "op": "GatherNd",
+                "name": "w_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062549895195,
+            "args": {
+                "input0": "w_block_gather",
+                "input1": "ExpandDims_5/dim",
+                "op": "ExpandDims",
+                "name": "ExpandDims_3"
+            },
+            "tid": 0,
+            "name": "ExpandDims"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 35,
+            "ts": 1526062549895206,
+            "args": {
+                "input0": "inp_block_trans2",
+                "input1": "ExpandDims_3",
+                "op": "MatMul",
+                "name": "curr_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 29,
+            "ts": 1526062549895243,
+            "args": {
+                "input0": "extract_neuron_activation",
+                "input1": "curr_inp_block_influence",
+                "op": "Sub",
+                "name": "sub"
+            },
+            "tid": 0,
+            "name": "Sub"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 27,
+            "ts": 1526062549895276,
+            "args": {
+                "input0": "calc_inp_block_influence",
+                "input1": "sub",
+                "op": "Add",
+                "name": "add_7"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 23,
+            "ts": 1526062549895306,
+            "args": {
+                "input0": "add_7",
+                "op": "Sign",
+                "name": "Sign_4"
+            },
+            "tid": 0,
+            "name": "Sign"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 27,
+            "ts": 1526062549895335,
+            "args": {
+                "input0": "Sign_4",
+                "input1": "Equal_4/y",
+                "op": "Equal",
+                "name": "Equal_4"
+            },
+            "tid": 0,
+            "name": "Equal"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 19,
+            "ts": 1526062549895365,
+            "args": {
+                "input0": "Sign_4",
+                "input1": "add_9/y",
+                "op": "Add",
+                "name": "add_9"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 23,
+            "ts": 1526062549895388,
+            "args": {
+                "input0": "Equal_4",
+                "input1": "ones_like_4",
+                "op": "Select",
+                "input2": "Sign_4",
+                "name": "Select_4"
+            },
+            "tid": 0,
+            "name": "Select"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 13,
+            "ts": 1526062549895413,
+            "args": {
+                "input0": "add_9",
+                "op": "Sign",
+                "name": "Sign_6"
+            },
+            "tid": 0,
+            "name": "Sign"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 19,
+            "ts": 1526062549895428,
+            "args": {
+                "input0": "Sign_6",
+                "op": "Cast",
+                "name": "Cast_5"
+            },
+            "tid": 0,
+            "name": "Cast"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 10,
+            "ts": 1526062549895532,
+            "args": {
+                "input0": "Cast_5/_59",
+                "input1": "ExpandDims_6/dim",
+                "op": "ExpandDims",
+                "name": "ExpandDims_6"
+            },
+            "tid": 0,
+            "name": "ExpandDims"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 639,
+            "ts": 1526062549895545,
+            "args": {
+                "input0": "look_ind_concat/values_0",
+                "input1": "ExpandDims_6",
+                "op": "ConcatV2",
+                "input2": "ExpandDims_6/dim",
+                "name": "look_ind_concat"
+            },
+            "tid": 0,
+            "name": "ConcatV2"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 43,
+            "ts": 1526062549896356,
+            "args": {
+                "input0": "global/lookup/read",
+                "input1": "look_ind_concat/_61",
+                "op": "GatherNd",
+                "name": "lookup_w"
+            },
+            "tid": 0,
+            "name": "GatherNd"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 54,
+            "ts": 1526062549896406,
+            "args": {
+                "input0": "lookup_w",
+                "input1": "Slice_1/begin/0",
+                "op": "Sum",
+                "name": "calc_mean_log_prob"
+            },
+            "tid": 0,
+            "name": "Sum"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 20,
+            "ts": 1526062549896462,
+            "args": {
+                "input0": "calc_mean_log_prob",
+                "input1": "add_10/y",
+                "op": "Add",
+                "name": "add_10"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 15,
+            "ts": 1526062549896484,
+            "args": {
+                "input0": "add_10",
+                "input1": "random_uniform/sub",
+                "op": "Mul",
+                "name": "truediv"
+            },
+            "tid": 0,
+            "name": "Mul"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 21,
+            "ts": 1526062549896501,
+            "args": {
+                "input0": "truediv",
                 "input1": "Const_4",
                 "op": "Max",
-                "input0": "truediv"
-            }
+                "name": "Max"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
-            "dur": 16,
-            "ts": 1526062352657957,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Sub",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 17,
+            "ts": 1526062549896524,
             "args": {
-                "name": "sub_2",
+                "input0": "truediv",
                 "input1": "Max",
                 "op": "Sub",
-                "input0": "truediv"
-            }
+                "name": "sub_2"
+            },
+            "tid": 0,
+            "name": "Sub"
         },
         {
-            "dur": 15,
-            "ts": 1526062352657975,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Exp",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 16,
+            "ts": 1526062549896543,
             "args": {
-                "name": "Exp",
+                "input0": "sub_2",
                 "op": "Exp",
-                "input0": "sub_2"
-            }
+                "name": "Exp"
+            },
+            "tid": 0,
+            "name": "Exp"
         },
         {
-            "dur": 46,
-            "ts": 1526062352658001,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Cumsum",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 48,
+            "ts": 1526062549896562,
             "args": {
-                "name": "Cumsum",
+                "input0": "Exp",
                 "input1": "Slice_1/begin/0",
                 "op": "Cumsum",
-                "input0": "Exp"
-            }
+                "name": "Cumsum"
+            },
+            "tid": 0,
+            "name": "Cumsum"
         },
         {
-            "dur": 31,
-            "ts": 1526062352658049,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Max",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 34,
+            "ts": 1526062549896613,
             "args": {
-                "name": "Max_1",
+                "input0": "Cumsum",
                 "input1": "Const_4",
                 "op": "Max",
-                "input0": "Cumsum"
-            }
+                "name": "Max_1"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
-            "dur": 29,
-            "ts": 1526062352658082,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Mul",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 29,
+            "ts": 1526062549896650,
             "args": {
-                "name": "mul",
+                "input0": "random_uniform",
                 "input1": "Max_1",
                 "op": "Mul",
-                "input0": "random_uniform"
-            }
+                "name": "mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
-            "dur": 28,
-            "ts": 1526062352658114,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Less",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 23,
+            "ts": 1526062549896681,
             "args": {
-                "name": "Less",
+                "input0": "Cumsum",
                 "input1": "mul",
                 "op": "Less",
-                "input0": "Cumsum"
-            }
+                "name": "Less"
+            },
+            "tid": 0,
+            "name": "Less"
         },
         {
-            "dur": 18,
-            "ts": 1526062352658144,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Cast",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 19,
+            "ts": 1526062549896706,
             "args": {
-                "name": "Cast_6",
+                "input0": "Less",
                 "op": "Cast",
-                "input0": "Less"
-            }
+                "name": "Cast_6"
+            },
+            "tid": 0,
+            "name": "Cast"
         },
         {
-            "dur": 18,
-            "ts": 1526062352658230,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Sum",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 16,
+            "ts": 1526062549896797,
             "args": {
-                "name": "Sum_2",
+                "input0": "Cast_6/_63",
                 "input1": "Const_4",
                 "op": "Sum",
-                "input0": "Cast_6/_63"
-            }
+                "name": "Sum_2"
+            },
+            "tid": 0,
+            "name": "Sum"
         },
         {
-            "dur": 10,
-            "ts": 1526062352658251,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Pack",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 11,
+            "ts": 1526062549896816,
             "args": {
-                "name": "Slice_1/begin",
+                "input0": "Slice_1/begin/0",
                 "input1": "Sum_2",
                 "op": "Pack",
-                "input0": "Slice_1/begin/0"
-            }
+                "name": "Slice_1/begin"
+            },
+            "tid": 0,
+            "name": "Pack"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 34,
-            "ts": 1526062352658263,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896829,
             "args": {
-                "name": "Slice",
-                "input2": "Slice_1/size",
+                "input0": "Select_4",
                 "input1": "Slice_1/begin",
                 "op": "Slice",
-                "input0": "Select_4"
-            }
+                "input2": "Slice_1/size",
+                "name": "Slice"
+            },
+            "tid": 0,
+            "name": "Slice"
         },
         {
-            "dur": 23,
-            "ts": 1526062352658300,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Slice",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 24,
+            "ts": 1526062549896866,
             "args": {
-                "name": "Slice_1",
-                "input2": "Slice_1/size",
+                "input0": "add_7",
                 "input1": "Slice_1/begin",
                 "op": "Slice",
-                "input0": "add_7"
-            }
+                "input2": "Slice_1/size",
+                "name": "Slice_1"
+            },
+            "tid": 0,
+            "name": "Slice"
         },
         {
-            "dur": 26,
-            "ts": 1526062352658325,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Slice",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 24,
+            "ts": 1526062549896893,
             "args": {
-                "name": "get_new_weight",
+                "input0": "get_new_weight/input",
+                "input1": "Slice_1/begin",
+                "op": "Slice",
                 "input2": "w_ind_tile/multiples",
-                "input1": "Slice_1/begin",
-                "op": "Slice",
-                "input0": "get_new_weight/input"
-            }
+                "name": "get_new_weight"
+            },
+            "tid": 0,
+            "name": "Slice"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062352658354,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Squeeze",
-            "tid": 0,
+            "ts": 1526062549896920,
             "args": {
-                "name": "Squeeze",
+                "input0": "get_new_weight",
                 "op": "Squeeze",
-                "input0": "get_new_weight"
-            }
+                "name": "Squeeze"
+            },
+            "tid": 0,
+            "name": "Squeeze"
         },
         {
-            "dur": 29,
-            "ts": 1526062352658364,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 30,
+            "ts": 1526062549896930,
             "args": {
-                "name": "sample_w",
-                "input2": "Squeeze",
+                "input0": "layer1/W",
                 "input1": "w_ind_concat/_57",
                 "op": "ScatterNdUpdate",
-                "input0": "layer1/W"
-            }
+                "input2": "Squeeze",
+                "name": "sample_w"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352658395,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Squeeze",
-            "tid": 0,
+            "ts": 1526062549896963,
             "args": {
-                "name": "Squeeze_2",
+                "input0": "Slice",
                 "input1": "^sample_w",
                 "op": "Squeeze",
-                "input0": "Slice"
-            }
+                "name": "Squeeze_2"
+            },
+            "tid": 0,
+            "name": "Squeeze"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 5,
-            "ts": 1526062352658403,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Squeeze",
-            "tid": 0,
+            "ts": 1526062549896971,
             "args": {
-                "name": "Squeeze_1",
+                "input0": "Slice_1",
                 "input1": "^sample_w",
                 "op": "Squeeze",
-                "input0": "Slice_1"
-            }
+                "name": "Squeeze_1"
+            },
+            "tid": 0,
+            "name": "Squeeze"
         },
         {
-            "dur": 23,
-            "ts": 1526062352658409,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 22,
+            "ts": 1526062549896978,
             "args": {
-                "name": "output_update",
+                "input0": "layer1/output",
+                "input1": "var_indices_concat/_67",
+                "op": "ScatterNdUpdate",
                 "input2": "Squeeze_2",
+                "name": "output_update"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 20,
+            "ts": 1526062549897003,
+            "args": {
+                "input0": "layer1/activation",
                 "input1": "var_indices_concat/_67",
                 "op": "ScatterNdUpdate",
-                "input0": "layer1/output"
-            }
-        },
-        {
-            "id": 13,
-            "ts": 1526062352656292,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat",
-            "tid": 1
-        },
-        {
-            "id": 13,
-            "ts": 1526062352658409,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat",
-            "tid": 0
-        },
-        {
-            "dur": 21,
-            "ts": 1526062352658434,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
-            "args": {
-                "name": "activation_update",
                 "input2": "Squeeze_1",
-                "input1": "var_indices_concat/_67",
-                "op": "ScatterNdUpdate",
-                "input0": "layer1/activation"
-            }
-        },
-        {
-            "id": 14,
-            "ts": 1526062352656292,
-            "ph": "s",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat",
-            "tid": 1
-        },
-        {
-            "id": 14,
-            "ts": 1526062352658434,
-            "ph": "t",
-            "cat": "DataFlow",
-            "pid": 3,
-            "name": "var_indices_concat",
-            "tid": 0
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352658457,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "NoOp",
+                "name": "activation_update"
+            },
             "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 4,
+            "ts": 1526062549897025,
             "args": {
-                "name": "group_deps_4",
-                "input2": "^output_update",
+                "input0": "^sample_w",
                 "input1": "^activation_update",
                 "op": "NoOp",
-                "input0": "^sample_w"
-            }
-        },
-        {
-            "dur": 7,
-            "ts": 1526062352655270,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 5,
-            "name": "NoOp",
+                "input2": "^output_update",
+                "name": "group_deps_4"
+            },
             "tid": 0,
-            "args": {
-                "name": "_SOURCE",
-                "op": "NoOp"
-            }
+            "name": "NoOp"
         },
         {
-            "dur": 8,
-            "ts": 1526062352655306,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "_Arg",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 9,
+            "ts": 1526062549893748,
             "args": {
-                "name": "_arg_layer1/neuron_idx_0_0",
-                "op": "_Arg"
-            }
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "tid": 0,
+            "name": "NoOp"
         },
         {
+            "pid": 5,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 11,
+            "ts": 1526062549893780,
+            "args": {
+                "op": "_Arg",
+                "name": "_arg_layer1/neuron_idx_0_0"
+            },
+            "tid": 0,
+            "name": "_Arg"
+        },
+        {
+            "pid": 5,
+            "cat": "Op",
+            "ph": "X",
             "dur": 5,
-            "ts": 1526062352655329,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 5,
-            "name": "_Arg",
-            "tid": 0,
+            "ts": 1526062549893819,
             "args": {
-                "name": "_arg_layer1_2/input_indices_0_1",
-                "op": "_Arg"
-            }
+                "op": "_Arg",
+                "name": "_arg_layer1_2/input_indices_0_1"
+            },
+            "tid": 0,
+            "name": "_Arg"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352655526,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "RandomUniform",
-            "tid": 0,
+            "ts": 1526062549894221,
             "args": {
-                "name": "random_uniform/RandomUniform",
-                "op": "RandomUniform"
-            }
+                "op": "RandomUniform",
+                "name": "random_uniform/RandomUniform"
+            },
+            "tid": 0,
+            "name": "RandomUniform"
         },
         {
-            "dur": 3,
-            "ts": 1526062352655594,
-            "ph": "X",
-            "cat": "Op",
             "pid": 7,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/mul",
-                "op": "Mul"
-            }
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352655628,
-            "ph": "X",
             "cat": "Op",
-            "pid": 7,
-            "name": "Slice",
-            "tid": 0,
-            "args": {
-                "name": "extract_neuron_activation",
-                "op": "Slice"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655662,
             "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform",
-                "op": "Add"
-            }
-        },
-        {
-            "dur": 43,
-            "ts": 1526062352655692,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Transpose",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans1",
-                "op": "Transpose"
-            }
-        },
-        {
             "dur": 4,
-            "ts": 1526062352655738,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Tile",
-            "tid": 0,
+            "ts": 1526062549894287,
             "args": {
-                "name": "var_indices_tile",
-                "op": "Tile"
-            }
+                "op": "Tile",
+                "name": "w_ind_tile"
+            },
+            "tid": 0,
+            "name": "Tile"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 4,
+            "ts": 1526062549894305,
+            "args": {
+                "op": "Tile",
+                "name": "var_indices_tile"
+            },
+            "tid": 0,
+            "name": "Tile"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549894335,
+            "args": {
+                "op": "Mul",
+                "name": "random_uniform/mul"
+            },
+            "tid": 0,
+            "name": "Mul"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894405,
+            "args": {
+                "op": "Slice",
+                "name": "extract_neuron_activation"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549894465,
+            "args": {
+                "op": "Add",
+                "name": "random_uniform"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 42,
+            "ts": 1526062549894502,
+            "args": {
+                "op": "Transpose",
+                "name": "inp_block_trans1"
+            },
+            "tid": 0,
+            "name": "Transpose"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894568,
+            "args": {
+                "op": "GatherNd",
+                "name": "inp_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 5,
-            "ts": 1526062352655858,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549894653,
             "args": {
-                "name": "inp_block_gather",
-                "op": "GatherNd"
-            }
+                "op": "Transpose",
+                "name": "inp_block_trans2"
+            },
+            "tid": 0,
+            "name": "Transpose"
         },
         {
-            "dur": 5,
-            "ts": 1526062352655927,
-            "ph": "X",
-            "cat": "Op",
             "pid": 7,
-            "name": "Transpose",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans2",
-                "op": "Transpose"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352655964,
-            "ph": "X",
             "cat": "Op",
-            "pid": 7,
-            "name": "Tile",
-            "tid": 0,
-            "args": {
-                "name": "w_ind_tile",
-                "op": "Tile"
-            }
-        },
-        {
+            "ph": "X",
             "dur": 46,
-            "ts": 1526062352655991,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "MatMul",
-            "tid": 0,
+            "ts": 1526062549894704,
             "args": {
-                "name": "calc_inp_block_influence",
-                "op": "MatMul"
-            }
+                "op": "MatMul",
+                "name": "calc_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656410,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549895185,
             "args": {
-                "name": "w_block_gather",
-                "op": "GatherNd"
-            }
+                "op": "GatherNd",
+                "name": "w_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 26,
-            "ts": 1526062352656457,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "MatMul",
-            "tid": 0,
+            "ts": 1526062549895235,
             "args": {
-                "name": "curr_inp_block_influence",
-                "op": "MatMul"
-            }
+                "op": "MatMul",
+                "name": "curr_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656488,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549895267,
             "args": {
-                "name": "sub",
-                "op": "Sub"
-            }
+                "op": "Sub",
+                "name": "sub"
+            },
+            "tid": 0,
+            "name": "Sub"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 9,
-            "ts": 1526062352656520,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549895299,
             "args": {
-                "name": "add_7",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_7"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656547,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062549895326,
             "args": {
-                "name": "Sign_4",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign_4"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656579,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Equal",
-            "tid": 0,
+            "ts": 1526062549895359,
             "args": {
-                "name": "Equal_4",
-                "op": "Equal"
-            }
+                "op": "Equal",
+                "name": "Equal_4"
+            },
+            "tid": 0,
+            "name": "Equal"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656602,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549895383,
             "args": {
-                "name": "add_9",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_9"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656629,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Select",
-            "tid": 0,
+            "ts": 1526062549895408,
             "args": {
-                "name": "Select_4",
-                "op": "Select"
-            }
+                "op": "Select",
+                "name": "Select_4"
+            },
+            "tid": 0,
+            "name": "Select"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656646,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062549895426,
             "args": {
-                "name": "Sign_6",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign_6"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656664,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Cast",
-            "tid": 0,
+            "ts": 1526062549895445,
             "args": {
-                "name": "Cast_5",
-                "op": "Cast"
-            }
+                "op": "Cast",
+                "name": "Cast_5"
+            },
+            "tid": 0,
+            "name": "Cast"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062352657829,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549896392,
             "args": {
-                "name": "lookup_w",
-                "op": "GatherNd"
-            }
+                "op": "GatherNd",
+                "name": "lookup_w"
+            },
+            "tid": 0,
+            "name": "GatherNd"
         },
         {
-            "dur": 9,
-            "ts": 1526062352657872,
-            "ph": "X",
-            "cat": "Op",
             "pid": 7,
-            "name": "Sum",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 10,
+            "ts": 1526062549896437,
             "args": {
-                "name": "calc_mean_log_prob",
-                "op": "Sum"
-            }
+                "op": "Sum",
+                "name": "calc_mean_log_prob"
+            },
+            "tid": 0,
+            "name": "Sum"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657888,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sum",
-            "tid": 0,
+            "ts": 1526062549896451,
             "args": {
-                "name": "calc_mean_log_prob",
-                "op": "Sum"
-            }
+                "op": "Sum",
+                "name": "calc_mean_log_prob"
+            },
+            "tid": 0,
+            "name": "Sum"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657916,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549896481,
             "args": {
-                "name": "add_10",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_10"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657933,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Mul",
-            "tid": 0,
+            "ts": 1526062549896498,
             "args": {
-                "name": "truediv",
-                "op": "Mul"
-            }
+                "op": "Mul",
+                "name": "truediv"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657953,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Max",
-            "tid": 0,
+            "ts": 1526062549896520,
             "args": {
-                "name": "Max",
-                "op": "Max"
-            }
+                "op": "Max",
+                "name": "Max"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 2,
-            "ts": 1526062352657971,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549896540,
             "args": {
-                "name": "sub_2",
-                "op": "Sub"
-            }
+                "op": "Sub",
+                "name": "sub_2"
+            },
+            "tid": 0,
+            "name": "Sub"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657990,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Exp",
-            "tid": 0,
+            "ts": 1526062549896559,
             "args": {
-                "name": "Exp",
-                "op": "Exp"
-            }
+                "op": "Exp",
+                "name": "Exp"
+            },
+            "tid": 0,
+            "name": "Exp"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352658020,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Cumsum",
-            "tid": 0,
+            "ts": 1526062549896580,
             "args": {
-                "name": "Cumsum",
-                "op": "Cumsum"
-            }
+                "op": "Cumsum",
+                "name": "Cumsum"
+            },
+            "tid": 0,
+            "name": "Cumsum"
         },
         {
-            "dur": 4,
-            "ts": 1526062352658028,
-            "ph": "X",
-            "cat": "Op",
             "pid": 7,
-            "name": "Cumsum",
-            "tid": 0,
-            "args": {
-                "name": "Cumsum",
-                "op": "Cumsum"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658116,
-            "ph": "X",
             "cat": "Op",
-            "pid": 7,
-            "name": "Max",
-            "tid": 0,
-            "args": {
-                "name": "Max_1",
-                "op": "Max"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658121,
             "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "mul",
-                "op": "Mul"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658138,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Less",
-            "tid": 0,
-            "args": {
-                "name": "Less",
-                "op": "Less"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658160,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Cast",
-            "tid": 0,
-            "args": {
-                "name": "Cast_6",
-                "op": "Cast"
-            }
-        },
-        {
             "dur": 3,
-            "ts": 1526062352658292,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896590,
             "args": {
-                "name": "Slice",
-                "op": "Slice"
-            }
+                "op": "Cumsum",
+                "name": "Cumsum"
+            },
+            "tid": 0,
+            "name": "Cumsum"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352658319,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896642,
             "args": {
-                "name": "Slice_1",
-                "op": "Slice"
-            }
+                "op": "Max",
+                "name": "Max_1"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 2,
-            "ts": 1526062352658347,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896674,
             "args": {
-                "name": "get_new_weight",
-                "op": "Slice"
-            }
+                "op": "Mul",
+                "name": "mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896701,
+            "args": {
+                "op": "Less",
+                "name": "Less"
+            },
+            "tid": 0,
+            "name": "Less"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896723,
+            "args": {
+                "op": "Cast",
+                "name": "Cast_6"
+            },
+            "tid": 0,
+            "name": "Cast"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352658388,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "ts": 1526062549896858,
             "args": {
-                "name": "sample_w",
-                "op": "ScatterNdUpdate"
-            }
+                "op": "Slice",
+                "name": "Slice"
+            },
+            "tid": 0,
+            "name": "Slice"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549896886,
+            "args": {
+                "op": "Slice",
+                "name": "Slice_1"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896913,
+            "args": {
+                "op": "Slice",
+                "name": "get_new_weight"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549896956,
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "sample_w"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352658428,
-            "ph": "X",
-            "cat": "Op",
+            "ts": 1526062549896997,
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "output_update"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
             "pid": 7,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549897021,
             "args": {
-                "name": "output_update",
-                "op": "ScatterNdUpdate"
-            }
+                "op": "ScatterNdUpdate",
+                "name": "activation_update"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
         },
         {
+            "pid": 9,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549893994,
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_34_ExpandDims_5"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
+        },
+        {
+            "pid": 9,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549894049,
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_145__arg_layer1_2/input_indices_0_1"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
+        },
+        {
+            "pid": 9,
+            "cat": "Op",
+            "ph": "X",
             "dur": 7,
-            "ts": 1526062352658452,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "ts": 1526062549895035,
             "args": {
-                "name": "activation_update",
-                "op": "ScatterNdUpdate"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_112_var_indices_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
+            "pid": 9,
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062352655492,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 9,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
+            "ts": 1526062549895111,
             "args": {
-                "name": "edge_34_ExpandDims_5",
-                "op": "MEMCPYHtoD"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_39_w_ind_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
-            "dur": 1,
-            "ts": 1526062352655750,
-            "ph": "X",
-            "cat": "Op",
             "pid": 9,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
-            "args": {
-                "name": "edge_145__arg_layer1_2/input_indices_0_1",
-                "op": "MEMCPYHtoD"
-            }
-        },
-        {
-            "dur": 1,
-            "ts": 1526062352656268,
-            "ph": "X",
             "cat": "Op",
-            "pid": 9,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
-            "args": {
-                "name": "edge_39_w_ind_concat",
-                "op": "MEMCPYHtoD"
-            }
-        },
-        {
-            "dur": 7,
-            "ts": 1526062352656338,
             "ph": "X",
-            "cat": "Op",
-            "pid": 9,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
-            "args": {
-                "name": "edge_112_var_indices_concat",
-                "op": "MEMCPYHtoD"
-            }
-        },
-        {
             "dur": 26,
-            "ts": 1526062352657676,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 9,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
+            "ts": 1526062549896231,
             "args": {
-                "name": "edge_59_look_ind_concat",
-                "op": "MEMCPYHtoD"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_59_look_ind_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352655526,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "RandomUniform",
-            "tid": 0,
+            "ts": 1526062549894221,
             "args": {
-                "name": "random_uniform/RandomUniform",
-                "op": "RandomUniform"
-            }
+                "op": "RandomUniform",
+                "name": "random_uniform/RandomUniform"
+            },
+            "tid": 0,
+            "name": "RandomUniform"
         },
         {
-            "dur": 3,
-            "ts": 1526062352655594,
-            "ph": "X",
-            "cat": "Op",
             "pid": 11,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform/mul",
-                "op": "Mul"
-            }
-        },
-        {
-            "dur": 6,
-            "ts": 1526062352655628,
-            "ph": "X",
             "cat": "Op",
-            "pid": 11,
-            "name": "Slice",
-            "tid": 0,
-            "args": {
-                "name": "extract_neuron_activation",
-                "op": "Slice"
-            }
-        },
-        {
-            "dur": 3,
-            "ts": 1526062352655662,
             "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Add",
-            "tid": 0,
-            "args": {
-                "name": "random_uniform",
-                "op": "Add"
-            }
-        },
-        {
-            "dur": 43,
-            "ts": 1526062352655692,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Transpose",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans1",
-                "op": "Transpose"
-            }
-        },
-        {
             "dur": 4,
-            "ts": 1526062352655738,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Tile",
-            "tid": 0,
+            "ts": 1526062549894287,
             "args": {
-                "name": "var_indices_tile",
-                "op": "Tile"
-            }
+                "op": "Tile",
+                "name": "w_ind_tile"
+            },
+            "tid": 0,
+            "name": "Tile"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 4,
+            "ts": 1526062549894305,
+            "args": {
+                "op": "Tile",
+                "name": "var_indices_tile"
+            },
+            "tid": 0,
+            "name": "Tile"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549894335,
+            "args": {
+                "op": "Mul",
+                "name": "random_uniform/mul"
+            },
+            "tid": 0,
+            "name": "Mul"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894405,
+            "args": {
+                "op": "Slice",
+                "name": "extract_neuron_activation"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549894465,
+            "args": {
+                "op": "Add",
+                "name": "random_uniform"
+            },
+            "tid": 0,
+            "name": "Add"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 42,
+            "ts": 1526062549894502,
+            "args": {
+                "op": "Transpose",
+                "name": "inp_block_trans1"
+            },
+            "tid": 0,
+            "name": "Transpose"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549894568,
+            "args": {
+                "op": "GatherNd",
+                "name": "inp_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 5,
-            "ts": 1526062352655858,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549894653,
             "args": {
-                "name": "inp_block_gather",
-                "op": "GatherNd"
-            }
+                "op": "Transpose",
+                "name": "inp_block_trans2"
+            },
+            "tid": 0,
+            "name": "Transpose"
         },
         {
-            "dur": 5,
-            "ts": 1526062352655927,
-            "ph": "X",
-            "cat": "Op",
             "pid": 11,
-            "name": "Transpose",
-            "tid": 0,
-            "args": {
-                "name": "inp_block_trans2",
-                "op": "Transpose"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352655964,
-            "ph": "X",
             "cat": "Op",
-            "pid": 11,
-            "name": "Tile",
-            "tid": 0,
-            "args": {
-                "name": "w_ind_tile",
-                "op": "Tile"
-            }
-        },
-        {
+            "ph": "X",
             "dur": 46,
-            "ts": 1526062352655991,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "MatMul",
-            "tid": 0,
+            "ts": 1526062549894704,
             "args": {
-                "name": "calc_inp_block_influence",
-                "op": "MatMul"
-            }
+                "op": "MatMul",
+                "name": "calc_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656410,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549895185,
             "args": {
-                "name": "w_block_gather",
-                "op": "GatherNd"
-            }
+                "op": "GatherNd",
+                "name": "w_block_gather"
+            },
+            "tid": 0,
+            "name": "GatherNd"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 26,
-            "ts": 1526062352656457,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "MatMul",
-            "tid": 0,
+            "ts": 1526062549895235,
             "args": {
-                "name": "curr_inp_block_influence",
-                "op": "MatMul"
-            }
+                "op": "MatMul",
+                "name": "curr_inp_block_influence"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656488,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549895267,
             "args": {
-                "name": "sub",
-                "op": "Sub"
-            }
+                "op": "Sub",
+                "name": "sub"
+            },
+            "tid": 0,
+            "name": "Sub"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 9,
-            "ts": 1526062352656520,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549895299,
             "args": {
-                "name": "add_7",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_7"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656547,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062549895326,
             "args": {
-                "name": "Sign_4",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign_4"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656579,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Equal",
-            "tid": 0,
+            "ts": 1526062549895359,
             "args": {
-                "name": "Equal_4",
-                "op": "Equal"
-            }
+                "op": "Equal",
+                "name": "Equal_4"
+            },
+            "tid": 0,
+            "name": "Equal"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656602,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549895383,
             "args": {
-                "name": "add_9",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_9"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 4,
-            "ts": 1526062352656629,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Select",
-            "tid": 0,
+            "ts": 1526062549895408,
             "args": {
-                "name": "Select_4",
-                "op": "Select"
-            }
+                "op": "Select",
+                "name": "Select_4"
+            },
+            "tid": 0,
+            "name": "Select"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656646,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062549895426,
             "args": {
-                "name": "Sign_6",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign_6"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352656664,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Cast",
-            "tid": 0,
+            "ts": 1526062549895445,
             "args": {
-                "name": "Cast_5",
-                "op": "Cast"
-            }
+                "op": "Cast",
+                "name": "Cast_5"
+            },
+            "tid": 0,
+            "name": "Cast"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062352657829,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "GatherNd",
-            "tid": 0,
+            "ts": 1526062549896392,
             "args": {
-                "name": "lookup_w",
-                "op": "GatherNd"
-            }
+                "op": "GatherNd",
+                "name": "lookup_w"
+            },
+            "tid": 0,
+            "name": "GatherNd"
         },
         {
-            "dur": 9,
-            "ts": 1526062352657872,
-            "ph": "X",
-            "cat": "Op",
             "pid": 11,
-            "name": "Sum",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 10,
+            "ts": 1526062549896437,
             "args": {
-                "name": "calc_mean_log_prob",
-                "op": "Sum"
-            }
+                "op": "Sum",
+                "name": "calc_mean_log_prob"
+            },
+            "tid": 0,
+            "name": "Sum"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657888,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Sum",
-            "tid": 0,
+            "ts": 1526062549896451,
             "args": {
-                "name": "calc_mean_log_prob",
-                "op": "Sum"
-            }
+                "op": "Sum",
+                "name": "calc_mean_log_prob"
+            },
+            "tid": 0,
+            "name": "Sum"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657916,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062549896481,
             "args": {
-                "name": "add_10",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add_10"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657933,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Mul",
-            "tid": 0,
+            "ts": 1526062549896498,
             "args": {
-                "name": "truediv",
-                "op": "Mul"
-            }
+                "op": "Mul",
+                "name": "truediv"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657953,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Max",
-            "tid": 0,
+            "ts": 1526062549896520,
             "args": {
-                "name": "Max",
-                "op": "Max"
-            }
+                "op": "Max",
+                "name": "Max"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 2,
-            "ts": 1526062352657971,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Sub",
-            "tid": 0,
+            "ts": 1526062549896540,
             "args": {
-                "name": "sub_2",
-                "op": "Sub"
-            }
+                "op": "Sub",
+                "name": "sub_2"
+            },
+            "tid": 0,
+            "name": "Sub"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352657990,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Exp",
-            "tid": 0,
+            "ts": 1526062549896559,
             "args": {
-                "name": "Exp",
-                "op": "Exp"
-            }
+                "op": "Exp",
+                "name": "Exp"
+            },
+            "tid": 0,
+            "name": "Exp"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352658020,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Cumsum",
-            "tid": 0,
+            "ts": 1526062549896580,
             "args": {
-                "name": "Cumsum",
-                "op": "Cumsum"
-            }
+                "op": "Cumsum",
+                "name": "Cumsum"
+            },
+            "tid": 0,
+            "name": "Cumsum"
         },
         {
-            "dur": 4,
-            "ts": 1526062352658028,
-            "ph": "X",
-            "cat": "Op",
             "pid": 11,
-            "name": "Cumsum",
-            "tid": 0,
-            "args": {
-                "name": "Cumsum",
-                "op": "Cumsum"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658116,
-            "ph": "X",
             "cat": "Op",
-            "pid": 11,
-            "name": "Max",
-            "tid": 0,
-            "args": {
-                "name": "Max_1",
-                "op": "Max"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658121,
             "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Mul",
-            "tid": 0,
-            "args": {
-                "name": "mul",
-                "op": "Mul"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658138,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Less",
-            "tid": 0,
-            "args": {
-                "name": "Less",
-                "op": "Less"
-            }
-        },
-        {
-            "dur": 2,
-            "ts": 1526062352658160,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Cast",
-            "tid": 0,
-            "args": {
-                "name": "Cast_6",
-                "op": "Cast"
-            }
-        },
-        {
             "dur": 3,
-            "ts": 1526062352658292,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896590,
             "args": {
-                "name": "Slice",
-                "op": "Slice"
-            }
+                "op": "Cumsum",
+                "name": "Cumsum"
+            },
+            "tid": 0,
+            "name": "Cumsum"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352658319,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896642,
             "args": {
-                "name": "Slice_1",
-                "op": "Slice"
-            }
+                "op": "Max",
+                "name": "Max_1"
+            },
+            "tid": 0,
+            "name": "Max"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 2,
-            "ts": 1526062352658347,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "Slice",
-            "tid": 0,
+            "ts": 1526062549896674,
             "args": {
-                "name": "get_new_weight",
-                "op": "Slice"
-            }
+                "op": "Mul",
+                "name": "mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896701,
+            "args": {
+                "op": "Less",
+                "name": "Less"
+            },
+            "tid": 0,
+            "name": "Less"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896723,
+            "args": {
+                "op": "Cast",
+                "name": "Cast_6"
+            },
+            "tid": 0,
+            "name": "Cast"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352658388,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "ts": 1526062549896858,
             "args": {
-                "name": "sample_w",
-                "op": "ScatterNdUpdate"
-            }
+                "op": "Slice",
+                "name": "Slice"
+            },
+            "tid": 0,
+            "name": "Slice"
         },
         {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549896886,
+            "args": {
+                "op": "Slice",
+                "name": "Slice_1"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 2,
+            "ts": 1526062549896913,
+            "args": {
+                "op": "Slice",
+                "name": "get_new_weight"
+            },
+            "tid": 0,
+            "name": "Slice"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 3,
+            "ts": 1526062549896956,
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "sample_w"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
+            "pid": 11,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062352658428,
-            "ph": "X",
-            "cat": "Op",
+            "ts": 1526062549896997,
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "output_update"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
+        },
+        {
             "pid": 11,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 6,
+            "ts": 1526062549897021,
             "args": {
-                "name": "output_update",
-                "op": "ScatterNdUpdate"
-            }
+                "op": "ScatterNdUpdate",
+                "name": "activation_update"
+            },
+            "tid": 0,
+            "name": "ScatterNdUpdate"
         },
         {
-            "dur": 7,
-            "ts": 1526062352658452,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 11,
-            "name": "ScatterNdUpdate",
-            "tid": 0,
-            "args": {
-                "name": "activation_update",
-                "op": "ScatterNdUpdate"
-            }
-        },
-        {
-            "dur": 1,
-            "ts": 1526062352655492,
-            "ph": "X",
-            "cat": "Op",
             "pid": 13,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
-            "args": {
-                "name": "edge_34_ExpandDims_5",
-                "op": "MEMCPYHtoD"
-            }
-        },
-        {
-            "dur": 1,
-            "ts": 1526062352655750,
-            "ph": "X",
             "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549893994,
             "args": {
-                "name": "edge_145__arg_layer1_2/input_indices_0_1",
-                "op": "MEMCPYHtoD"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_34_ExpandDims_5"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549894049,
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_145__arg_layer1_2/input_indices_0_1"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
+        },
+        {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
             "dur": 3,
-            "ts": 1526062352655787,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549894365,
             "args": {
-                "name": "edge_109_var_indices_tile",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_109_var_indices_tile"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062352656053,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549894550,
             "args": {
-                "name": "edge_36_w_ind_tile",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_36_w_ind_tile"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
-            "dur": 1,
-            "ts": 1526062352656268,
-            "ph": "X",
-            "cat": "Op",
             "pid": 13,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
-            "args": {
-                "name": "edge_39_w_ind_concat",
-                "op": "MEMCPYHtoD"
-            }
-        },
-        {
+            "cat": "Op",
+            "ph": "X",
             "dur": 7,
-            "ts": 1526062352656338,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
+            "ts": 1526062549895035,
             "args": {
-                "name": "edge_112_var_indices_concat",
-                "op": "MEMCPYHtoD"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_112_var_indices_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549895111,
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_39_w_ind_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
+        },
+        {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
             "dur": 12,
-            "ts": 1526062352656698,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "ts": 1526062549895482,
             "args": {
-                "name": "edge_53_Cast_5",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_53_Cast_5"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         },
         {
+            "pid": 13,
+            "cat": "Op",
+            "ph": "X",
             "dur": 26,
-            "ts": 1526062352657676,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 13,
-            "name": "MEMCPYHtoD",
-            "tid": 0,
+            "ts": 1526062549896231,
             "args": {
-                "name": "edge_59_look_ind_concat",
-                "op": "MEMCPYHtoD"
-            }
+                "op": "MEMCPYHtoD",
+                "name": "edge_59_look_ind_concat"
+            },
+            "tid": 0,
+            "name": "MEMCPYHtoD"
         },
         {
-            "dur": 1,
-            "ts": 1526062352658195,
-            "ph": "X",
-            "cat": "Op",
             "pid": 13,
-            "name": "MEMCPYDtoH",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062549896758,
             "args": {
-                "name": "edge_80_Cast_6",
-                "op": "MEMCPYDtoH"
-            }
+                "op": "MEMCPYDtoH",
+                "name": "edge_80_Cast_6"
+            },
+            "tid": 0,
+            "name": "MEMCPYDtoH"
         }
     ]
 }

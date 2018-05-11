@@ -2,646 +2,646 @@
     "traceEvents": [
         {
             "pid": 0,
-            "name": "process_name",
             "args": {
                 "name": "Allocators"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 1,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/memcpy Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 2,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/memcpy Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 3,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:13 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 4,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:13 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 5,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 6,
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 7,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:all Compute"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
             "pid": 8,
-            "name": "process_name",
             "args": {
                 "name": "/device:GPU:0/stream:all Tensors"
             },
-            "ph": "M"
+            "ph": "M",
+            "name": "process_name"
         },
         {
-            "dur": 1,
-            "ts": 1526062344439520,
-            "ph": "X",
-            "cat": "Op",
             "pid": 1,
-            "name": "Assign",
-            "tid": 0,
-            "args": {
-                "name": "Assign",
-                "op": "Assign"
-            }
-        },
-        {
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062344439767,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "Assign",
-            "tid": 0,
+            "ts": 1526062540484370,
             "args": {
-                "name": "Assign_1",
-                "op": "Assign"
-            }
+                "op": "Assign",
+                "name": "Assign"
+            },
+            "tid": 0,
+            "name": "Assign"
         },
         {
+            "pid": 1,
+            "cat": "Op",
+            "ph": "X",
             "dur": 1,
-            "ts": 1526062344440033,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 1,
-            "name": "Assign",
-            "tid": 0,
+            "ts": 1526062540484562,
             "args": {
-                "name": "Assign_2",
-                "op": "Assign"
-            }
+                "op": "Assign",
+                "name": "Assign_1"
+            },
+            "tid": 0,
+            "name": "Assign"
         },
         {
-            "dur": 59,
-            "ts": 1526062344439621,
-            "ph": "X",
+            "pid": 1,
             "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062540484869,
+            "args": {
+                "op": "Assign",
+                "name": "Assign_2"
+            },
+            "tid": 0,
+            "name": "Assign"
+        },
+        {
             "pid": 3,
-            "name": "MatMul",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 58,
+            "ts": 1526062540484435,
             "args": {
-                "name": "MatMul",
-                "op": "MatMul"
-            }
+                "op": "MatMul",
+                "name": "MatMul"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 9,
-            "ts": 1526062344439708,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062540484510,
             "args": {
-                "name": "add",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062344439817,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062540484606,
             "args": {
-                "name": "Sign",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062344439871,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Equal",
-            "tid": 0,
+            "ts": 1526062540484699,
             "args": {
-                "name": "Equal",
-                "op": "Equal"
-            }
+                "op": "Equal",
+                "name": "Equal"
+            },
+            "tid": 0,
+            "name": "Equal"
         },
         {
-            "dur": 12,
-            "ts": 1526062344439933,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Select",
-            "tid": 0,
-            "args": {
-                "name": "Select",
-                "op": "Select"
-            }
-        },
-        {
+            "cat": "Op",
+            "ph": "X",
             "dur": 7,
-            "ts": 1526062344439985,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Mul",
+            "ts": 1526062540484772,
+            "args": {
+                "op": "Select",
+                "name": "Select"
+            },
             "tid": 0,
-            "args": {
-                "name": "Mul",
-                "op": "Mul"
-            }
+            "name": "Select"
         },
         {
-            "dur": 1,
-            "ts": 1526062344439520,
-            "ph": "X",
-            "cat": "Op",
             "pid": 3,
-            "name": "Assign",
-            "tid": 1,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484822,
             "args": {
-                "name": "Assign",
-                "op": "Assign"
-            }
-        },
-        {
-            "dur": 1,
-            "ts": 1526062344439767,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Assign",
-            "tid": 1,
-            "args": {
-                "name": "Assign_1",
-                "op": "Assign"
-            }
-        },
-        {
-            "dur": 1,
-            "ts": 1526062344440033,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 3,
-            "name": "Assign",
+                "op": "Mul",
+                "name": "Mul"
+            },
             "tid": 0,
-            "args": {
-                "name": "Assign_2",
-                "op": "Assign"
-            }
+            "name": "Mul"
         },
         {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062540484370,
+            "args": {
+                "op": "Assign",
+                "name": "Assign"
+            },
+            "tid": 1,
+            "name": "Assign"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062540484562,
+            "args": {
+                "op": "Assign",
+                "name": "Assign_1"
+            },
+            "tid": 1,
+            "name": "Assign"
+        },
+        {
+            "pid": 3,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 1,
+            "ts": 1526062540484869,
+            "args": {
+                "op": "Assign",
+                "name": "Assign_2"
+            },
+            "tid": 0,
+            "name": "Assign"
+        },
+        {
+            "pid": 5,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 17,
+            "ts": 1526062540484078,
+            "args": {
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "tid": 0,
+            "name": "NoOp"
+        },
+        {
+            "pid": 5,
+            "cat": "Op",
+            "ph": "X",
             "dur": 20,
-            "ts": 1526062344439112,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 5,
-            "name": "NoOp",
-            "tid": 0,
+            "ts": 1526062540484102,
             "args": {
-                "name": "_SOURCE",
-                "op": "NoOp"
-            }
+                "op": "VariableV2",
+                "name": "layer1/input"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 30,
-            "ts": 1526062344439142,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 9,
+            "ts": 1526062540484125,
             "args": {
-                "name": "layer1/input",
-                "op": "VariableV2"
-            }
+                "op": "VariableV2",
+                "name": "layer1/activation"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 15,
-            "ts": 1526062344439177,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062540484136,
             "args": {
-                "name": "layer1/activation",
-                "op": "VariableV2"
-            }
+                "op": "VariableV2",
+                "name": "layer1/output"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 14,
-            "ts": 1526062344439196,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484146,
             "args": {
-                "name": "layer1/output",
-                "op": "VariableV2"
-            }
+                "op": "Const",
+                "name": "Equal/y"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 12,
-            "ts": 1526062344439214,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Const",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484155,
             "args": {
-                "name": "Equal/y",
-                "op": "Const"
-            }
+                "op": "Const",
+                "name": "ones_like"
+            },
+            "tid": 0,
+            "name": "Const"
         },
         {
-            "dur": 13,
-            "ts": 1526062344439230,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Const",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062540484164,
             "args": {
-                "name": "ones_like",
-                "op": "Const"
-            }
+                "op": "VariableV2",
+                "name": "global/X_tr"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 15,
-            "ts": 1526062344439247,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062540484174,
             "args": {
-                "name": "global/X_tr",
-                "op": "VariableV2"
-            }
+                "op": "VariableV2",
+                "name": "layer1/W"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 14,
-            "ts": 1526062344439266,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 8,
+            "ts": 1526062540484184,
             "args": {
-                "name": "layer1/W",
-                "op": "VariableV2"
-            }
+                "op": "VariableV2",
+                "name": "layer1/b"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 14,
-            "ts": 1526062344439284,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484195,
             "args": {
-                "name": "layer1/b",
-                "op": "VariableV2"
-            }
+                "op": "VariableV2",
+                "name": "layer1/dropout"
+            },
+            "tid": 0,
+            "name": "VariableV2"
         },
         {
-            "dur": 13,
-            "ts": 1526062344439303,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "VariableV2",
-            "tid": 0,
-            "args": {
-                "name": "layer1/dropout",
-                "op": "VariableV2"
-            }
-        },
-        {
-            "dur": 12,
-            "ts": 1526062344439320,
-            "ph": "X",
             "cat": "Op",
-            "pid": 5,
-            "name": "Identity",
-            "tid": 0,
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484204,
             "args": {
-                "name": "global/X_tr/read",
+                "input0": "global/X_tr",
                 "op": "Identity",
-                "input0": "global/X_tr"
-            }
+                "name": "global/X_tr/read"
+            },
+            "tid": 0,
+            "name": "Identity"
         },
         {
-            "dur": 10,
-            "ts": 1526062344439336,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Identity",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062540484213,
             "args": {
-                "name": "layer1/W/read",
+                "input0": "layer1/W",
                 "op": "Identity",
-                "input0": "layer1/W"
-            }
+                "name": "layer1/W/read"
+            },
+            "tid": 0,
+            "name": "Identity"
         },
         {
-            "dur": 10,
-            "ts": 1526062344439350,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Identity",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062540484221,
             "args": {
-                "name": "layer1/b/read",
+                "input0": "layer1/b",
                 "op": "Identity",
-                "input0": "layer1/b"
-            }
+                "name": "layer1/b/read"
+            },
+            "tid": 0,
+            "name": "Identity"
         },
         {
-            "dur": 10,
-            "ts": 1526062344439364,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Identity",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 5,
+            "ts": 1526062540484229,
             "args": {
-                "name": "layer1/dropout/read",
+                "input0": "layer1/dropout",
                 "op": "Identity",
-                "input0": "layer1/dropout"
-            }
+                "name": "layer1/dropout/read"
+            },
+            "tid": 0,
+            "name": "Identity"
         },
         {
-            "dur": 121,
-            "ts": 1526062344439378,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Assign",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 92,
+            "ts": 1526062540484236,
             "args": {
-                "name": "Assign",
+                "input0": "layer1/input",
                 "input1": "global/X_tr/read",
                 "op": "Assign",
-                "input0": "layer1/input"
-            }
+                "name": "Assign"
+            },
+            "tid": 0,
+            "name": "Assign"
         },
         {
-            "dur": 101,
-            "ts": 1526062344439508,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "MatMul",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 81,
+            "ts": 1526062540484333,
             "args": {
-                "name": "MatMul",
+                "input0": "global/X_tr/read",
                 "input1": "layer1/W/read",
                 "op": "MatMul",
-                "input0": "global/X_tr/read"
-            }
+                "name": "MatMul"
+            },
+            "tid": 0,
+            "name": "MatMul"
         },
         {
-            "dur": 64,
-            "ts": 1526062344439624,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Add",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 58,
+            "ts": 1526062540484427,
             "args": {
-                "name": "add",
+                "input0": "MatMul",
                 "input1": "layer1/b/read",
                 "op": "Add",
-                "input0": "MatMul"
-            }
+                "name": "add"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
-            "dur": 52,
-            "ts": 1526062344439695,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Assign",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 46,
+            "ts": 1526062540484490,
             "args": {
-                "name": "Assign_1",
+                "input0": "layer1/activation",
                 "input1": "add",
                 "op": "Assign",
-                "input0": "layer1/activation"
-            }
+                "name": "Assign_1"
+            },
+            "tid": 0,
+            "name": "Assign"
         },
         {
-            "dur": 44,
-            "ts": 1526062344439751,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Sign",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 38,
+            "ts": 1526062540484541,
             "args": {
-                "name": "Sign",
+                "input0": "add",
                 "op": "Sign",
-                "input0": "add"
-            }
+                "name": "Sign"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
-            "dur": 51,
-            "ts": 1526062344439799,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Equal",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 96,
+            "ts": 1526062540484582,
             "args": {
-                "name": "Equal",
+                "input0": "Sign",
                 "input1": "Equal/y",
                 "op": "Equal",
-                "input0": "Sign"
-            }
+                "name": "Equal"
+            },
+            "tid": 0,
+            "name": "Equal"
         },
         {
-            "dur": 55,
-            "ts": 1526062344439860,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Select",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 59,
+            "ts": 1526062540484690,
             "args": {
-                "name": "Select",
-                "input2": "Sign",
+                "input0": "Equal",
                 "input1": "ones_like",
                 "op": "Select",
-                "input0": "Equal"
-            }
+                "input2": "Sign",
+                "name": "Select"
+            },
+            "tid": 0,
+            "name": "Select"
         },
         {
-            "dur": 44,
-            "ts": 1526062344439919,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Mul",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 42,
+            "ts": 1526062540484753,
             "args": {
-                "name": "Mul",
+                "input0": "Select",
                 "input1": "layer1/dropout/read",
                 "op": "Mul",
-                "input0": "Select"
-            }
+                "name": "Mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         },
         {
-            "dur": 47,
-            "ts": 1526062344439967,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "Assign",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 47,
+            "ts": 1526062540484798,
             "args": {
-                "name": "Assign_2",
+                "input0": "layer1/output",
                 "input1": "Mul",
                 "op": "Assign",
-                "input0": "layer1/output"
-            }
+                "name": "Assign_2"
+            },
+            "tid": 0,
+            "name": "Assign"
         },
         {
-            "dur": 8,
-            "ts": 1526062344440018,
-            "ph": "X",
-            "cat": "Op",
             "pid": 5,
-            "name": "NoOp",
-            "tid": 0,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484849,
             "args": {
-                "name": "group_deps",
-                "input2": "^Assign_2",
+                "input0": "^Assign",
                 "input1": "^Assign_1",
                 "op": "NoOp",
-                "input0": "^Assign"
-            }
-        },
-        {
-            "dur": 59,
-            "ts": 1526062344439621,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "MatMul",
+                "input2": "^Assign_2",
+                "name": "group_deps"
+            },
             "tid": 0,
-            "args": {
-                "name": "MatMul",
-                "op": "MatMul"
-            }
+            "name": "NoOp"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 58,
+            "ts": 1526062540484435,
+            "args": {
+                "op": "MatMul",
+                "name": "MatMul"
+            },
+            "tid": 0,
+            "name": "MatMul"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 9,
-            "ts": 1526062344439708,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Add",
-            "tid": 0,
+            "ts": 1526062540484510,
             "args": {
-                "name": "add",
-                "op": "Add"
-            }
+                "op": "Add",
+                "name": "add"
+            },
+            "tid": 0,
+            "name": "Add"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 6,
-            "ts": 1526062344439817,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Sign",
-            "tid": 0,
+            "ts": 1526062540484606,
             "args": {
-                "name": "Sign",
-                "op": "Sign"
-            }
+                "op": "Sign",
+                "name": "Sign"
+            },
+            "tid": 0,
+            "name": "Sign"
         },
         {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
             "dur": 8,
-            "ts": 1526062344439871,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Equal",
-            "tid": 0,
+            "ts": 1526062540484699,
             "args": {
-                "name": "Equal",
-                "op": "Equal"
-            }
+                "op": "Equal",
+                "name": "Equal"
+            },
+            "tid": 0,
+            "name": "Equal"
         },
         {
-            "dur": 12,
-            "ts": 1526062344439933,
-            "ph": "X",
-            "cat": "Op",
             "pid": 7,
-            "name": "Select",
-            "tid": 0,
-            "args": {
-                "name": "Select",
-                "op": "Select"
-            }
-        },
-        {
+            "cat": "Op",
+            "ph": "X",
             "dur": 7,
-            "ts": 1526062344439985,
-            "ph": "X",
-            "cat": "Op",
-            "pid": 7,
-            "name": "Mul",
-            "tid": 0,
+            "ts": 1526062540484772,
             "args": {
-                "name": "Mul",
-                "op": "Mul"
-            }
+                "op": "Select",
+                "name": "Select"
+            },
+            "tid": 0,
+            "name": "Select"
+        },
+        {
+            "pid": 7,
+            "cat": "Op",
+            "ph": "X",
+            "dur": 7,
+            "ts": 1526062540484822,
+            "args": {
+                "op": "Mul",
+                "name": "Mul"
+            },
+            "tid": 0,
+            "name": "Mul"
         }
     ]
 }
