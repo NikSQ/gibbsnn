@@ -123,7 +123,7 @@ class FCLayer:
         w_removed_activation = neuron_activation - tf.matmul(input_block, weight_block, name='curr_inp_block_influence')
         w_added_activation = tf.matmul(input_block, connection_matrix, name='calc_inp_block_influence') + w_removed_activation
 
-        b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx], name='extract_bias_activation')x)
+        b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx], name='extract_bias_activation')
         b_added_activation = self.bias_vals + b_removed_activation
 
         update_var_indices = tf.concat([np.reshape(np.arange(self.batch_size), newshape=(-1, 1)),
