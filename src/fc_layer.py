@@ -32,8 +32,9 @@ class FCLayer:
         self.var_summary_op = None
 
         if self.bias_vals is None:
-            bits = int(np.log2(shape[0]))
-            self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
+            #bits = int(np.log2(shape[0]))
+            #self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
+            self.bias_vals = np.arange(-shape[0], shape[0])
 
         self.n_bias_vals = len(self.bias_vals)
 
@@ -114,10 +115,7 @@ class FCLayer:
         # gather_nd (creates a new tensor by only taking those elements of the reference tensor, that are specified
         # in the index variable)
         # scatter_nd_update (updates elements - specified by indices - of a TF variable with the given update values)
-        test_inp = tf.cast(self.input, dtype=tf.float32)
-        with tf.device('/device:GPU:0'):
-            input_block = tf.transpose(tf.gather_nd(tf.transpose(test_inp, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
-        input_block = tf.cast(input_block, dtype=tf.int32)
+        input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
         weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
                                                                 (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
         weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices, name='w_block_gather'), axis=1)
