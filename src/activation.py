@@ -45,11 +45,11 @@ def bs_value_function(X, params):
 
 def bs_index_function(X, params):
     sign = tf.sign(X)
-    return tf.sign(sign + 1)
+    return tf.cast(tf.sign(sign + 1), dtype=tf.int32)
 
 
 def bs_meta_function(params):
-    return [-1, 1]
+    return [-1., 1.]
 
 
 
@@ -60,11 +60,11 @@ def ts_value_function(X, params):
 
 
 def ts_index_function(X, params):
-    return tf.sign(X) + 1
+    return tf.cast(tf.sign(X), dtype=tf.int32) + 1
 
 
 def ts_meta_function(params):
-    return [-1, 0, 1]
+    return [-1., 0., 1.]
 
 
 
@@ -79,17 +79,17 @@ def ets_value_function(X, params):
 def ets_index_function(X, params):
     cond = tf.logical_and(tf.less(X, params[0]), tf.greater(X, -params[0]))
     replace_vals = tf.zeros_like(X)
-    return tf.where(cond, replace_vals, tf.sign(X)) + 1
+    return tf.cast(tf.where(cond, replace_vals, tf.sign(X)), dtype=tf.int32) + 1
 
 
 def ets_meta_function(params):
-    return [-1, 0, 1]
+    return [-1., 0., 1.]
 
 
 
 # Staircase Function (param[0] = scale, param[1] = bits)
 def stair_value_function(X, params):
-    scaled_X = tf.cast(tf.divide(X, params[0]), dtype=tf.int32)
+    scaled_X = tf.divide(X, params[0])
     range = 2**(params[1] - 1)
     upper_cond = tf.greater(scaled_X, range)
     upper_replace_vals = tf.ones_like(X) * range
@@ -109,7 +109,7 @@ def stair_index_function(X, params):
 
 
 def stair_meta_function(params):
-    return np.arange(1 - 2**(params[1] - 1), 2**(params[1] - 1) + 1).astype(np.int32)
+    return np.arange(1 - 2**(params[1] - 1), 2**(params[1] - 1) + 1).astype(np.float32)
 
 
 

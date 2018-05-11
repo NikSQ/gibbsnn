@@ -49,11 +49,11 @@ class NN:
     # TODO: Load validation set into gpu
     def create_gibbs_graph(self, batch_size, n_val_samples, block_size):
         with tf.variable_scope('global'):
-            self.X_placeholder = tf.placeholder(tf.int32, [None, self.config['layout'][0]])
+            self.X_placeholder = tf.placeholder(tf.float32, [None, self.config['layout'][0]])
             self.Y_placeholder = tf.placeholder(tf.float32, [None, self.config['layout'][self.n_layers]])
-            self.X_tr = tf.get_variable('X_tr', shape=[batch_size, self.config['layout'][0]], dtype=tf.int32)
+            self.X_tr = tf.get_variable('X_tr', shape=[batch_size, self.config['layout'][0]], dtype=tf.float32)
             self.Y_tr = tf.get_variable('Y_tr', shape=[batch_size, self.config['layout'][self.n_layers]], dtype=tf.float32)
-            self.X_val = tf.get_variable('X_val', shape=[n_val_samples, self.config['layout'][0]], dtype=tf.int32)
+            self.X_val = tf.get_variable('X_val', shape=[n_val_samples, self.config['layout'][0]], dtype=tf.float32)
             self.Y_val = tf.get_variable('Y_val', shape=[n_val_samples, self.config['layout'][self.n_layers]], dtype=tf.float32)
             self.validate = tf.placeholder(tf.bool)
 
@@ -74,25 +74,25 @@ class NN:
         # log_pw contains prior probabilities
         if self.weight_type == 'binary':
             connection_matrix_shape = (block_size, 2**block_size)
-            connection_matrix = np.zeros(connection_matrix_shape, dtype=np.int32)
+            connection_matrix = np.zeros(connection_matrix_shape, dtype=np.float32)
             for i in range(2**block_size):
                 for j in range(block_size):
                     connection_matrix[j, i] = (i & (1 << j)) == 0
-            log_pw = np.sum(self.log_prior_w[connection_matrix], axis=0)
+            log_pw = np.sum(self.log_prior_w[connection_matrix.astype(np.int32)], axis=0)
             connection_matrix[connection_matrix == 0] = -1
         elif self.weight_type == 'ternary':
             connection_matrix_shape = (block_size, 3**block_size)
-            connection_matrix = np.zeros(connection_matrix_shape, dtype=np.int32)
+            connection_matrix = np.zeros(connection_matrix_shape, dtype=np.float32)
             for i in range(3 ** block_size):
                 for j in range(block_size):
                     connection_matrix[j, i] = np.asarray(int(i / (3 ** j)) % 3)
-            log_pw = np.sum(self.log_prior_w[connection_matrix], axis= 0)
+            log_pw = np.sum(self.log_prior_w[connection_matrix.astype(np.int32)], axis= 0)
             connection_matrix -= 1
 
         # Create lookup table
         with tf.variable_scope('global'):
             lookup_shape = (batch_size, self.act_func.n_values)
-            lookup_init = tf.constant_initializer(np.zeros(lookup_shape, dtype=np.int32))
+            lookup_init = tf.constant_initializer(np.zeros(lookup_shape, dtype=np.float32))
             self.lookup_table = tf.get_variable('lookup', shape=lookup_shape, initializer=lookup_init)
 
         # Create indices required to update lookup_table
@@ -114,7 +114,7 @@ class NN:
         layer_input = self.X_tr
         for layer_idx in range(self.n_layers):
             if layer_idx != self.n_layers - 1:
-                dropout_mask = tf.placeholder(tf.int32, shape=(1, self.config['layout'][layer_idx +1]))
+                dropout_mask = tf.placeholder(tf.float32, shape=(1, self.config['layout'][layer_idx +1]))
                 self.layers[layer_idx].create_variables(layer_input, batch_size, dropout_mask)
                 self.dropout_masks.append(dropout_mask)
                 set_dropout_ops.append(self.layers[layer_idx].set_dropout_mask_op)
@@ -168,7 +168,7 @@ class NN:
             tries = 20
             while tries > 0:
                 mask = np.random.binomial(n=1, p=self.config['keep_probs'][layer_idx],
-                                          size=(1, self.config['layout'][layer_idx + 1]))
+                                          size=(1, self.config['layout'][layer_idx + 1])).astype(np.float32)
                 if np.sum(mask) >= self.block_size:
                     dropout_masks.append(mask)
                     break
@@ -235,7 +235,7 @@ class NN:
             tries = 20
             while tries > 0:
                 mask = np.random.binomial(n=1, p=self.config['keep_probs'][layer_idx],
-                                          size=(1, self.config['layout'][layer_idx + 1]))
+                                          size=(1, self.config['layout'][layer_idx + 1])).astype(np.float32)
                 if np.sum(mask) >= self.block_size:
                     dropout_masks.append(mask)
                     break
@@ -265,11 +265,12 @@ class NN:
             input_perm = np.expand_dims(input_perm, axis=1)
 
             if layer_idx < self.n_layers - 1:
-                n_neurons = np.sum(dropout_masks[layer_idx])
+                n_neurons = np.sum(dropout_masks[layer_idx]).astype(np.int32)
                 neuron_perm = np.flatnonzero(dropout_masks[layer_idx])
             else:
                 n_neurons = self.config['layout'][layer_idx+1]
                 neuron_perm = np.arange(n_neurons)
+
 
             # forward_op updates the variables containing input, activation and output of the current layer, using
             # either the output of the previous layer or the input data

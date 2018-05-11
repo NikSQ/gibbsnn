@@ -41,11 +41,11 @@ class FCLayer:
         with tf.variable_scope(var_scope):
             rng = np.random.RandomState()
             if self.config['weight_type'] == 'binary':
-                w_vals = rng.binomial(n=1, p=0.5, size=self.weight_shape).astype(np.int32)
+                w_vals = rng.binomial(n=1, p=0.5, size=self.weight_shape).astype(np.float32)
                 w_vals[w_vals == 0] = -1
             elif self.config['weight_type'] == 'ternary':
                 w_vals = rng.multinomial(n=1, pvals=np.asarray([1., 1., 1.])/3., size=self.weight_shape)\
-                    .astype(np.int32)
+                    .astype(np.float32)
                 w_vals = np.cumsum(w_vals, axis=2)
                 w_vals = np.sum(w_vals, axis=2) - 2
             b_vals = np.zeros(self.bias_shape, dtype=np.int32)
@@ -53,8 +53,8 @@ class FCLayer:
             w_init = tf.constant_initializer(w_vals)
             b_init = tf.constant_initializer(b_vals)
 
-            self.W = tf.get_variable(name='W', shape=self.weight_shape, initializer=w_init, dtype=tf.int32)
-            self.b = tf.get_variable(name='b', shape=self.bias_shape, initializer=b_init, dtype=tf.int32)
+            self.W = tf.get_variable(name='W', shape=self.weight_shape, initializer=w_init, dtype=tf.float32)
+            self.b = tf.get_variable(name='b', shape=self.bias_shape, initializer=b_init, dtype=tf.float32)
             self.neuron_idx = tf.placeholder(name='neuron_idx', dtype=np.int32)
             self.input_indices = None
 
@@ -108,7 +108,7 @@ class FCLayer:
         # input indices contain the indices of those input neurons, whose weights we want to sample
         with tf.variable_scope(self.var_scope):
             self.input_indices = tf.placeholder(name='input_indices', shape=(block_size, 1), dtype=np.int32)
-            self.bias_vals = tf.constant(self.bias_vals, dtype=tf.int32)
+            self.bias_vals = tf.constant(self.bias_vals, dtype=tf.float32)
 
         # Rest of this function is more or less a tensorflow version of the Theano code.
         # Variables that have 'indices' in their name, are used to index Tensorflow tensors either in the methods:
@@ -228,28 +228,23 @@ class FCLayer:
             var_shape = (self.batch_size, self.n_neurons)
             input_shape = layer_input.shape
 
-            if self.is_output:
-                d_type = tf.float32
-            else:
-                d_type = tf.int32
 
-            self.input = tf.get_variable(name='input', shape=input_shape, dtype=tf.int32)
-            self.activation = tf.get_variable(name='activation', shape=var_shape, dtype=tf.int32)
-            self.new_output = tf.get_variable(name='new_output', shape=var_shape, dtype=tf.int32)
-            self.output = tf.get_variable(name='output', shape=var_shape, dtype=d_type)
-
+            self.input = tf.get_variable(name='input', shape=input_shape, dtype=tf.float32)
+            self.activation = tf.get_variable(name='activation', shape=var_shape, dtype=tf.float32)
+            self.new_output = tf.get_variable(name='new_output', shape=var_shape, dtype=tf.float32)
+            self.output = tf.get_variable(name='output', shape=var_shape, dtype=tf.float32)
 
             if self.is_output == False:
-                dropout_init = tf.constant_initializer(np.ones((1, self.n_neurons)).astype(np.int32))
+                dropout_init = tf.constant_initializer(np.ones((1, self.n_neurons)).astype(np.float32))
                 self.dropout_mask = tf.get_variable(name='dropout', shape=(1, self.n_neurons), initializer=dropout_init,
-                                                dtype=tf.int32)
+                                                dtype=tf.float32)
                 self.set_dropout_mask_op = tf.assign(self.dropout_mask, dropout_mask)
 
         input_op = tf.assign(self.input, layer_input).op
         activation = tf.matmul(layer_input, self.W) + self.b
         act_op = tf.assign(self.activation, activation).op
 
-        activation = tf.cast(activation, d_type)
+        activation = tf.cast(activation, tf.float32)
         if self.is_output == False:
             output = self.act_func.get_output(activation)
             output = tf.multiply(output, self.dropout_mask)
