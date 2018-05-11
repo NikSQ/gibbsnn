@@ -117,6 +117,7 @@ class FCLayer:
         test_inp = tf.cast(self.input, dtype=tf.float32)
         with tf.device('/device:GPU:0'):
             input_block = tf.transpose(tf.gather_nd(tf.transpose(test_inp, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
+        input_block = tf.cast(input_block, dtype=tf.int32)
         weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
                                                                 (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
         weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices, name='w_block_gather'), axis=1)

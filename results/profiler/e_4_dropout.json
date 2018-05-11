@@ -1,312 +1,276 @@
 {
     "traceEvents": [
         {
-            "ph": "M",
-            "name": "process_name",
             "args": {
                 "name": "Allocators"
             },
+            "name": "process_name",
+            "ph": "M",
             "pid": 0
         },
         {
-            "ph": "M",
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
             },
+            "name": "process_name",
+            "ph": "M",
             "pid": 1
         },
         {
-            "ph": "M",
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
             },
+            "name": "process_name",
+            "ph": "M",
             "pid": 2
         },
         {
-            "ph": "M",
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
             },
+            "name": "process_name",
+            "ph": "M",
             "pid": 3
         },
         {
-            "ph": "M",
-            "name": "process_name",
             "args": {
                 "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
             },
+            "name": "process_name",
+            "ph": "M",
             "pid": 4
         },
         {
-            "ph": "X",
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            },
             "tid": 0,
+            "dur": 28,
+            "ts": 1526057981455255,
             "name": "NoOp",
-            "ts": 1526041027510110,
-            "dur": 20,
             "cat": "Op",
-            "args": {
-                "op": "NoOp",
-                "name": "_SOURCE"
-            },
+            "ph": "X",
             "pid": 1
         },
         {
-            "ph": "X",
-            "tid": 0,
-            "name": "Identity",
-            "ts": 1526041027510462,
-            "dur": 16,
-            "cat": "Op",
             "args": {
+                "name": "layer1_1/Assign/_99",
                 "op": "Identity",
-                "input0": "layer1_1/Assign/_98",
-                "name": "layer1_1/Assign/_99"
+                "input0": "layer1_1/Assign/_98"
             },
-            "pid": 1
-        },
-        {
-            "ph": "s",
             "tid": 0,
-            "name": "layer1_1/Assign",
-            "ts": 1526041027510243,
-            "id": 0,
-            "cat": "DataFlow",
-            "pid": 3
-        },
-        {
-            "ph": "t",
-            "tid": 0,
-            "name": "layer1_1/Assign",
-            "ts": 1526041027510462,
-            "id": 0,
-            "cat": "DataFlow",
-            "pid": 1
-        },
-        {
-            "ph": "X",
-            "tid": 0,
-            "name": "Identity",
-            "ts": 1526041027510486,
             "dur": 9,
+            "ts": 1526057981456184,
+            "name": "Identity",
             "cat": "Op",
+            "ph": "X",
+            "pid": 1
+        },
+        {
+            "id": 0,
+            "tid": 0,
+            "ts": 1526057981455433,
+            "name": "layer1_1/Assign",
+            "cat": "DataFlow",
+            "ph": "s",
+            "pid": 3
+        },
+        {
+            "id": 0,
+            "tid": 0,
+            "ts": 1526057981456184,
+            "name": "layer1_1/Assign",
+            "cat": "DataFlow",
+            "ph": "t",
+            "pid": 1
+        },
+        {
             "args": {
+                "name": "layer2_1/Assign/_103",
                 "op": "Identity",
-                "input0": "layer2_1/Assign/_102",
-                "name": "layer2_1/Assign/_103"
+                "input0": "layer2_1/Assign/_102"
             },
+            "tid": 0,
+            "dur": 5,
+            "ts": 1526057981456198,
+            "name": "Identity",
+            "cat": "Op",
+            "ph": "X",
             "pid": 1
         },
         {
-            "ph": "s",
-            "tid": 1,
-            "name": "layer2_1/Assign",
-            "ts": 1526041027510232,
             "id": 1,
+            "tid": 1,
+            "ts": 1526057981455433,
+            "name": "layer2_1/Assign",
             "cat": "DataFlow",
+            "ph": "s",
             "pid": 3
         },
         {
-            "ph": "t",
-            "tid": 0,
-            "name": "layer2_1/Assign",
-            "ts": 1526041027510486,
             "id": 1,
+            "tid": 0,
+            "ts": 1526057981456198,
+            "name": "layer2_1/Assign",
             "cat": "DataFlow",
+            "ph": "t",
             "pid": 1
         },
         {
-            "ph": "X",
-            "tid": 0,
-            "name": "NoOp",
-            "ts": 1526041027510501,
-            "dur": 10,
-            "cat": "Op",
             "args": {
-                "op": "NoOp",
-                "input0": "^layer1_1/Assign/_99",
+                "input1": "^layer2_1/Assign/_103",
                 "name": "group_deps_3",
-                "input1": "^layer2_1/Assign/_103"
+                "op": "NoOp",
+                "input0": "^layer1_1/Assign/_99"
             },
+            "tid": 0,
+            "dur": 6,
+            "ts": 1526057981456207,
+            "name": "NoOp",
+            "cat": "Op",
+            "ph": "X",
             "pid": 1
         },
         {
-            "ph": "X",
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            },
             "tid": 0,
+            "dur": 15,
+            "ts": 1526057981455268,
             "name": "NoOp",
-            "ts": 1526041027510094,
-            "dur": 22,
             "cat": "Op",
-            "args": {
-                "op": "NoOp",
-                "name": "_SOURCE"
-            },
+            "ph": "X",
             "pid": 3
         },
         {
-            "ph": "X",
+            "args": {
+                "name": "layer2/dropout",
+                "op": "VariableV2"
+            },
             "tid": 0,
+            "dur": 42,
+            "ts": 1526057981455331,
             "name": "VariableV2",
-            "ts": 1526041027510146,
-            "dur": 39,
             "cat": "Op",
-            "args": {
-                "op": "VariableV2",
-                "name": "layer2/dropout"
-            },
+            "ph": "X",
             "pid": 3
         },
         {
-            "ph": "X",
+            "args": {
+                "name": "layer1/dropout",
+                "op": "VariableV2"
+            },
             "tid": 0,
-            "name": "_Arg",
-            "ts": 1526041027510192,
             "dur": 16,
-            "cat": "Op",
-            "args": {
-                "op": "_Arg",
-                "name": "_arg_Placeholder_1_0_1"
-            },
-            "pid": 3
-        },
-        {
-            "ph": "X",
-            "tid": 1,
+            "ts": 1526057981455381,
             "name": "VariableV2",
-            "ts": 1526041027510191,
+            "cat": "Op",
+            "ph": "X",
+            "pid": 3
+        },
+        {
+            "args": {
+                "name": "_arg_Placeholder_1_0_1",
+                "op": "_Arg"
+            },
+            "tid": 1,
             "dur": 17,
-            "cat": "Op",
-            "args": {
-                "op": "VariableV2",
-                "name": "layer1/dropout"
-            },
-            "pid": 3
-        },
-        {
-            "ph": "X",
-            "tid": 0,
+            "ts": 1526057981455394,
             "name": "_Arg",
-            "ts": 1526041027510215,
+            "cat": "Op",
+            "ph": "X",
+            "pid": 3
+        },
+        {
+            "args": {
+                "name": "_arg_Placeholder_0_0",
+                "op": "_Arg"
+            },
+            "tid": 0,
             "dur": 10,
+            "ts": 1526057981455403,
+            "name": "_Arg",
             "cat": "Op",
-            "args": {
-                "op": "_Arg",
-                "name": "_arg_Placeholder_0_0"
-            },
-            "pid": 3
-        },
-        {
             "ph": "X",
-            "tid": 1,
-            "name": "Assign",
-            "ts": 1526041027510213,
-            "dur": 19,
-            "cat": "Op",
+            "pid": 3
+        },
+        {
             "args": {
-                "op": "Assign",
-                "input0": "layer2/dropout",
-                "name": "layer2_1/Assign",
-                "input1": "_arg_Placeholder_1_0_1"
-            },
-            "pid": 3
-        },
-        {
-            "ph": "s",
-            "tid": 0,
-            "name": "layer2/dropout",
-            "ts": 1526041027510185,
-            "id": 2,
-            "cat": "DataFlow",
-            "pid": 3
-        },
-        {
-            "ph": "t",
-            "tid": 1,
-            "name": "layer2/dropout",
-            "ts": 1526041027510213,
-            "id": 2,
-            "cat": "DataFlow",
-            "pid": 3
-        },
-        {
-            "ph": "s",
-            "tid": 0,
-            "name": "_arg_Placeholder_1_0_1",
-            "ts": 1526041027510208,
-            "id": 3,
-            "cat": "DataFlow",
-            "pid": 3
-        },
-        {
-            "ph": "t",
-            "tid": 1,
-            "name": "_arg_Placeholder_1_0_1",
-            "ts": 1526041027510213,
-            "id": 3,
-            "cat": "DataFlow",
-            "pid": 3
-        },
-        {
-            "ph": "X",
-            "tid": 0,
-            "name": "Assign",
-            "ts": 1526041027510230,
-            "dur": 13,
-            "cat": "Op",
-            "args": {
-                "op": "Assign",
-                "input0": "layer1/dropout",
+                "input1": "_arg_Placeholder_0_0",
                 "name": "layer1_1/Assign",
-                "input1": "_arg_Placeholder_0_0"
+                "op": "Assign",
+                "input0": "layer1/dropout"
             },
+            "tid": 0,
+            "dur": 15,
+            "ts": 1526057981455418,
+            "name": "Assign",
+            "cat": "Op",
+            "ph": "X",
             "pid": 3
         },
         {
+            "args": {
+                "input1": "_arg_Placeholder_1_0_1",
+                "name": "layer2_1/Assign",
+                "op": "Assign",
+                "input0": "layer2/dropout"
+            },
+            "tid": 1,
+            "dur": 17,
+            "ts": 1526057981455416,
+            "name": "Assign",
+            "cat": "Op",
+            "ph": "X",
+            "pid": 3
+        },
+        {
+            "id": 2,
+            "tid": 0,
+            "ts": 1526057981455373,
+            "name": "layer2/dropout",
+            "cat": "DataFlow",
             "ph": "s",
-            "tid": 1,
-            "name": "layer1/dropout",
-            "ts": 1526041027510208,
-            "id": 4,
-            "cat": "DataFlow",
             "pid": 3
         },
         {
+            "id": 2,
+            "tid": 1,
+            "ts": 1526057981455416,
+            "name": "layer2/dropout",
+            "cat": "DataFlow",
             "ph": "t",
-            "tid": 0,
-            "name": "layer1/dropout",
-            "ts": 1526041027510230,
-            "id": 4,
-            "cat": "DataFlow",
             "pid": 3
         },
         {
-            "ph": "X",
-            "tid": 1,
-            "name": "Const",
-            "ts": 1526041027510239,
-            "dur": 13,
-            "cat": "Op",
             "args": {
+                "name": "layer2_1/Assign/_100",
                 "op": "Const",
-                "input0": "^layer2_1/Assign",
-                "name": "layer2_1/Assign/_100"
+                "input0": "^layer2_1/Assign"
             },
-            "pid": 3
-        },
-        {
-            "ph": "X",
             "tid": 0,
-            "name": "Const",
-            "ts": 1526041027510249,
             "dur": 12,
+            "ts": 1526057981455440,
+            "name": "Const",
             "cat": "Op",
+            "ph": "X",
+            "pid": 3
+        },
+        {
             "args": {
+                "name": "layer1_1/Assign/_96",
                 "op": "Const",
-                "input0": "^layer1_1/Assign",
-                "name": "layer1_1/Assign/_96"
+                "input0": "^layer1_1/Assign"
             },
+            "tid": 1,
+            "dur": 14,
+            "ts": 1526057981455439,
+            "name": "Const",
+            "cat": "Op",
+            "ph": "X",
             "pid": 3
         }
     ]
