@@ -1,156 +1,355 @@
 {
     "traceEvents": [
         {
-            "ph": "M",
             "pid": 0,
             "name": "process_name",
             "args": {
                 "name": "Allocators"
-            }
+            },
+            "ph": "M"
         },
         {
-            "ph": "M",
             "pid": 1,
             "name": "process_name",
             "args": {
-                "name": "/job:localhost/replica:0/task:0/cpu:0 Compute"
-            }
+                "name": "/device:GPU:0/stream:13 Compute"
+            },
+            "ph": "M"
         },
         {
-            "ph": "M",
             "pid": 2,
             "name": "process_name",
             "args": {
-                "name": "/job:localhost/replica:0/task:0/cpu:0 Tensors"
+                "name": "/device:GPU:0/stream:13 Tensors"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 3,
+            "name": "process_name",
+            "args": {
+                "name": "/device:GPU:0/stream:14 Compute"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 4,
+            "name": "process_name",
+            "args": {
+                "name": "/device:GPU:0/stream:14 Tensors"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 5,
+            "name": "process_name",
+            "args": {
+                "name": "/device:GPU:0/memcpy Compute"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 6,
+            "name": "process_name",
+            "args": {
+                "name": "/device:GPU:0/memcpy Tensors"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 7,
+            "name": "process_name",
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 8,
+            "name": "process_name",
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 9,
+            "name": "process_name",
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
+            },
+            "ph": "M"
+        },
+        {
+            "pid": 10,
+            "name": "process_name",
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
+            },
+            "ph": "M"
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484726,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 1,
+            "name": "Assign",
+            "tid": 0,
+            "args": {
+                "name": "layer1_1/Assign",
+                "op": "Assign"
             }
         },
         {
-            "ts": 1526062117410771,
-            "tid": 0,
-            "name": "NoOp",
-            "args": {
-                "op": "NoOp",
-                "name": "_SOURCE"
-            },
-            "pid": 1,
+            "dur": 1,
+            "ts": 1526062340484768,
             "ph": "X",
             "cat": "Op",
-            "dur": 8
-        },
-        {
-            "ts": 1526062117410799,
-            "tid": 0,
-            "name": "VariableV2",
-            "args": {
-                "op": "VariableV2",
-                "name": "layer2/dropout"
-            },
             "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 13
-        },
-        {
-            "ts": 1526062117410814,
-            "tid": 0,
-            "name": "VariableV2",
-            "args": {
-                "op": "VariableV2",
-                "name": "layer1/dropout"
-            },
-            "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 4
-        },
-        {
-            "ts": 1526062117410822,
-            "tid": 0,
-            "name": "_Arg",
-            "args": {
-                "op": "_Arg",
-                "name": "_arg_Placeholder_0_0"
-            },
-            "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 4
-        },
-        {
-            "ts": 1526062117410827,
-            "tid": 0,
             "name": "Assign",
-            "args": {
-                "op": "Assign",
-                "input0": "layer1/dropout",
-                "name": "layer1_1/Assign",
-                "input1": "_arg_Placeholder_0_0"
-            },
-            "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 4
-        },
-        {
-            "ts": 1526062117410821,
-            "tid": 1,
-            "name": "_Arg",
-            "args": {
-                "op": "_Arg",
-                "name": "_arg_Placeholder_1_0_1"
-            },
-            "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 10
-        },
-        {
-            "ts": 1526062117410835,
             "tid": 0,
-            "name": "Assign",
             "args": {
-                "op": "Assign",
-                "input0": "layer2/dropout",
                 "name": "layer2_1/Assign",
-                "input1": "_arg_Placeholder_1_0_1"
-            },
-            "pid": 1,
-            "ph": "X",
-            "cat": "Op",
-            "dur": 5
+                "op": "Assign"
+            }
         },
         {
-            "ts": 1526062117410831,
-            "tid": 1,
-            "name": "_arg_Placeholder_1_0_1",
-            "pid": 1,
+            "dur": 1,
+            "ts": 1526062340484427,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 3,
+            "name": "MEMCPYHtoD",
+            "tid": 0,
+            "args": {
+                "name": "edge_10__arg_Placeholder_0_0",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484573,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 3,
+            "name": "MEMCPYHtoD",
+            "tid": 0,
+            "args": {
+                "name": "edge_12__arg_Placeholder_1_0_1",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484427,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 5,
+            "name": "MEMCPYHtoD",
+            "tid": 0,
+            "args": {
+                "name": "edge_10__arg_Placeholder_0_0",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484573,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 5,
+            "name": "MEMCPYHtoD",
+            "tid": 0,
+            "args": {
+                "name": "edge_12__arg_Placeholder_1_0_1",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484726,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 5,
+            "name": "Assign",
+            "tid": 0,
+            "args": {
+                "name": "layer1_1/Assign",
+                "op": "Assign"
+            }
+        },
+        {
+            "dur": 1,
+            "ts": 1526062340484768,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 5,
+            "name": "Assign",
+            "tid": 0,
+            "args": {
+                "name": "layer2_1/Assign",
+                "op": "Assign"
+            }
+        },
+        {
+            "dur": 19,
+            "ts": 1526062340484113,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 7,
+            "name": "NoOp",
+            "tid": 0,
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            }
+        },
+        {
+            "dur": 17,
+            "ts": 1526062340484155,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 7,
+            "name": "_Arg",
+            "tid": 0,
+            "args": {
+                "name": "_arg_Placeholder_0_0",
+                "op": "_Arg"
+            }
+        },
+        {
+            "dur": 3,
+            "ts": 1526062340484195,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 7,
+            "name": "_Arg",
+            "tid": 0,
+            "args": {
+                "name": "_arg_Placeholder_1_0_1",
+                "op": "_Arg"
+            }
+        },
+        {
+            "dur": 18,
+            "ts": 1526062340484114,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 9,
+            "name": "NoOp",
+            "tid": 0,
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            }
+        },
+        {
+            "dur": 23,
+            "ts": 1526062340484312,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 9,
+            "name": "VariableV2",
+            "tid": 0,
+            "args": {
+                "name": "layer1/dropout",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "dur": 8,
+            "ts": 1526062340484338,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 9,
+            "name": "VariableV2",
+            "tid": 0,
+            "args": {
+                "name": "layer2/dropout",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "dur": 77,
+            "ts": 1526062340484657,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 9,
+            "name": "Assign",
+            "tid": 0,
+            "args": {
+                "name": "layer1_1/Assign",
+                "input1": "_arg_Placeholder_0_0/_11",
+                "op": "Assign",
+                "input0": "layer1/dropout"
+            }
+        },
+        {
+            "id": 0,
+            "ts": 1526062340484172,
             "ph": "s",
             "cat": "DataFlow",
-            "id": 0
+            "pid": 7,
+            "name": "_arg_Placeholder_0_0",
+            "tid": 0
         },
         {
-            "ts": 1526062117410835,
-            "tid": 0,
-            "name": "_arg_Placeholder_1_0_1",
-            "pid": 1,
+            "id": 0,
+            "ts": 1526062340484657,
             "ph": "t",
             "cat": "DataFlow",
-            "id": 0
+            "pid": 9,
+            "name": "_arg_Placeholder_0_0",
+            "tid": 0
         },
         {
-            "ts": 1526062117410842,
-            "tid": 0,
-            "name": "NoOp",
-            "args": {
-                "op": "NoOp",
-                "input0": "^layer1_1/Assign",
-                "name": "group_deps_3",
-                "input1": "^layer2_1/Assign"
-            },
-            "pid": 1,
+            "dur": 34,
+            "ts": 1526062340484740,
             "ph": "X",
             "cat": "Op",
-            "dur": 3
+            "pid": 9,
+            "name": "Assign",
+            "tid": 0,
+            "args": {
+                "name": "layer2_1/Assign",
+                "input1": "_arg_Placeholder_1_0_1/_9",
+                "op": "Assign",
+                "input0": "layer2/dropout"
+            }
+        },
+        {
+            "id": 1,
+            "ts": 1526062340484198,
+            "ph": "s",
+            "cat": "DataFlow",
+            "pid": 7,
+            "name": "_arg_Placeholder_1_0_1",
+            "tid": 0
+        },
+        {
+            "id": 1,
+            "ts": 1526062340484740,
+            "ph": "t",
+            "cat": "DataFlow",
+            "pid": 9,
+            "name": "_arg_Placeholder_1_0_1",
+            "tid": 0
+        },
+        {
+            "dur": 5,
+            "ts": 1526062340484779,
+            "ph": "X",
+            "cat": "Op",
+            "pid": 9,
+            "name": "NoOp",
+            "tid": 0,
+            "args": {
+                "name": "group_deps_3",
+                "input1": "^layer2_1/Assign",
+                "op": "NoOp",
+                "input0": "^layer1_1/Assign"
+            }
         }
     ]
 }

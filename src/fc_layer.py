@@ -97,99 +97,100 @@ class FCLayer:
 
     # This creates the execution graph that performs sampling
     def create_sampling_graph(self, block_size, connection_matrix, w_batch_range, log_pw, Y=None):
-        # bias vals (which contains all considered values of the bias) needs to be tiled to fit the batch_siz
-        # as the tensorflow operation operating on it does not support broadcasting
-        self.bias_vals = np.tile(np.reshape(self.bias_vals, (1, -1)), reps=[self.batch_size, 1])
+        with tf.device('/device:GPU:0'):
+            # bias vals (which contains all considered values of the bias) needs to be tiled to fit the batch_siz
+            # as the tensorflow operation operating on it does not support broadcasting
+            self.bias_vals = np.tile(np.reshape(self.bias_vals, (1, -1)), reps=[self.batch_size, 1])
 
-        # Like w_batch_range, this is used to construct indices to access the lookup table
-        b_batch_range = np.tile(np.reshape(np.arange(self.batch_size), (-1, 1, 1)).astype(np.int32),
-                                reps=(1, self.bias_vals.shape[1], 1))
+            # Like w_batch_range, this is used to construct indices to access the lookup table
+            b_batch_range = np.tile(np.reshape(np.arange(self.batch_size), (-1, 1, 1)).astype(np.int32),
+                                    reps=(1, self.bias_vals.shape[1], 1))
 
-        # input indices contain the indices of those input neurons, whose weights we want to sample
-        with tf.variable_scope(self.var_scope):
-            self.input_indices = tf.placeholder(name='input_indices', shape=(block_size, 1), dtype=np.int32)
-            self.bias_vals = tf.constant(self.bias_vals, dtype=tf.float32)
+            # input indices contain the indices of those input neurons, whose weights we want to sample
+            with tf.variable_scope(self.var_scope):
+                self.input_indices = tf.placeholder(name='input_indices', shape=(block_size, 1), dtype=np.int32)
+                self.bias_vals = tf.constant(self.bias_vals, dtype=tf.float32)
 
-        # Rest of this function is more or less a tensorflow version of the Theano code.
-        # Variables that have 'indices' in their name, are used to index Tensorflow tensors either in the methods:
-        # gather_nd (creates a new tensor by only taking those elements of the reference tensor, that are specified
-        # in the index variable)
-        # scatter_nd_update (updates elements - specified by indices - of a TF variable with the given update values)
-        input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
-        weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
-                                                                (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
-        weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices, name='w_block_gather'), axis=1)
-        neuron_activation = tf.slice(self.activation, begin=[0, self.neuron_idx], size=[self.batch_size, 1], name='extract_neuron_activation')
+            # Rest of this function is more or less a tensorflow version of the Theano code.
+            # Variables that have 'indices' in their name, are used to index Tensorflow tensors either in the methods:
+            # gather_nd (creates a new tensor by only taking those elements of the reference tensor, that are specified
+            # in the index variable)
+            # scatter_nd_update (updates elements - specified by indices - of a TF variable with the given update values)
+            input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
+            weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
+                                                                    (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
+            weight_block = tf.expand_dims(tf.gather_nd(self.W, weight_indices, name='w_block_gather'), axis=1)
+            neuron_activation = tf.slice(self.activation, begin=[0, self.neuron_idx], size=[self.batch_size, 1], name='extract_neuron_activation')
 
-        w_removed_activation = neuron_activation - tf.matmul(input_block, weight_block, name='curr_inp_block_influence')
-        w_added_activation = tf.matmul(input_block, connection_matrix, name='calc_inp_block_influence') + w_removed_activation
+            w_removed_activation = neuron_activation - tf.matmul(input_block, weight_block, name='curr_inp_block_influence')
+            w_added_activation = tf.matmul(input_block, connection_matrix, name='calc_inp_block_influence') + w_removed_activation
 
-        b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx], name='extract_bias_activation')
-        b_added_activation = self.bias_vals + b_removed_activation
+            b_removed_activation = neuron_activation - tf.gather_nd(self.b, [0, self.neuron_idx], name='extract_bias_activation')
+            b_added_activation = self.bias_vals + b_removed_activation
 
-        update_var_indices = tf.concat([np.reshape(np.arange(self.batch_size), newshape=(-1, 1)),
-                                       tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
-                                               (self.batch_size, 1), name='var_indices_tile')], axis=1, name='var_indices_concat')
+            update_var_indices = tf.concat([np.reshape(np.arange(self.batch_size), newshape=(-1, 1)),
+                                           tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
+                                                   (self.batch_size, 1), name='var_indices_tile')], axis=1, name='var_indices_concat')
 
-        if self.is_output:
-            activation = tf.cast(self.activation, dtype=tf.float32)
-            neuron_activation = tf.cast(neuron_activation, dtype=tf.float32)
-            w_added_activation_float = tf.cast(w_added_activation, dtype=tf.float32)
-            b_added_activation_float = tf.cast(b_added_activation, dtype=tf.float32)
+            if self.is_output:
+                activation = tf.cast(self.activation, dtype=tf.float32)
+                neuron_activation = tf.cast(neuron_activation, dtype=tf.float32)
+                w_added_activation_float = tf.cast(w_added_activation, dtype=tf.float32)
+                b_added_activation_float = tf.cast(b_added_activation, dtype=tf.float32)
 
-            aux_max1 = tf.reduce_max(activation, axis=1, keep_dims=True)
-            smax_old = tf.log(tf.reduce_sum(tf.exp(activation - aux_max1), axis=1, keep_dims=True) -
-                              tf.exp(neuron_activation - aux_max1)) + aux_max1
-            aux_max2 = tf.maximum(smax_old, w_added_activation_float)
-            smax_updated = -tf.log(tf.exp(smax_old - aux_max2) + tf.exp(w_added_activation_float - aux_max2)) - aux_max2
-            t = tf.cast(tf.expand_dims(tf.argmax(Y, axis=1), axis=1), dtype=tf.int32)
-            gather_indices = tf.concat((np.expand_dims(np.arange(self.batch_size), axis=1), t), axis=1)
+                aux_max1 = tf.reduce_max(activation, axis=1, keep_dims=True)
+                smax_old = tf.log(tf.reduce_sum(tf.exp(activation - aux_max1), axis=1, keep_dims=True) -
+                                  tf.exp(neuron_activation - aux_max1)) + aux_max1
+                aux_max2 = tf.maximum(smax_old, w_added_activation_float)
+                smax_updated = -tf.log(tf.exp(smax_old - aux_max2) + tf.exp(w_added_activation_float - aux_max2)) - aux_max2
+                t = tf.cast(tf.expand_dims(tf.argmax(Y, axis=1), axis=1), dtype=tf.int32)
+                gather_indices = tf.concat((np.expand_dims(np.arange(self.batch_size), axis=1), t), axis=1)
 
-            output_true_class = tf.expand_dims(tf.gather_nd(activation, gather_indices), axis=1)
-            w_output_true_class = tf.tile(output_true_class, [1, connection_matrix.shape[1]])
-            b_output_true_class = tf.tile(output_true_class, [1, self.n_bias_vals])
-            aux_idx = tf.equal(t, self.neuron_idx)
-            w_aux_idx = tf.tile(aux_idx, [1, connection_matrix.shape[1]])
-            b_aux_idx = tf.tile(aux_idx, [1, self.n_bias_vals])
+                output_true_class = tf.expand_dims(tf.gather_nd(activation, gather_indices), axis=1)
+                w_output_true_class = tf.tile(output_true_class, [1, connection_matrix.shape[1]])
+                b_output_true_class = tf.tile(output_true_class, [1, self.n_bias_vals])
+                aux_idx = tf.equal(t, self.neuron_idx)
+                w_aux_idx = tf.tile(aux_idx, [1, connection_matrix.shape[1]])
+                b_aux_idx = tf.tile(aux_idx, [1, self.n_bias_vals])
 
-            log_probs = smax_updated + tf.where(w_aux_idx, w_added_activation_float, w_output_true_class)
-            sample_idx = self.calc_sample_idx(log_probs, log_pw)
-            new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1])
-            sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights))
-            self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
+                log_probs = smax_updated + tf.where(w_aux_idx, w_added_activation_float, w_output_true_class)
+                sample_idx = self.calc_sample_idx(log_probs, log_pw)
+                new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
+                new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1])
+                sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights))
+                self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
 
-            aux_max3 = tf.maximum(smax_old, b_added_activation_float)
-            smax_updated = -tf.log(tf.exp(smax_old - aux_max3) + tf.exp(b_added_activation_float - aux_max3)) - aux_max3
-            log_probs = smax_updated + tf.where(b_aux_idx, b_added_activation_float, b_output_true_class)
-            sample_idx = self.calc_sample_idx(log_probs)
-            new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx])
-            sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight])
-            self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
+                aux_max3 = tf.maximum(smax_old, b_added_activation_float)
+                smax_updated = -tf.log(tf.exp(smax_old - aux_max3) + tf.exp(b_added_activation_float - aux_max3)) - aux_max3
+                log_probs = smax_updated + tf.where(b_aux_idx, b_added_activation_float, b_output_true_class)
+                sample_idx = self.calc_sample_idx(log_probs)
+                new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
+                new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx])
+                sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight])
+                self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
 
-        else:
-            output_values = self.act_func.get_output(w_added_activation)
-            lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
-            g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
-            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
-            new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
-            new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
-            new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
-            self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
-                                                            new_output_vals)
+            else:
+                output_values = self.act_func.get_output(w_added_activation)
+                lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
+                g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+                sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
+                new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
+                new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
+                new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
+                sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
+                self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
+                                                                new_output_vals)
 
-            output_values = self.act_func.get_output(b_added_activation)
-            lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
-            g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
-            sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
-            new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
-            new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
-            new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-            sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
-            self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
-                                                            new_output_vals)
+                output_values = self.act_func.get_output(b_added_activation)
+                lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
+                g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+                sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
+                new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
+                new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
+                new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
+                sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
+                self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
+                                                                new_output_vals)
 
     # This updates activation and output variables after the sampling operation
     # As a control dependency is made on control op, the returned operation both performs sampling and the update
