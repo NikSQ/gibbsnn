@@ -24,6 +24,7 @@ def run_experiment(exp_config, nn_config, dataset):
         sess.run(nn.load_val_set_op, feed_dict={nn.X_placeholder: x_va, nn.Y_placeholder: y_va})
 
         for epoch in range(exp_config['n_epochs']):
+            nn.perform_gibbs_iteration(sess)
             if exp_config['store_vars'] and epoch % exp_config['store_vars_every'] == 0:
                 s_var = sess.run(nn.var_summary_op)
                 writer_va.add_summary(s_var, epoch)
@@ -32,4 +33,3 @@ def run_experiment(exp_config, nn_config, dataset):
                 s_va = sess.run(nn.full_network.summary_op, feed_dict={nn.validate: True})
                 writer_tr.add_summary(s_tr, epoch)
                 writer_va.add_summary(s_va, epoch)
-            nn.perform_gibbs_iteration(sess)

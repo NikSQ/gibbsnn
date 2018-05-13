@@ -110,6 +110,9 @@ class FCLayer:
             with tf.variable_scope(self.var_scope):
                 self.input_indices = tf.placeholder(name='input_indices', shape=(block_size, 1), dtype=np.int32)
                 self.bias_vals = tf.constant(self.bias_vals, dtype=tf.float32)
+                w_batch_range = tf.constant(w_batch_range, dtype=tf.int32)
+                b_batch_range = tf.constant(b_batch_range, dtype=tf.int32)
+
 
             # Rest of this function is more or less a tensorflow version of the Theano code.
             # Variables that have 'indices' in their name, are used to index Tensorflow tensors either in the methods:
@@ -172,7 +175,7 @@ class FCLayer:
             else:
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
-                g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+                g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
                 sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
                 new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
                 new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
