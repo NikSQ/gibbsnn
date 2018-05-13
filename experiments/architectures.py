@@ -9,7 +9,7 @@ from src.run_experiment import run_experiment
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 path = '../results/archs/job_' + str(task_id) + '_'
 
-run_config = {'n_epochs': 25,
+run_config = {'n_epochs': 10,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 5,
@@ -17,9 +17,9 @@ run_config = {'n_epochs': 25,
               'store_vars_every': 5,
               'path': path}
 
-size_layer1 = 130 + task_id * 40
+size_layer1 = 200 + task_id * 50
 #size_layer2 = 30 + (int(task_id % 3) * 10)
-size_layer2 = 130 + task_id * 40
+size_layer2 = 200 + task_id * 50
 print('Neurons in layer 1: {}, layer2: {}'.format(size_layer1, size_layer2))
 
 act_func = get_activation_function('binary_sign')
