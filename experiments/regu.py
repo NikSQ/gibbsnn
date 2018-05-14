@@ -8,10 +8,10 @@ from src.run_experiment import run_experiment
 
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 path = '../results/regu/job_' + str(task_id) + '_'
-keep_probs = 0.85**(task_id % 2)
-flat_factor = 1.5**(task_id / 2)
+keep_probs = 0.80**((task_id % 2) + 1)
+flat_factor = 1.5**((task_id / 2) + 1)
 
-run_config = {'n_epochs': 9,
+run_config = {'n_epochs': 6,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 3,
