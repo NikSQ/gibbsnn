@@ -67,29 +67,30 @@ class FCLayer:
     # Creates the execution graph for setting all the entries in the lookup table for a given neuron (this neuron is
     # given via a placeholder, which means that it can be set at runtime)
     def create_lookup_graph(self, lookup_table, lookup_indices, following_layers, targets):
-        self.lookup_table = lookup_table
+        with tf.name_scope(self.var_scope + '/lookup'):
+            self.lookup_table = lookup_table
 
-        # neuron_indices are required to access (and update) the output of a specific neuron in the variable containing
-        # the output
-        indices = np.reshape(np.arange(self.batch_size).astype(dtype=np.int32), newshape=(-1, 1))
-        neuron_indices = tf.concat([indices, tf.tile(tf.expand_dims(self.neuron_idx, axis=1),
-                                                     multiples=[self.batch_size, 1])], axis=1)
+            # neuron_indices are required to access (and update) the output of a specific neuron in the variable containing
+            # the output
+            indices = np.reshape(np.arange(self.batch_size).astype(dtype=np.int32), newshape=(-1, 1))
+            neuron_indices = tf.concat([indices, tf.tile(tf.expand_dims(self.neuron_idx, axis=1),
+                                                         multiples=[self.batch_size, 1])], axis=1)
 
-        # First we create a copy of the output variable, and just operate on this copy
-        lookup_ops = [tf.assign(self.new_output, self.output)]
+            # First we create a copy of the output variable, and just operate on this copy
+            lookup_ops = [tf.assign(self.new_output, self.output)]
 
-        # We iterate over all possible output values of the activation function
-        # For each possible output value, we set the output of the current neuron to that value, and create a graph
-        # for completing the forward pass to obtain the likelihoods. This graph is created by SubNN.
-        # Then we update the lookup table
-        # The control dependencies ensure that those operations are not run in parallel
-        for lookup_idx, output_val in enumerate(self.act_func.values):
-            with tf.control_dependencies(lookup_ops):
-                out_update_op = tf.scatter_nd_update(self.new_output, neuron_indices,
-                                                     tf.constant(output_val, shape=(self.batch_size,)))
-                with tf.get_default_graph().control_dependencies([out_update_op]):
-                    subnn = SubNN(following_layers, self.new_output, targets)
-                    lookup_ops.append(tf.scatter_nd_update(lookup_table, lookup_indices[lookup_idx], subnn.likelihoods))
+            # We iterate over all possible output values of the activation function
+            # For each possible output value, we set the output of the current neuron to that value, and create a graph
+            # for completing the forward pass to obtain the likelihoods. This graph is created by SubNN.
+            # Then we update the lookup table
+            # The control dependencies ensure that those operations are not run in parallel
+            for lookup_idx, output_val in enumerate(self.act_func.values):
+                with tf.control_dependencies(lookup_ops):
+                    out_update_op = tf.scatter_nd_update(self.new_output, neuron_indices,
+                                                         tf.constant(output_val, shape=(self.batch_size,)))
+                    with tf.get_default_graph().control_dependencies([out_update_op]):
+                        subnn = SubNN(following_layers, self.new_output, targets)
+                        lookup_ops.append(tf.scatter_nd_update(lookup_table, lookup_indices[lookup_idx], subnn.likelihoods))
 
         # We simply set our lookup op to be the last operation in our list. This operation will automatically run
         # the others because of the control dependencies
@@ -97,7 +98,7 @@ class FCLayer:
 
     # This creates the execution graph that performs sampling
     def create_sampling_graph(self, block_size, connection_matrix, w_batch_range, log_pw, Y=None):
-        with tf.device('/device:GPU:0'):
+        with tf.name_scope(self.var_scope + '/sampling'):
             # bias vals (which contains all considered values of the bias) needs to be tiled to fit the batch_siz
             # as the tensorflow operation operating on it does not support broadcasting
             self.bias_vals = np.tile(np.reshape(self.bias_vals, (1, -1)), reps=[self.batch_size, 1])
@@ -113,12 +114,6 @@ class FCLayer:
                 w_batch_range = tf.constant(w_batch_range, dtype=tf.int32)
                 b_batch_range = tf.constant(b_batch_range, dtype=tf.int32)
 
-
-            # Rest of this function is more or less a tensorflow version of the Theano code.
-            # Variables that have 'indices' in their name, are used to index Tensorflow tensors either in the methods:
-            # gather_nd (creates a new tensor by only taking those elements of the reference tensor, that are specified
-            # in the index variable)
-            # scatter_nd_update (updates elements - specified by indices - of a TF variable with the given update values)
             input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
             weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
                                                                     (block_size, 1), name='w_ind_tile')], axis=1, name='w_ind_concat')
@@ -218,7 +213,7 @@ class FCLayer:
 
         probs = tf.cumsum(tf.exp(log_probs - tf.reduce_max(log_probs)))
         sample_idx = tf.reduce_sum(tf.cast(tf.less(probs, tf.random_uniform((1,))*tf.reduce_max(probs)), tf.int32))
-        #sample_idx = tf.argmax(log_probs)
+        sample_idx = tf.argmax(log_probs)
         return sample_idx
 
 
@@ -244,23 +239,21 @@ class FCLayer:
                                                 dtype=tf.float32)
                 self.set_dropout_mask_op = tf.assign(self.dropout_mask, dropout_mask)
 
-        input_op = tf.assign(self.input, layer_input).op
-        activation = tf.matmul(layer_input, self.W) + self.b
-        act_op = tf.assign(self.activation, activation).op
+        with tf.name_scope(self.var_scope + '/slow_forward_pass'):
+            input_op = tf.assign(self.input, layer_input).op
+            activation = tf.matmul(layer_input, self.W) + self.b
+            act_op = tf.assign(self.activation, activation).op
 
-        activation = tf.cast(activation, tf.float32)
-        if self.is_output == False:
-            output = self.act_func.get_output(activation)
-            output = tf.multiply(output, self.dropout_mask)
-            output_op = tf.assign(self.output, output).op
+            activation = tf.cast(activation, tf.float32)
 
-            # Calling this operation will set the variables
-            # This operation (aswell as the variables) are not used when we want to do a quick forward pass, only when
-            # we want to access and keep a backup of the input, activation and output of each layer (so usually just during
-            # Gibbs sampling)
-            self.forward_op = tf.group(*[input_op, act_op, output_op])
-        else:
-            self.forward_op = tf.group(*[input_op, act_op])
+            if self.is_output == False:
+                output = self.act_func.get_output(activation)
+                output = tf.multiply(output, self.dropout_mask)
+                output_op = tf.assign(self.output, output).op
+
+                self.forward_op = tf.group(*[input_op, act_op, output_op])
+            else:
+                self.forward_op = tf.group(*[input_op, act_op])
 
 
     # This creates the forward pass graph of a classic feed forward network
@@ -268,19 +261,18 @@ class FCLayer:
     # different values for input, activation or output in it's variables. But it reuses the weights.
     # Number of return values depends on whether it's an output layer or not
     def forward_pass(self, layer_input, record_variables, targets=None):
-        activation = tf.matmul(layer_input, self.W) + self.b
-        act_summary = None
-        if record_variables:
-            with tf.variable_scope(self.var_scope):
+        with tf.name_scope(self.var_scope + '/fast_forward_pass'):
+            activation = tf.matmul(layer_input, self.W) + self.b
+            act_summary = None
+            if record_variables:
                 act_summary = tf.summary.histogram('activations', activation)
 
-        if self.is_output:
-            activation = tf.cast(activation, dtype=tf.float32)
-            return tf.nn.softmax(activation), \
-                   tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary
-        else:
-            layer_output = self.act_func.get_output(activation)
-            return tf.multiply(layer_output, self.dropout_mask), act_summary
+            if self.is_output:
+                return tf.nn.softmax(activation), \
+                       tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary
+            else:
+                layer_output = self.act_func.get_output(activation)
+                return tf.multiply(layer_output, self.dropout_mask), act_summary
 
 
 
