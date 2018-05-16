@@ -34,7 +34,8 @@ class FCLayer:
         if self.bias_vals is None:
             #bits = int(np.log2(shape[0]))
             #self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
-            self.bias_vals = np.arange(-shape[0], shape[0])
+            b_range = int(np.sqrt(shape[0]))
+            self.bias_vals = np.arange(-b_range, b_range)
 
         self.n_bias_vals = len(self.bias_vals)
 

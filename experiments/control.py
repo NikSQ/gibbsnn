@@ -10,7 +10,7 @@ from src.run_experiment import run_experiment
 task_id = 0
 path = '../results/control/'
 
-run_config = {'n_epochs': 8,
+run_config = {'n_epochs': 15,
               'block_size': 5,
               'store_acts': True,
               'store_acts_every': 1,
@@ -18,12 +18,15 @@ run_config = {'n_epochs': 8,
               'store_vars_every': 1,
               'path': path}
 
-act_func = get_activation_function('binary_sign')
-act_func.set_params([])
-act_funcs = [act_func, act_func]
+act_func1 = get_activation_function('stair')
+act_func2 = get_activation_function('stair')
+
+act_func1.set_params([10, 4])
+act_func2.set_params([3, 4])
+act_funcs = [act_func1, act_func2]
 
 
-config = {'layout': [80, 40],
+config = {'layout': [100, 80],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
