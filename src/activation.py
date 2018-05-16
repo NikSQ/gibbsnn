@@ -99,13 +99,13 @@ def stair_value_function(X, params):
 
 
 def stair_index_function(X, params):
-    scaled_X = tf.cast(tf.divide(X, params[0]), dtype=tf.int32)
+    scaled_X = tf.divide(X, params[0])
     range = 2**(params[1] - 1)
     upper_cond = tf.greater(scaled_X, range)
     upper_replace_vals = tf.ones_like(X) * range
     lower_cond = tf.less(scaled_X, 1 - range)
     lower_replace_vals = - tf.ones_like(X) * (range - 1)
-    return tf.where(lower_cond, lower_replace_vals, tf.where(upper_cond, upper_replace_vals, scaled_X)) + range - 1
+    return tf.cast(tf.where(lower_cond, lower_replace_vals, tf.where(upper_cond, upper_replace_vals, scaled_X)) + range - 1, dtype=tf.int32)
 
 
 def stair_meta_function(params):
