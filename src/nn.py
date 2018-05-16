@@ -43,7 +43,7 @@ class NN:
         if self.weight_type == 'binary':
             self.log_prior_w = np.log(np.asarray([0.5, 0.5], dtype=np.float32))
         elif self.weight_type == 'ternary':
-            self.log_prior_w = np.log(np.asarray([0.3, 0.4, 0.3], dtype=np.float32))
+            self.log_prior_w = np.log(np.asarray([0.1, 0.8, 0.1], dtype=np.float32))
 
     # This function creates the execution graph for Gibbs Sampling (lookup table updates, weight update, bias update)
     # TODO: Load validation set into gpu

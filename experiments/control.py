@@ -10,8 +10,8 @@ from src.run_experiment import run_experiment
 task_id = 0
 path = '../results/control/'
 
-run_config = {'n_epochs': 10,
-              'block_size': 4,
+run_config = {'n_epochs': 8,
+              'block_size': 5,
               'store_acts': True,
               'store_acts_every': 1,
               'store_vars': True,
@@ -23,7 +23,7 @@ act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 
-config = {'layout': [50, 50],
+config = {'layout': [80, 40],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
