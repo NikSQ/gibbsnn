@@ -10,7 +10,7 @@ from src.run_experiment import run_experiment
 task_id = 0
 path = '../results/control/'
 
-run_config = {'n_epochs': 15,
+run_config = {'n_epochs': 25,
               'block_size': 5,
               'store_acts': True,
               'store_acts_every': 1,
@@ -22,15 +22,15 @@ act_func1 = get_activation_function('stair')
 act_func2 = get_activation_function('stair')
 
 act_func1.set_params([6, 4])
-act_func2.set_params([2, 4])
+act_func2.set_params([3, 4])
 act_funcs = [act_func1, act_func2]
 
 
-config = {'layout': [110, 90],
+config = {'layout': [120, 90],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
-          'keep_probs': [0.7, 0.7],
+          'keep_probs': [0.9, 0.9],
           'flat_factor': [1., 1., 1.],
           'sampling_sequence': 'stochastic'}
 
