@@ -25,7 +25,7 @@ act_funcs = [act_func, act_func]
 
 
 config = {'layout': [200, 200],
-          'weight_type': 'ternary',
+          'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
           'keep_probs': [0.9, 0.9],
