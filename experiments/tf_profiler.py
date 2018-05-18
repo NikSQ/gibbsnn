@@ -12,7 +12,7 @@ from src.mnist_data import load_dataset
 
 # TODO: job name should include the actual index of the job
 dir_name = '../results/profiler/'
-n_epochs = 2
+n_epochs = 1
 block_size = 8
 store_activations = True
 store_acts_every = 1
@@ -25,7 +25,7 @@ x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset('mnist_basic')
 x_tr = x_tr[:, :]
 x_va = x_va[:, :]
 
-config = {'layout': [x_tr.shape[1], 20, 20, y_tr.shape[1]],
+config = {'layout': [x_tr.shape[1], 200, 200, y_tr.shape[1]],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
