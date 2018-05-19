@@ -1,0 +1,647 @@
+{
+    "traceEvents": [
+        {
+            "pid": 0,
+            "args": {
+                "name": "Allocators"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 1,
+            "args": {
+                "name": "/device:GPU:0/memcpy Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 2,
+            "args": {
+                "name": "/device:GPU:0/memcpy Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 3,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 4,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 5,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 6,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 7,
+            "args": {
+                "name": "/device:GPU:0/stream:all Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 8,
+            "args": {
+                "name": "/device:GPU:0/stream:all Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign"
+            },
+            "ts": 1526667319163752,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 1,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign_1"
+            },
+            "ts": 1526667319164290,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 1,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign_2"
+            },
+            "ts": 1526667319164858,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 1,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer2/slow_forward_pass/MatMul"
+            },
+            "ts": 1526667319163755,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 316,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer2/slow_forward_pass/add"
+            },
+            "ts": 1526667319164074,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 106,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer2/slow_forward_pass/Sign"
+            },
+            "ts": 1526667319164292,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 109,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer2/slow_forward_pass/Equal"
+            },
+            "ts": 1526667319164402,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 73,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer2/slow_forward_pass/Select"
+            },
+            "ts": 1526667319164477,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 162,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer2/slow_forward_pass/Mul"
+            },
+            "ts": 1526667319164641,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign"
+            },
+            "ts": 1526667319163752,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 1,
+            "tid": 1,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign_1"
+            },
+            "ts": 1526667319164290,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 1,
+            "tid": 1,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer2/slow_forward_pass/Assign_2"
+            },
+            "ts": 1526667319164858,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "ts": 1526667319163515,
+            "name": "NoOp",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 11,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/input"
+            },
+            "ts": 1526667319163530,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 15,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/activation"
+            },
+            "ts": 1526667319163546,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/output"
+            },
+            "ts": 1526667319163553,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer2/slow_forward_pass/Equal/y"
+            },
+            "ts": 1526667319163559,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer2/slow_forward_pass/ones_like"
+            },
+            "ts": 1526667319163564,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer1/output"
+            },
+            "ts": 1526667319163569,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/W"
+            },
+            "ts": 1526667319163574,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/b"
+            },
+            "ts": 1526667319163579,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/dropout"
+            },
+            "ts": 1526667319163584,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer1/output/read",
+                "input0": "layer1/output"
+            },
+            "ts": 1526667319163589,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/W/read",
+                "input0": "layer2/W"
+            },
+            "ts": 1526667319163594,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/b/read",
+                "input0": "layer2/b"
+            },
+            "ts": 1526667319163598,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/dropout/read",
+                "input0": "layer2/dropout"
+            },
+            "ts": 1526667319163602,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 2,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "input1": "layer1/output/read",
+                "name": "layer2/slow_forward_pass/Assign",
+                "input0": "layer2/input"
+            },
+            "ts": 1526667319163605,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 62,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "input1": "layer2/W/read",
+                "name": "layer2/slow_forward_pass/MatMul",
+                "input0": "layer1/output/read"
+            },
+            "ts": 1526667319163670,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 42,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "input1": "layer2/b/read",
+                "name": "layer2/slow_forward_pass/add",
+                "input0": "layer2/slow_forward_pass/MatMul"
+            },
+            "ts": 1526667319163721,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 30,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "input1": "layer2/slow_forward_pass/add",
+                "name": "layer2/slow_forward_pass/Assign_1",
+                "input0": "layer2/activation"
+            },
+            "ts": 1526667319163756,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 25,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer2/slow_forward_pass/Sign",
+                "input0": "layer2/slow_forward_pass/add"
+            },
+            "ts": 1526667319163783,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 19,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "input1": "layer2/slow_forward_pass/Equal/y",
+                "name": "layer2/slow_forward_pass/Equal",
+                "input0": "layer2/slow_forward_pass/Sign"
+            },
+            "ts": 1526667319163803,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 21,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "input2": "layer2/slow_forward_pass/Sign",
+                "input1": "layer2/slow_forward_pass/ones_like",
+                "name": "layer2/slow_forward_pass/Select",
+                "input0": "layer2/slow_forward_pass/Equal"
+            },
+            "ts": 1526667319163829,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 24,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "input1": "layer2/dropout/read",
+                "name": "layer2/slow_forward_pass/Mul",
+                "input0": "layer2/slow_forward_pass/Select"
+            },
+            "ts": 1526667319163855,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 19,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "input1": "layer2/slow_forward_pass/Mul",
+                "name": "layer2/slow_forward_pass/Assign_2",
+                "input0": "layer2/output"
+            },
+            "ts": 1526667319163876,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 23,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "NoOp",
+                "input2": "^layer2/slow_forward_pass/Assign_2",
+                "input1": "^layer2/slow_forward_pass/Assign_1",
+                "name": "layer2/slow_forward_pass/group_deps",
+                "input0": "^layer2/slow_forward_pass/Assign"
+            },
+            "ts": 1526667319163901,
+            "name": "NoOp",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer2/slow_forward_pass/MatMul"
+            },
+            "ts": 1526667319163755,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 316,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer2/slow_forward_pass/add"
+            },
+            "ts": 1526667319164074,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 106,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer2/slow_forward_pass/Sign"
+            },
+            "ts": 1526667319164292,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 109,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer2/slow_forward_pass/Equal"
+            },
+            "ts": 1526667319164402,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 73,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer2/slow_forward_pass/Select"
+            },
+            "ts": 1526667319164477,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 162,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer2/slow_forward_pass/Mul"
+            },
+            "ts": 1526667319164641,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        }
+    ]
+}

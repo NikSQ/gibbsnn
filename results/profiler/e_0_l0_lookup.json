@@ -1,0 +1,2360 @@
+{
+    "traceEvents": [
+        {
+            "pid": 0,
+            "args": {
+                "name": "Allocators"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 1,
+            "args": {
+                "name": "/device:GPU:0/stream:15 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 2,
+            "args": {
+                "name": "/device:GPU:0/stream:15 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 3,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 4,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 5,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 6,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 7,
+            "args": {
+                "name": "/device:GPU:0/stream:all Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 8,
+            "args": {
+                "name": "/device:GPU:0/stream:all Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 9,
+            "args": {
+                "name": "/device:GPU:0/stream:14 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 10,
+            "args": {
+                "name": "/device:GPU:0/stream:14 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 11,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 12,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 13,
+            "args": {
+                "name": "/device:GPU:0/memcpy Compute"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "pid": 14,
+            "args": {
+                "name": "/device:GPU:0/memcpy Tensors"
+            },
+            "ph": "M",
+            "name": "process_name"
+        },
+        {
+            "args": {
+                "op": "MEMCPYDtoH",
+                "name": "edge_11_layer1/lookup/Tile"
+            },
+            "ts": 1526665185946664,
+            "name": "MEMCPYDtoH",
+            "cat": "Op",
+            "pid": 1,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYDtoH",
+                "name": "edge_135_layer1/lookup/ScatterNdUpdate_3"
+            },
+            "ts": 1526665185957616,
+            "name": "MEMCPYDtoH",
+            "cat": "Op",
+            "pid": 1,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "ts": 1526665185946222,
+            "name": "NoOp",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "_Arg",
+                "name": "_arg_layer1/neuron_idx_0_0"
+            },
+            "ts": 1526665185946250,
+            "name": "_Arg",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "_Retval",
+                "name": "_retval_layer1/lookup/ScatterNdUpdate_3_0_0",
+                "input0": "layer1/lookup/ScatterNdUpdate_3/_25"
+            },
+            "ts": 1526665185957669,
+            "name": "_Retval",
+            "cat": "Op",
+            "pid": 3,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "ts": 1526665185949024,
+            "name": "layer1/lookup/ScatterNdUpdate_3",
+            "cat": "DataFlow",
+            "pid": 5,
+            "tid": 0,
+            "ph": "s",
+            "id": 0
+        },
+        {
+            "ts": 1526665185957669,
+            "name": "layer1/lookup/ScatterNdUpdate_3",
+            "cat": "DataFlow",
+            "pid": 3,
+            "tid": 0,
+            "ph": "t",
+            "id": 0
+        },
+        {
+            "args": {
+                "op": "NoOp",
+                "name": "_SOURCE"
+            },
+            "ts": 1526665185946215,
+            "name": "NoOp",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 16,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "global/lookup"
+            },
+            "ts": 1526665185946247,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 18,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/W"
+            },
+            "ts": 1526665185946267,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/b"
+            },
+            "ts": 1526665185946276,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer2/dropout"
+            },
+            "ts": 1526665185946283,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer3/W"
+            },
+            "ts": 1526665185946291,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer3/b"
+            },
+            "ts": 1526665185946299,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "global/Y_tr"
+            },
+            "ts": 1526665185946307,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer1/lookup/concat/values_0"
+            },
+            "ts": 1526665185946314,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer1/lookup/ExpandDims/dim"
+            },
+            "ts": 1526665185946321,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer1/lookup/Tile/multiples"
+            },
+            "ts": 1526665185946326,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer1/new_output"
+            },
+            "ts": 1526665185946331,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "VariableV2",
+                "name": "layer1/output"
+            },
+            "ts": 1526665185946338,
+            "name": "VariableV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/W/read",
+                "input0": "layer2/W"
+            },
+            "ts": 1526665185946345,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/b/read",
+                "input0": "layer2/b"
+            },
+            "ts": 1526665185946351,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer2/dropout/read",
+                "input0": "layer2/dropout"
+            },
+            "ts": 1526665185946357,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer3/W/read",
+                "input0": "layer3/W"
+            },
+            "ts": 1526665185946362,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer3/b/read",
+                "input0": "layer3/b"
+            },
+            "ts": 1526665185946368,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "global/Y_tr/read",
+                "input0": "global/Y_tr"
+            },
+            "ts": 1526665185946373,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ExpandDims",
+                "input1": "layer1/lookup/ExpandDims/dim",
+                "name": "layer1/lookup/ExpandDims",
+                "input0": "_arg_layer1/neuron_idx_0_0/_13"
+            },
+            "ts": 1526665185946378,
+            "name": "ExpandDims",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 16,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "ts": 1526665185946260,
+            "name": "_arg_layer1/neuron_idx_0_0",
+            "cat": "DataFlow",
+            "pid": 3,
+            "tid": 0,
+            "ph": "s",
+            "id": 1
+        },
+        {
+            "ts": 1526665185946378,
+            "name": "_arg_layer1/neuron_idx_0_0",
+            "cat": "DataFlow",
+            "pid": 5,
+            "tid": 0,
+            "ph": "t",
+            "id": 1
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer1/new_output/read",
+                "input0": "layer1/new_output"
+            },
+            "ts": 1526665185946396,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Identity",
+                "name": "layer1/output/read",
+                "input0": "layer1/output"
+            },
+            "ts": 1526665185946402,
+            "name": "Identity",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "input1": "layer1/output/read",
+                "name": "layer1/lookup/Assign",
+                "input0": "layer1/new_output"
+            },
+            "ts": 1526665185946420,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 89,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "name": "layer1/lookup/Const",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185946514,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Tile",
+                "input1": "layer1/lookup/Tile/multiples",
+                "name": "layer1/lookup/Tile",
+                "input0": "layer1/lookup/ExpandDims/_15"
+            },
+            "ts": 1526665185946565,
+            "name": "Tile",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 51,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ConcatV2",
+                "input2": "layer1/lookup/ExpandDims/dim",
+                "input1": "layer1/lookup/Tile/_17",
+                "name": "layer1/lookup/concat",
+                "input0": "layer1/lookup/concat/values_0"
+            },
+            "ts": 1526665185946772,
+            "name": "ConcatV2",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 208,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "input2": "layer1/lookup/Const",
+                "input1": "layer1/lookup/concat/_19",
+                "name": "layer1/lookup/ScatterNdUpdate",
+                "input0": "layer1/new_output"
+            },
+            "ts": 1526665185947065,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 44,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "input2": "^layer1/lookup/Assign",
+                "name": "layer1/lookup/layer2/fast_forward_pass/MatMul",
+                "input1": "layer2/W/read",
+                "input3": "^layer1/lookup/ScatterNdUpdate",
+                "input0": "layer1/new_output/read"
+            },
+            "ts": 1526665185947113,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 44,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "StopGradient",
+                "input2": "^layer1/lookup/ScatterNdUpdate",
+                "input1": "^layer1/lookup/Assign",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/labels_stop_gradient",
+                "input0": "global/Y_tr/read"
+            },
+            "ts": 1526665185947166,
+            "name": "StopGradient",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_1/indices",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947174,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Equal/y",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947180,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate",
+                "name": "layer1/lookup/layer2/fast_forward_pass/ones_like",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947188,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/concat",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947195,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Slice_2",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947202,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "input1": "layer2/b/read",
+                "name": "layer1/lookup/layer2/fast_forward_pass/add",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185947208,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 32,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/concat",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape_1",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/labels_stop_gradient"
+            },
+            "ts": 1526665185947254,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Sign",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/add"
+            },
+            "ts": 1526665185947262,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 28,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "input1": "layer1/lookup/layer2/fast_forward_pass/Equal/y",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Equal",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/Sign"
+            },
+            "ts": 1526665185947293,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 38,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "input2": "layer1/lookup/layer2/fast_forward_pass/Sign",
+                "input1": "layer1/lookup/layer2/fast_forward_pass/ones_like",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Select",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/Equal"
+            },
+            "ts": 1526665185947338,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 37,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "input1": "layer2/dropout/read",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Mul",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/Select"
+            },
+            "ts": 1526665185947378,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 26,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "input1": "layer3/W/read",
+                "name": "layer1/lookup/layer3/fast_forward_pass/MatMul",
+                "input0": "layer1/lookup/layer2/fast_forward_pass/Mul"
+            },
+            "ts": 1526665185947407,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 33,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "input1": "layer3/b/read",
+                "name": "layer1/lookup/layer3/fast_forward_pass/add",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185947447,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 27,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/concat",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/add"
+            },
+            "ts": 1526665185947476,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "input1": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape_1",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape"
+            },
+            "ts": 1526665185947482,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 135,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Slice_2",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape_2",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185947623,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg",
+                "input0": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg/Reshape_2"
+            },
+            "ts": 1526665185947629,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 21,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "input2": "layer1/lookup/Neg",
+                "input1": "layer1/lookup/ScatterNdUpdate_1/indices/_21",
+                "name": "layer1/lookup/ScatterNdUpdate_1",
+                "input0": "global/lookup"
+            },
+            "ts": 1526665185947768,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 40,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/Const_2",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947812,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "input2": "layer1/lookup/Const_2",
+                "input1": "layer1/lookup/concat/_19",
+                "name": "layer1/lookup/ScatterNdUpdate_2",
+                "input0": "layer1/new_output"
+            },
+            "ts": 1526665185947822,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 24,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input2": "^layer1/lookup/ScatterNdUpdate_2",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/ScatterNdUpdate_3/indices",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947849,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input2": "^layer1/lookup/ScatterNdUpdate_2",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Equal/y",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947856,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input2": "^layer1/lookup/ScatterNdUpdate_2",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/ones_like",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947864,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "input2": "^layer1/lookup/Assign",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/MatMul",
+                "input1": "layer2/W/read",
+                "input4": "^layer1/lookup/ScatterNdUpdate_2",
+                "input3": "^layer1/lookup/ScatterNdUpdate_1",
+                "input0": "layer1/new_output/read"
+            },
+            "ts": 1526665185947871,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 26,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input2": "^layer1/lookup/ScatterNdUpdate_2",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/concat",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947902,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "StopGradient",
+                "input2": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/labels_stop_gradient",
+                "input1": "^layer1/lookup/Assign",
+                "input3": "^layer1/lookup/ScatterNdUpdate_2",
+                "input0": "global/Y_tr/read"
+            },
+            "ts": 1526665185947907,
+            "name": "StopGradient",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 2,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Const",
+                "input2": "^layer1/lookup/ScatterNdUpdate_2",
+                "input1": "^layer1/lookup/ScatterNdUpdate_1",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Slice_2",
+                "input0": "^layer1/lookup/Assign"
+            },
+            "ts": 1526665185947911,
+            "name": "Const",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "input1": "layer2/b/read",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/add",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185947926,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 32,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/concat",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape_1",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/labels_stop_gradient"
+            },
+            "ts": 1526665185947962,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Sign",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185947972,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 29,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "input1": "layer1/lookup/layer2/fast_forward_pass_1/Equal/y",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Equal",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/Sign"
+            },
+            "ts": 1526665185948004,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 25,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "input2": "layer1/lookup/layer2/fast_forward_pass_1/Sign",
+                "input1": "layer1/lookup/layer2/fast_forward_pass_1/ones_like",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Select",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/Equal"
+            },
+            "ts": 1526665185948035,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 25,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "input1": "layer2/dropout/read",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Mul",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/Select"
+            },
+            "ts": 1526665185948063,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 23,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "input1": "layer3/W/read",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/MatMul",
+                "input0": "layer1/lookup/layer2/fast_forward_pass_1/Mul"
+            },
+            "ts": 1526665185948088,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 27,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "input1": "layer3/b/read",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/add",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185948120,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 18,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/concat",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185948140,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 4,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "input1": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape_1",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape"
+            },
+            "ts": 1526665185948153,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 110,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Reshape",
+                "input1": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Slice_2",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape_2",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948269,
+            "name": "Reshape",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg_1",
+                "input0": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg/Reshape_2"
+            },
+            "ts": 1526665185948276,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 23,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "input2": "layer1/lookup/Neg_1",
+                "input1": "layer1/lookup/ScatterNdUpdate_3/indices/_23",
+                "name": "layer1/lookup/ScatterNdUpdate_3",
+                "input0": "global/lookup"
+            },
+            "ts": 1526665185948986,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 5,
+            "dur": 38,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Tile",
+                "name": "layer1/lookup/Tile"
+            },
+            "ts": 1526665185946607,
+            "name": "Tile",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate"
+            },
+            "ts": 1526665185947103,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer2/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185947152,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 316,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer2/fast_forward_pass/add"
+            },
+            "ts": 1526665185947470,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Sign"
+            },
+            "ts": 1526665185947581,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 109,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Equal"
+            },
+            "ts": 1526665185947693,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 71,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Select"
+            },
+            "ts": 1526665185947767,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 159,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Mul"
+            },
+            "ts": 1526665185947929,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 107,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer3/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185948041,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 82,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer3/fast_forward_pass/add"
+            },
+            "ts": 1526665185948127,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948140,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948148,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 11,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948161,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948170,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948175,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 15,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948378,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948431,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 17,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg"
+            },
+            "ts": 1526665185948450,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_1"
+            },
+            "ts": 1526665185948456,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_2"
+            },
+            "ts": 1526665185948463,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 9,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185948476,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 315,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185948793,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Sign"
+            },
+            "ts": 1526665185948904,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 111,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Equal"
+            },
+            "ts": 1526665185949018,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 70,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Select"
+            },
+            "ts": 1526665185949091,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 160,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Mul"
+            },
+            "ts": 1526665185949254,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 107,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185949365,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 82,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185949451,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949463,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949469,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 12,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949483,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949489,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949495,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 15,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185957549,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185957584,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 17,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg_1"
+            },
+            "ts": 1526665185957602,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_3"
+            },
+            "ts": 1526665185957607,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 7,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_8_layer1/lookup/ExpandDims"
+            },
+            "ts": 1526665185946516,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 9,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_14_layer1/lookup/concat"
+            },
+            "ts": 1526665185947015,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 9,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_63_layer1/lookup/ScatterNdUpdate_1/indices"
+            },
+            "ts": 1526665185947697,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 9,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_118_layer1/lookup/ScatterNdUpdate_3/indices"
+            },
+            "ts": 1526665185948907,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 9,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Tile",
+                "name": "layer1/lookup/Tile"
+            },
+            "ts": 1526665185946607,
+            "name": "Tile",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate"
+            },
+            "ts": 1526665185947103,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer2/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185947152,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 316,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer2/fast_forward_pass/add"
+            },
+            "ts": 1526665185947470,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Sign"
+            },
+            "ts": 1526665185947581,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 109,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Equal"
+            },
+            "ts": 1526665185947693,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 71,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Select"
+            },
+            "ts": 1526665185947767,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 159,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer1/lookup/layer2/fast_forward_pass/Mul"
+            },
+            "ts": 1526665185947929,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 107,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer3/fast_forward_pass/MatMul"
+            },
+            "ts": 1526665185948041,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 82,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer3/fast_forward_pass/add"
+            },
+            "ts": 1526665185948127,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948140,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948148,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 11,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948161,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948170,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948175,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 15,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948378,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185948431,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 17,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg"
+            },
+            "ts": 1526665185948450,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_1"
+            },
+            "ts": 1526665185948456,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_2"
+            },
+            "ts": 1526665185948463,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 9,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185948476,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 315,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185948793,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 108,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Sign",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Sign"
+            },
+            "ts": 1526665185948904,
+            "name": "Sign",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 111,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Equal",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Equal"
+            },
+            "ts": 1526665185949018,
+            "name": "Equal",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 70,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Select",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Select"
+            },
+            "ts": 1526665185949091,
+            "name": "Select",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 160,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Mul",
+                "name": "layer1/lookup/layer2/fast_forward_pass_1/Mul"
+            },
+            "ts": 1526665185949254,
+            "name": "Mul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 107,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MatMul",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/MatMul"
+            },
+            "ts": 1526665185949365,
+            "name": "MatMul",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 82,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Add",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/add"
+            },
+            "ts": 1526665185949451,
+            "name": "Add",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 10,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949463,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949469,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 12,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949483,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 5,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949489,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185949495,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 15,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185957549,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "name": "layer1/lookup/layer3/fast_forward_pass_1/softmax_cross_entropy_with_logits_sg"
+            },
+            "ts": 1526665185957584,
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 17,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Neg",
+                "name": "layer1/lookup/Neg_1"
+            },
+            "ts": 1526665185957602,
+            "name": "Neg",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "ScatterNdUpdate",
+                "name": "layer1/lookup/ScatterNdUpdate_3"
+            },
+            "ts": 1526665185957607,
+            "name": "ScatterNdUpdate",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer1/lookup/Assign"
+            },
+            "ts": 1526665185946589,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 11,
+            "dur": 1,
+            "tid": 1,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "Assign",
+                "name": "layer1/lookup/Assign"
+            },
+            "ts": 1526665185946589,
+            "name": "Assign",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 1,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_8_layer1/lookup/ExpandDims"
+            },
+            "ts": 1526665185946516,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 1,
+            "tid": 1,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYDtoH",
+                "name": "edge_11_layer1/lookup/Tile"
+            },
+            "ts": 1526665185946664,
+            "name": "MEMCPYDtoH",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 3,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_14_layer1/lookup/concat"
+            },
+            "ts": 1526665185947015,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_63_layer1/lookup/ScatterNdUpdate_1/indices"
+            },
+            "ts": 1526665185947697,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 8,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYHtoD",
+                "name": "edge_118_layer1/lookup/ScatterNdUpdate_3/indices"
+            },
+            "ts": 1526665185948907,
+            "name": "MEMCPYHtoD",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 7,
+            "tid": 0,
+            "ph": "X"
+        },
+        {
+            "args": {
+                "op": "MEMCPYDtoH",
+                "name": "edge_135_layer1/lookup/ScatterNdUpdate_3"
+            },
+            "ts": 1526665185957616,
+            "name": "MEMCPYDtoH",
+            "cat": "Op",
+            "pid": 13,
+            "dur": 6,
+            "tid": 0,
+            "ph": "X"
+        }
+    ]
+}
