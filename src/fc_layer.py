@@ -34,7 +34,7 @@ class FCLayer:
         if self.bias_vals is None:
             #bits = int(np.log2(shape[0]))
             #self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
-            b_range = int(np.sqrt(shape[0]))
+            b_range = 10 * int(np.sqrt(shape[0]))
             self.bias_vals = np.arange(-b_range, b_range)
 
         self.n_bias_vals = len(self.bias_vals)
@@ -114,6 +114,7 @@ class FCLayer:
                 self.bias_vals = tf.constant(self.bias_vals, dtype=tf.float32)
                 w_batch_range = tf.constant(w_batch_range, dtype=tf.int32)
                 b_batch_range = tf.constant(b_batch_range, dtype=tf.int32)
+                #l_range = tf.constant(np.reshape(np.arange(self.batch_size).astype(np.int32), (-1,)) * self.act_func.n_values, dtype=np.int32)
 
             input_block = tf.transpose(tf.gather_nd(tf.transpose(self.input, name='inp_block_trans1'), self.input_indices, name='inp_block_gather'), name='inp_block_trans2')
             weight_indices = tf.concat([self.input_indices, tf.tile(tf.expand_dims(tf.expand_dims(self.neuron_idx, axis=0), axis=1),
@@ -171,6 +172,10 @@ class FCLayer:
             else:
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
+
+                #rslookup = tf.reshape(self.lookup_table, (-1,), name='test_lu')
+                #sample_idx = self.calc_sample_idx(tf.gather_nd(rslookup, lookup_indices + l_range))
+
                 g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
                 sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
                 new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
@@ -267,12 +272,16 @@ class FCLayer:
             act_summary = None
             if record_variables:
                 act_summary = tf.summary.histogram('activations', activation)
+            elif self.layer_idx > 0:
+                activation = tf.divide(activation, self.config['keep_probs'][self.layer_idx-1])
 
             if self.is_output:
                 return tf.nn.softmax(activation), \
                        tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary
             else:
                 layer_output = self.act_func.get_output(activation)
+                if record_variables:
+                    return layer_output, act_summary
                 return tf.multiply(layer_output, self.dropout_mask), act_summary
 
 

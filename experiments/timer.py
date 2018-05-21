@@ -24,7 +24,7 @@ act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 
-config = {'layout': [200, 200],
+config = {'layout': [20, 20],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
