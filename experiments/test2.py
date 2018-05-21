@@ -21,17 +21,19 @@ act_func1 = get_activation_function('stair')
 act_func2 = get_activation_function('stair')
 
 act_func1.set_params([4, 4])
-act_func2.set_params([2, 4])
+act_func2.set_params([4, 4])
 act_funcs = [act_func1, act_func2]
-layer_1 = 200 + 30 * int(task_id / 3)
-layer_2 = 200 + 30 * int(task_id % 3)
+layer_1 = 250 
+layer_2 = 250
+keep_probs1 = 0.95 ** int(task_id / 3)
+keep_probs2 = 0.95 ** int(task_id % 3)
 
 
 config = {'layout': [layer_1, layer_2],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
-          'keep_probs': [1., 1.],
+          'keep_probs': [keep_probs1, keep_probs2],
           'flat_factor': [1., 1., 1.],
           'sampling_sequence': 'stochastic'}
 
