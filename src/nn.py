@@ -170,7 +170,7 @@ class NN:
                 mask = np.random.binomial(n=1, p=self.config['keep_probs'][layer_idx],
                                           size=(1, self.config['layout'][layer_idx + 1])).astype(np.float32)
                 if np.sum(mask) >= self.block_size:
-                    dropout_masks.append(mask)
+                    dropout_masks.append(np.divide(mask, self.config['keep_probs'][layer_idx]))
                     break
 
                 tries -= 1
