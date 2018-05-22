@@ -253,6 +253,7 @@ class FCLayer:
             activation = tf.cast(activation, tf.float32)
 
             if self.is_output == False:
+                activation = tf.divide(activation, self.config['keep_probs'][self.layer_idx-1])
                 output = self.act_func.get_output(activation)
                 output = tf.multiply(output, self.dropout_mask)
                 output_op = tf.assign(self.output, output).op
