@@ -25,8 +25,8 @@ act_func2.set_params([4, 4])
 act_funcs = [act_func1, act_func2]
 layer_1 = 250 
 layer_2 = 250
-keep_probs1 = 0.90 ** int(task_id / 3 + 1)
-keep_probs2 = 0.90 ** int(task_id % 3 + 1)
+keep_probs1 = 0.92 ** int(task_id / 3 + 1)
+keep_probs2 = 0.92 ** int(task_id % 3 + 1)
 
 
 config = {'layout': [layer_1, layer_2],
