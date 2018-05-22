@@ -190,8 +190,8 @@ class NN:
             input_perm = np.expand_dims(input_perm, axis=1)
 
             if layer_idx < self.n_layers - 1:
-                n_neurons = np.sum(dropout_masks[layer_idx]).astype(np.int32)
                 neuron_perm = np.flatnonzero(dropout_masks[layer_idx])
+                n_neurons = len(neuron_perm)
             else:
                 n_neurons = self.config['layout'][layer_idx+1]
                 neuron_perm = np.arange(n_neurons)

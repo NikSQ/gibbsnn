@@ -12,7 +12,7 @@ task_id = 0
 path = '../results/timer/'
 
 run_config = {'n_epochs': 2,
-              'block_size': 8,
+              'block_size': 2,
               'store_acts': False,
               'store_acts_every': 1,
               'store_vars': False,
@@ -24,11 +24,11 @@ act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 
-config = {'layout': [20, 20],
+config = {'layout': [5, 5],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
-          'keep_probs': [0.9, 0.9],
+          'keep_probs': [0.7, 0.7],
           'flat_factor': [1., 1., 1.],
           'sampling_sequence': 'stochastic'}
 start = time.time()
