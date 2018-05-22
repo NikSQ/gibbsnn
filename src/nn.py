@@ -182,8 +182,8 @@ class NN:
             curr_layer = self.layers[layer_idx]
 
             if layer_idx > 0:
-                n_inputs = np.sum(dropout_masks[layer_idx-1]).astype(np.int32)
                 input_perm = np.flatnonzero(dropout_masks[layer_idx-1])
+                n_inputs = len(input_perm)
             else:
                 n_inputs = self.config['layout'][layer_idx]
                 input_perm = np.arange(n_inputs)
