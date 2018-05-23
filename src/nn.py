@@ -80,6 +80,7 @@ class NN:
                     connection_matrix[j, i] = (i & (1 << j)) == 0
             log_pw = np.sum(self.log_prior_w[connection_matrix.astype(np.int32)], axis=0)
             connection_matrix[connection_matrix == 0] = -1
+            n_input_var = 2 ** block_size
         elif self.weight_type == 'ternary':
             connection_matrix_shape = (block_size, 3**block_size)
             connection_matrix = np.zeros(connection_matrix_shape, dtype=np.float32)
@@ -88,12 +89,15 @@ class NN:
                     connection_matrix[j, i] = np.asarray(int(i / (3 ** j)) % 3)
             log_pw = np.sum(self.log_prior_w[connection_matrix.astype(np.int32)], axis= 0)
             connection_matrix -= 1
+            n_input_var = 3 ** block_size
 
         # Create lookup table
         with tf.variable_scope('global'):
             lookup_shape = (batch_size, self.act_func.n_values)
             lookup_init = tf.constant_initializer(np.zeros(lookup_shape, dtype=np.float32))
+            tiled_lookup_shape = (batch_size, self.act_func.n_values, n_input_var)
             self.lookup_table = tf.get_variable('lookup', shape=lookup_shape, initializer=lookup_init)
+            tiled_lookup_table = tf.get_variable('tiled_lookup', shape=tiled_lookup_shape)
 
         # Create indices required to update lookup_table
         indices = np.tile(np.reshape(np.arange(batch_size).astype(dtype=np.int32), newshape=(1, -1, 1)),
@@ -129,7 +133,7 @@ class NN:
         var_summary_ops = []
         for layer_idx in range(self.n_layers):
             if layer_idx != self.n_layers - 1:
-                self.layers[layer_idx].create_lookup_graph(self.lookup_table, lookup_indices,
+                self.layers[layer_idx].create_lookup_graph(self.lookup_table, tiled_lookup_table, lookup_indices,
                                                            self.layers[layer_idx+1:], self.Y_tr)
             self.layers[layer_idx].create_sampling_graph(block_size, connection_matrix, batch_range, log_pw,
                                                          self.Y_tr)
@@ -209,7 +213,7 @@ class NN:
                     sess.run(curr_layer.lookup_op,
                              feed_dict={curr_layer.neuron_idx: np.expand_dims(neuron_perm[neuron_idx], axis=1)})
 
-                sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]})
+                #sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]})
 
                 # For each block of input connections sample the weights
                 if self.config['sampling_sequence'] == 'stochastic':

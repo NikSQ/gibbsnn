@@ -67,24 +67,14 @@ class FCLayer:
 
     # Creates the execution graph for setting all the entries in the lookup table for a given neuron (this neuron is
     # given via a placeholder, which means that it can be set at runtime)
-    def create_lookup_graph(self, lookup_table, lookup_indices, following_layers, targets):
+    def create_lookup_graph(self, lookup_table, tiled_lookup_table, lookup_indices, following_layers, targets):
         with tf.name_scope(self.var_scope + '/lookup'):
-            self.lookup_table = lookup_table
-
-            # neuron_indices are required to access (and update) the output of a specific neuron in the variable containing
-            # the output
             indices = np.reshape(np.arange(self.batch_size).astype(dtype=np.int32), newshape=(-1, 1))
             neuron_indices = tf.concat([indices, tf.tile(tf.expand_dims(self.neuron_idx, axis=1),
                                                          multiples=[self.batch_size, 1])], axis=1)
 
-            # First we create a copy of the output variable, and just operate on this copy
-            lookup_ops = [tf.assign(self.new_output, self.output)]
 
-            # We iterate over all possible output values of the activation function
-            # For each possible output value, we set the output of the current neuron to that value, and create a graph
-            # for completing the forward pass to obtain the likelihoods. This graph is created by SubNN.
-            # Then we update the lookup table
-            # The control dependencies ensure that those operations are not run in parallel
+            lookup_ops = [tf.assign(self.new_output, self.output)]
             for lookup_idx, output_val in enumerate(self.act_func.values):
                 with tf.control_dependencies(lookup_ops):
                     out_update_op = tf.scatter_nd_update(self.new_output, neuron_indices,
@@ -93,9 +83,11 @@ class FCLayer:
                         subnn = SubNN(following_layers, self.new_output, targets)
                         lookup_ops.append(tf.scatter_nd_update(lookup_table, lookup_indices[lookup_idx], subnn.likelihoods))
 
-        # We simply set our lookup op to be the last operation in our list. This operation will automatically run
-        # the others because of the control dependencies
-        self.lookup_op = lookup_ops[-1]
+            with tf.control_dependencies([lookup_ops[-1]]):
+                op = tf.assign(tiled_lookup_table, tf.tile(tf.expand_dims(lookup_table, axis=2), multiples=[1, 1, tf.shape(tiled_lookup_table)[2]]))
+                self.lookup_table = tiled_lookup_table
+
+        self.lookup_op = op
 
     # This creates the execution graph that performs sampling
     def create_sampling_graph(self, block_size, connection_matrix, w_batch_range, log_pw, Y=None):
@@ -175,9 +167,14 @@ class FCLayer:
 
                 #rslookup = tf.reshape(self.lookup_table, (-1,), name='test_lu')
                 #sample_idx = self.calc_sample_idx(tf.gather_nd(rslookup, lookup_indices + l_range))
-
+                log_probs = tf.where(tf.equal(lookup_indices, 0), self.lookup_table[:, 0, :],
+                                     self.lookup_table[:, self.act_func.n_values - 1, :])
+                for idx, value in enumerate(self.act_func.values):
+                    if idx + 1 != self.act_func.n_values and idx > 0:
+                       log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
+                sample_idx = self.calc_sample_idx(log_probs)
                 g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
-                sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
+                #sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
                 new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
                 new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
                 new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
