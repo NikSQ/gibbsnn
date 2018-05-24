@@ -57,6 +57,7 @@ class FCLayer:
 
             self.W = tf.get_variable(name='W', shape=self.weight_shape, initializer=w_init, dtype=tf.float32)
             self.b = tf.get_variable(name='b', shape=self.bias_shape, initializer=b_init, dtype=tf.float32)
+            self.saver = tf.train.Saver({'W' + str(layer_idx): self.W, 'b' + str(layer_idx): self.b})
             self.neuron_idx = tf.placeholder(name='neuron_idx', dtype=np.int32)
             self.input_indices = None
 
@@ -74,7 +75,7 @@ class FCLayer:
             neuron_indices = tf.concat([indices, tf.tile(tf.expand_dims(self.neuron_idx, axis=1),
                                                          multiples=[self.batch_size, 1])], axis=1)
 
-
+            self.a = neuron_indices
             lookup_ops = [tf.assign(self.new_output, self.output)]
             for lookup_idx, output_val in enumerate(self.act_func.values):
                 with tf.control_dependencies(lookup_ops):
@@ -164,7 +165,9 @@ class FCLayer:
 
             else:
                 act_means = tf.reduce_mean(w_added_activation, axis=0)
-                w_added_activation = w_added_activation - act_means
+                w_added_activation = w_added_activation - act_means #+ \
+                                     #tf.random_normal(tf.shape(w_added_activation), mean=0.0,
+                                                      #stddev=self.config['act_noise'][self.layer_idx])
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
 
@@ -277,7 +280,8 @@ class FCLayer:
 
             if self.is_output:
                 return tf.nn.softmax(activation), \
-                       tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary
+                       tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=targets), act_summary, \
+                       activation
             else:
                 layer_output = self.act_func.get_output(activation)
                 if record_variables:

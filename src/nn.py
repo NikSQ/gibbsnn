@@ -116,9 +116,18 @@ class NN:
         # operations to update them.
         set_dropout_ops = []
         layer_input = self.X_tr
+
+        inp_dropout_mask = tf.placeholder(tf.float32, shape=(1, self.config['layout'][0]))
+        self.dropout_masks.append(inp_dropout_mask)
+        inp_dropout_init = tf.constant_initializer(np.ones((1, self.config['layout'][0])).astype(np.float32))
+        inp_dropout_mask_var = tf.get_variable(name='dropout', shape=(1, self.config['layout'][0]),
+                                               initializer=inp_dropout_init, dtype=tf.float32)
+        set_dropout_ops.append(tf.assign(inp_dropout_mask_var, inp_dropout_mask))
+        layer_input = tf.multiply(layer_input, inp_dropout_mask_var)
+
         for layer_idx in range(self.n_layers):
             if layer_idx != self.n_layers - 1:
-                dropout_mask = tf.placeholder(tf.float32, shape=(1, self.config['layout'][layer_idx +1]))
+                dropout_mask = tf.placeholder(tf.float32, shape=(1, self.config['layout'][layer_idx + 1]))
                 self.layers[layer_idx].create_variables(layer_input, batch_size, dropout_mask)
                 self.dropout_masks.append(dropout_mask)
                 set_dropout_ops.append(self.layers[layer_idx].set_dropout_mask_op)
@@ -168,11 +177,11 @@ class NN:
     def perform_gibbs_iteration(self, sess):
         # Compute dropout masks for each layer
         dropout_masks = []
-        for layer_idx in range(self.n_layers-1):
+        for layer_idx in range(self.n_layers):
             tries = 20
             while tries > 0:
                 mask = np.random.binomial(n=1, p=self.config['keep_probs'][layer_idx],
-                                          size=(1, self.config['layout'][layer_idx + 1])).astype(np.float32)
+                                          size=(1, self.config['layout'][layer_idx])).astype(np.float32)
                 if np.sum(mask) >= self.block_size:
                     dropout_masks.append(np.divide(mask, self.config['keep_probs'][layer_idx]))
                     break
@@ -180,21 +189,17 @@ class NN:
                 tries -= 1
                 if tries == 0:
                     raise Exception('Could not generate dropout mask with at least block_size neurons active')
-        sess.run(self.set_dropout_masks_op, feed_dict={i: d for i, d in zip(self.dropout_masks, dropout_masks)})
+        #sess.run(self.set_dropout_masks_op, feed_dict={i: d for i, d in zip(self.dropout_masks, dropout_masks)})
 
         for layer_idx in range(self.n_layers):
             curr_layer = self.layers[layer_idx]
 
-            if layer_idx > 0:
-                input_perm = np.flatnonzero(dropout_masks[layer_idx-1])
-                n_inputs = len(input_perm)
-            else:
-                n_inputs = self.config['layout'][layer_idx]
-                input_perm = np.arange(n_inputs)
+            input_perm = np.flatnonzero(dropout_masks[layer_idx])
+            n_inputs = len(input_perm)
             input_perm = np.expand_dims(input_perm, axis=1)
 
             if layer_idx < self.n_layers - 1:
-                neuron_perm = np.flatnonzero(dropout_masks[layer_idx])
+                neuron_perm = np.flatnonzero(dropout_masks[layer_idx+1])
                 n_neurons = len(neuron_perm)
             else:
                 n_neurons = self.config['layout'][layer_idx+1]

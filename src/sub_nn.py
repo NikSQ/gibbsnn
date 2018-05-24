@@ -19,10 +19,11 @@ class SubNN:
             layer_input, act_summary_op = self.layers[layer_idx].forward_pass(layer_input, full_network)
             summary_ops.append(act_summary_op)
 
-        output, cross_entropy, act_summary_op = self.layers[self.n_layers - 1].forward_pass(layer_input, full_network, targets=self.targets)
+        output, cross_entropy, act_summary_op, activation = self.layers[self.n_layers - 1].forward_pass(layer_input, full_network, targets=self.targets)
         summary_ops.append(act_summary_op)
         self.likelihoods = -cross_entropy
         self.total_likelihood = tf.reduce_sum(self.likelihoods)
+        self.activation = activation
 
         if full_network:
             self.output = output
@@ -30,6 +31,7 @@ class SubNN:
             self.accuracy = tf.reduce_mean(tf.cast(tf.equal(self.prediction, tf.argmax(self.targets, axis=1)),
                                            dtype=tf.float32))
             summary_ops.append(tf.summary.scalar('accuracy', self.accuracy))
+            summary_ops.append(tf.summary.scalar('likelihood', self.total_likelihood))
             self.summary_op = tf.summary.merge(summary_ops)
 
 
