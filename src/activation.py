@@ -116,10 +116,10 @@ def stair_meta_function(params):
 def get_activation_function(name):
     if name == 'stair':
         return ActivationFunction('stair', stair_value_function, stair_index_function, stair_meta_function)
-    elif name == 'binary_sign':
-        return ActivationFunction('binary_sign', bs_value_function, bs_index_function, bs_meta_function)
-    elif name == 'ternary_sign':
-        return ActivationFunction('ternary_sign', ts_value_function, ts_index_function, ts_meta_function)
+    elif name == 'bs':
+        return ActivationFunction('bs', bs_value_function, bs_index_function, bs_meta_function)
+    elif name == 'ts':
+        return ActivationFunction('ts', ts_value_function, ts_index_function, ts_meta_function)
     elif name == 'extended_ternary_sign':
         return ActivationFunction('extended_ternary_sign', ets_value_function, ets_index_function,
                                   ets_meta_function)

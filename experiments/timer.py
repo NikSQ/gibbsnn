@@ -24,12 +24,13 @@ act_func.set_params([])
 act_funcs = [act_func, act_func]
 
 
-config = {'layout': [5, 5],
+config = {'layout': [15, 15],
           'weight_type': 'binary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
           'keep_probs': [0.7, 0.7],
           'flat_factor': [1., 1., 1.],
+          'act_noise': [5., 5.],
           'sampling_sequence': 'stochastic'}
 start = time.time()
 run_experiment(run_config, config, 'mnist_basic')

@@ -24,6 +24,7 @@ class FCLayer:
         self.batch_size = None
         self.w_sample_op = None
         self.b_sample_op = None
+        self.sample_op = None
         self.forward_op = None
         self.set_dropout_mask_op = None
         self.lookup_op = None
@@ -162,36 +163,40 @@ class FCLayer:
                 self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
 
             else:
+                act_means = tf.reduce_mean(w_added_activation, axis=0)
+                w_added_activation = w_added_activation - act_means
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
 
-                #rslookup = tf.reshape(self.lookup_table, (-1,), name='test_lu')
-                #sample_idx = self.calc_sample_idx(tf.gather_nd(rslookup, lookup_indices + l_range))
                 log_probs = tf.where(tf.equal(lookup_indices, 0), self.lookup_table[:, 0, :],
                                      self.lookup_table[:, self.act_func.n_values - 1, :])
                 for idx, value in enumerate(self.act_func.values):
                     if idx + 1 != self.act_func.n_values and idx > 0:
-                       log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
+                        print('never')
+                        log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
                 sample_idx = self.calc_sample_idx(log_probs)
-                g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
+
+                #g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
                 #sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
                 new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
                 new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
                 new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
                 sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
-                self.w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
+                w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
                                                                 new_output_vals)
+                b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [act_means[sample_idx]], name='sample_b')
+                self.sample_op = tf.group(*[w_sample_op, b_sample_op])
 
-                output_values = self.act_func.get_output(b_added_activation)
-                lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
-                g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
-                sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
-                new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
-                new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
-                new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-                sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
-                self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
-                                                                new_output_vals)
+                #output_values = self.act_func.get_output(b_added_activation)
+                #lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
+                #g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
+                #sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
+                #new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
+                #new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
+                #new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
+                #sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
+                #self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
+                #                                                new_output_vals)
 
     # This updates activation and output variables after the sampling operation
     # As a control dependency is made on control op, the returned operation both performs sampling and the update

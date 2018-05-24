@@ -157,12 +157,12 @@ THEANO_FLAGS+=",base_compiledir=${THEANO_TMPDIR}"
 
 
 # print config
-echo -e "\n\nconfig:\n"
-echo "HOME=${HOME}"
-echo "PATH=${PATH}"
-echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-echo "THEANO_FLAGS=${THEANO_FLAGS}"
-echo
+#echo -e "\n\nconfig:\n"
+#echo "HOME=${HOME}"
+#echo "PATH=${PATH}"
+#echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+#echo "THEANO_FLAGS=${THEANO_FLAGS}"
+#echo
 
 ####################
 # START: user code #
@@ -171,9 +171,9 @@ echo
 # run simple test (with theano flags)
 export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
-echo -e "\n\nStarting Test\n"
+export PYTHONUNBUFFERED=TRUE
 
-python3 ../experiments/test2.py
+python3 ../experiments/nn_test.py
 ##################
 # END: user code #
 ##################

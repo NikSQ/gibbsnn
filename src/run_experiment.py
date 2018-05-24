@@ -5,9 +5,13 @@ sys.path.append('../')
 
 from src.nn import NN
 from src.mnist_data import load_dataset
+from src.tools import print_nn_config, print_run_config
 
 
 def run_experiment(exp_config, nn_config, dataset):
+    print_nn_config(nn_config)
+    print_run_config(exp_config)
+
     x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset(dataset)
     nn_config['layout'].insert(0, x_tr.shape[1])
     nn_config['layout'].append(y_tr.shape[1])

@@ -212,8 +212,8 @@ class NN:
                 if layer_idx != self.n_layers - 1:
                     sess.run(curr_layer.lookup_op,
                              feed_dict={curr_layer.neuron_idx: np.expand_dims(neuron_perm[neuron_idx], axis=1)})
-
-                #sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]})
+                else:
+                    sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]})
 
                 # For each block of input connections sample the weights
                 if self.config['sampling_sequence'] == 'stochastic':
@@ -227,9 +227,14 @@ class NN:
                     block_end_idx = block_start_idx + self.block_size
                     block_range = range(block_start_idx, block_end_idx)
 
-                    sess.run(curr_layer.w_sample_op,
-                             feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx],
-                                        curr_layer.input_indices: input_perm[block_range, :]})
+                    if layer_idx != self.n_layers - 1:
+                        sess.run(curr_layer.sample_op,
+                                 feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx],
+                                            curr_layer.input_indices: input_perm[block_range, :]})
+                    else:
+                        sess.run(curr_layer.w_sample_op,
+                                 feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx],
+                                            curr_layer.input_indices: input_perm[block_range, :]})
 
     def profile_gibbs_iteration(self, sess, options, run_metadata, epoch, filepath):
         trace_path = filepath + 'e_' + str(epoch) + '_'
@@ -253,7 +258,7 @@ class NN:
         do_trace = timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format()
         pass_traces = []
         lookup_traces = []
-        sample_block_traces  = []
+        sample_block_traces = []
         sample_bias_traces = []
 
         for layer_idx in range(self.n_layers):
@@ -296,8 +301,8 @@ class NN:
                     if neuron_idx == profile_neuron_idx:
                         lookup_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
 
-                sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]},
-                         options=options, run_metadata=run_metadata)
+                #sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]},
+                #         options=options, run_metadata=run_metadata)
                 if neuron_idx == profile_neuron_idx:
                     sample_bias_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
 
