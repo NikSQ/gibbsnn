@@ -11,7 +11,7 @@
 #SBATCH --gres=gpu
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-#SBATCH --array=0-9
+#SBATCH --array=0-0
 
 #################
 # configuration #

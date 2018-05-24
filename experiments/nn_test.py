@@ -10,12 +10,12 @@ from src.run_experiment import run_experiment
 task_id = 0
 path = '../results/test2/job_' + str(task_id) + '/'
 
-run_config = {'n_epochs': 22,
+run_config = {'n_epochs': 20,
               'block_size': 4,
               'store_acts': True,
-              'store_acts_every': 7,
+              'store_acts_every': 1,
               'store_vars': True,
-              'store_vars_every': 7,
+              'store_vars_every': 1,
               'path': path}
 
 act_func1 = get_activation_function('bs')
@@ -24,10 +24,12 @@ act_func2 = get_activation_function('bs')
 act_func1.set_params([])
 act_func2.set_params([])
 act_funcs = [act_func1, act_func2]
-layer_1 = 250 
-layer_2 = 250
-keep_probs1 = 0.92 ** int(task_id / 3 + 1)
-keep_probs2 = 0.92 ** int(task_id % 3 + 1)
+layer_1 = 180 
+layer_2 = 180
+#keep_probs1 = 0.92 ** int(task_id / 3 + 1)
+#keep_probs2 = 0.92 ** int(task_id % 3 + 1)
+keep_probs1 = 1.0
+keep_probs2 = 1.0
 
 
 config = {'layout': [layer_1, layer_2],
