@@ -1,11 +1,13 @@
 import tensorflow as tf
 import sys
+import numpy as np
 
 sys.path.append('../')
 
 from src.nn import NN
 from src.mnist_data import load_dataset
 from src.tools import print_nn_config, print_run_config
+from src.ensemble import Ensemble
 
 
 def run_experiment(exp_config, nn_config, dataset):
@@ -18,6 +20,8 @@ def run_experiment(exp_config, nn_config, dataset):
 
     nn = NN(nn_config)
     nn.create_gibbs_graph(x_tr.shape[0], x_va.shape[0], exp_config['block_size'])
+    ensemble_tr = Ensemble(nn.Y_tr, y_tr.shape, 'tr', nn.full_network.activation)
+    ensemble_va = Ensemble(nn.Y_val, y_va.shape, 'va', nn.full_network.activation)
 
     with tf.Session() as sess:
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
@@ -34,11 +38,11 @@ def run_experiment(exp_config, nn_config, dataset):
                     s_var = sess.run(nn.var_summary_op)
                     writer_va.add_summary(s_var, epoch)
                 if exp_config['store_method'] == 'both' or exp_config['store_method'] == 'log':
-                    acc_tr, llh_tr = sess.run([nn.full_network.accuracy, nn.full_network.total_likelihood],
+                    tr_acc, tr_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
                                               feed_dict={nn.validate: False})
-                    acc_va, llh_va = sess.run([nn.full_network.accuracy, nn.full_network.total_likelihood],
+                    va_acc, va_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
                                               feed_dict={nn.validate: True})
-                    print('Epoch: {}, AccTr: {}, AccVa: {}, LlhTr: {}, LlhVa: {}'.format(epoch+1,acc_tr, acc_va, llh_tr, llh_va))
+                    print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(epoch+1,tr_acc, va_acc, tr_ce, va_ce))
             if exp_config['store_acts'] and epoch % exp_config['store_acts_every'] == 0:
                 s_tr = sess.run(nn.full_network.summary_op, feed_dict={nn.validate: False})
                 s_va = sess.run(nn.full_network.summary_op, feed_dict={nn.validate: True})
@@ -46,7 +50,9 @@ def run_experiment(exp_config, nn_config, dataset):
                 writer_va.add_summary(s_va, epoch)
 
             if exp_config['burn_in'] <= epoch + 1 and (epoch + 1 - exp_config['burn_in']) % exp_config['thinning'] == 0:
-                tr_acts = sess.run(nn.full_network.activation, feed_dict={nn.validate: False})
-                va_acts = sess.run(nn.full_network.activation, feed_dict={nn.validate: True})
+                tr_acc, tr_ce = sess.run([ensemble_tr.accuracy, ensemble_tr.cross_entropy], feed_dict={nn.validate: False})
+                va_acc, va_ce = sess.run([ensemble_va.accuracy, ensemble_va.cross_entropy], feed_dict={nn.validate: True})
+                print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
+
 
 

@@ -120,8 +120,8 @@ def get_activation_function(name):
         return ActivationFunction('bs', bs_value_function, bs_index_function, bs_meta_function)
     elif name == 'ts':
         return ActivationFunction('ts', ts_value_function, ts_index_function, ts_meta_function)
-    elif name == 'extended_ternary_sign':
-        return ActivationFunction('extended_ternary_sign', ets_value_function, ets_index_function,
+    elif name == 'ets':
+        return ActivationFunction('ets', ets_value_function, ets_index_function,
                                   ets_meta_function)
    
         

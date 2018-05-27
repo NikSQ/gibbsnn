@@ -165,9 +165,9 @@ class FCLayer:
 
             else:
                 act_means = tf.reduce_mean(w_added_activation, axis=0)
-                w_added_activation = w_added_activation - act_means #+ \
-                                     #tf.random_normal(tf.shape(w_added_activation), mean=0.0,
-                                                      #stddev=self.config['act_noise'][self.layer_idx])
+                w_added_activation = w_added_activation - act_means + \
+                                     tf.random_normal(tf.shape(w_added_activation), mean=0.0,
+                                                      stddev=self.config['act_noise'][self.layer_idx])
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
 
@@ -175,7 +175,6 @@ class FCLayer:
                                      self.lookup_table[:, self.act_func.n_values - 1, :])
                 for idx, value in enumerate(self.act_func.values):
                     if idx + 1 != self.act_func.n_values and idx > 0:
-                        print('never')
                         log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
                 sample_idx = self.calc_sample_idx(log_probs)
 

@@ -21,6 +21,7 @@ class SubNN:
 
         output, cross_entropy, act_summary_op, activation = self.layers[self.n_layers - 1].forward_pass(layer_input, full_network, targets=self.targets)
         summary_ops.append(act_summary_op)
+        self.cross_entropy = tf.reduce_mean(cross_entropy)
         self.likelihoods = -cross_entropy
         self.total_likelihood = tf.reduce_sum(self.likelihoods)
         self.activation = activation
