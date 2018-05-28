@@ -14,7 +14,7 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 2,
+run_config = {'n_epochs': 100,
               'block_size': 4,
               'store_acts': True,
               'store_acts_every': 1,
@@ -33,8 +33,8 @@ act_func2.set_params([])
 act_funcs = [act_func1, act_func2]
 layer_1 = 200
 layer_2 = 200
-keep_probs1 = .5 + (0.2 * int(task_id / 2))
-keep_probs2 = .7 + (0.2 * int(task_id % 2))
+keep_probs1 = #.5 + (0.2 * int(task_id / 2))
+keep_probs2 = #.7 + (0.2 * int(task_id % 2))
 
 
 config = {'layout': [layer_1, layer_2],
