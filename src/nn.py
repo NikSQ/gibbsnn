@@ -5,7 +5,7 @@ from src.fc_layer import FCLayer
 from src.sub_nn import SubNN
 
 class NN:
-    def __init__(self, config):
+    def __init__(self, config, w_init_vals=[None, None, None], b_init_vals=[None, None, None]):
         self.config = config
         self.weight_type = config['weight_type']
         self.layers = []
@@ -27,7 +27,8 @@ class NN:
 
         for layer_idx in range(self.n_layers):
             shape = (config['layout'][layer_idx], config['layout'][layer_idx+1])
-            self.layers.append(FCLayer(shape, 'layer' + str(layer_idx + 1), config, layer_idx))
+            self.layers.append(FCLayer(shape, 'layer' + str(layer_idx + 1), config, layer_idx, w_init_vals[layer_idx],
+                                       b_init_vals[layer_idx]))
 
         self.X_tr = None
         self.Y_tr = None
@@ -43,7 +44,9 @@ class NN:
         if self.weight_type == 'binary':
             self.log_prior_w = np.log(np.asarray([0.5, 0.5], dtype=np.float32))
         elif self.weight_type == 'ternary':
-            self.log_prior_w = np.log(np.asarray([0.1, 0.8, 0.1], dtype=np.float32))
+            pv = self.config['prior_value']
+            pv_side = (1 - pv) / 2
+            self.log_prior_w = np.log(np.asarray([pv_side, pv, pv_side], dtype=np.float32))
 
     # This function creates the execution graph for Gibbs Sampling (lookup table updates, weight update, bias update)
     # TODO: Load validation set into gpu

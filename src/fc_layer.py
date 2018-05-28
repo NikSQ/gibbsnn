@@ -6,7 +6,7 @@ from src.sub_nn import SubNN
 
 class FCLayer:
     # Here we create and initialize all variables that are independent of batch_size and block_size
-    def __init__(self, shape, var_scope, config, layer_idx):
+    def __init__(self, shape, var_scope, config, layer_idx, w_init_vals, b_init_vals):
         self.config = config
         self.layer_idx = layer_idx
         self.n_neurons = shape[1]
@@ -42,18 +42,21 @@ class FCLayer:
 
         with tf.variable_scope(var_scope):
             rng = np.random.RandomState()
-            if self.config['weight_type'] == 'binary':
-                w_vals = rng.binomial(n=1, p=0.5, size=self.weight_shape).astype(np.float32)
-                w_vals[w_vals == 0] = -1
-            elif self.config['weight_type'] == 'ternary':
-                w_vals = rng.multinomial(n=1, pvals=np.asarray([1., 1., 1.])/3., size=self.weight_shape)\
-                    .astype(np.float32)
-                w_vals = np.cumsum(w_vals, axis=2)
-                w_vals = np.sum(w_vals, axis=2) - 2
-            b_vals = np.zeros(self.bias_shape, dtype=np.int32)
 
-            w_init = tf.constant_initializer(w_vals)
-            b_init = tf.constant_initializer(b_vals)
+            if w_init_vals is None:
+                if self.config['weight_type'] == 'binary':
+                    w_init_vals = rng.binomial(n=1, p=0.5, size=self.weight_shape).astype(np.float32)
+                    w_init_vals[w_init_vals == 0] = -1
+                elif self.config['weight_type'] == 'ternary':
+                    w_init_vals = rng.multinomial(n=1, pvals=np.asarray([1., 1., 1.])/3., size=self.weight_shape)\
+                        .astype(np.float32)
+                    w_init_vals = np.cumsum(w_init_vals, axis=2)
+                    w_init_vals = np.sum(w_init_vals, axis=2) - 2
+            if b_init_vals is None:
+                b_init_vals = np.zeros(self.bias_shape, dtype=np.int32)
+
+            w_init = tf.constant_initializer(w_init_vals)
+            b_init = tf.constant_initializer(b_init_vals)
 
             self.W = tf.get_variable(name='W', shape=self.weight_shape, initializer=w_init, dtype=tf.float32)
             self.b = tf.get_variable(name='b', shape=self.bias_shape, initializer=b_init, dtype=tf.float32)
@@ -186,7 +189,7 @@ class FCLayer:
                 sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
                 w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
                                                                 new_output_vals)
-                b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [act_means[sample_idx]], name='sample_b')
+                b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [-act_means[sample_idx]], name='sample_b')
                 self.sample_op = tf.group(*[w_sample_op, b_sample_op])
 
                 #output_values = self.act_func.get_output(b_added_activation)

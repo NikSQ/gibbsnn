@@ -11,6 +11,10 @@ from src.run_experiment import run_experiment
 task_id = 0
 path = '../results/timer/'
 
+init_config = {'n_epochs': 100,
+               'learning_rate': 0.1,
+               'reg': 0.00001}
+
 run_config = {'n_epochs': 5,
               'block_size': 2,
               'store_acts': False,
@@ -22,24 +26,25 @@ run_config = {'n_epochs': 5,
               'thinning': 1,
               'path': path}
 
-act_func1 = get_activation_function('ets')
-act_func2 = get_activation_function('ets')
+act_func1 = get_activation_function('bs')
+act_func2 = get_activation_function('bs')
 act_func1.set_params([3])
 act_func2.set_params([3])
 act_funcs = [act_func1, act_func2]
 
 
-config = {'layout': [10, 20],
+nn_config = {'layout': [200, 200],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
           'keep_probs': [1.0, 1., 1.],
           'flat_factor': [1., 1., 1.],
-          'act_noise': [5., 5.],
+          'act_noise': [0.1, .1],
+          'prior_value': [0.8],
           'sampling_sequence': 'stochastic'}
 
 start = time.time()
-run_experiment(run_config, config, 'mnist_basic')
+run_experiment(run_config, init_config, nn_config, 'mnist_basic')
 print('Elapsed time: {}'.format(str(time.time() - start)))
 
 

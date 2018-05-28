@@ -6,11 +6,11 @@ sys.path.append('../')
 
 from src.nn import NN
 from src.mnist_data import load_dataset
-from src.tools import print_nn_config, print_run_config
+from src.tools import print_nn_config, print_run_config, get_init_values
 from src.ensemble import Ensemble
 
 
-def run_experiment(exp_config, nn_config, dataset):
+def run_experiment(exp_config, init_config, nn_config, dataset):
     print_nn_config(nn_config)
     print_run_config(exp_config)
 
@@ -18,7 +18,9 @@ def run_experiment(exp_config, nn_config, dataset):
     nn_config['layout'].insert(0, x_tr.shape[1])
     nn_config['layout'].append(y_tr.shape[1])
 
-    nn = NN(nn_config)
+    w_init_vals, b_init_vals = get_init_values(nn_config, init_config, x_tr, y_tr)
+
+    nn = NN(nn_config, w_init_vals, b_init_vals)
     nn.create_gibbs_graph(x_tr.shape[0], x_va.shape[0], exp_config['block_size'])
     ensemble_tr = Ensemble(nn.Y_tr, y_tr.shape, 'tr', nn.full_network.activation)
     ensemble_va = Ensemble(nn.Y_val, y_va.shape, 'va', nn.full_network.activation)
@@ -33,6 +35,7 @@ def run_experiment(exp_config, nn_config, dataset):
 
         for epoch in range(exp_config['n_epochs']):
             nn.perform_gibbs_iteration(sess)
+
             if exp_config['store_vars'] and epoch % exp_config['store_vars_every'] == 0:
                 if exp_config['store_method'] == 'both' or exp_config['store_method'] == 'tensorboard':
                     s_var = sess.run(nn.var_summary_op)
@@ -43,6 +46,7 @@ def run_experiment(exp_config, nn_config, dataset):
                     va_acc, va_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
                                               feed_dict={nn.validate: True})
                     print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(epoch+1,tr_acc, va_acc, tr_ce, va_ce))
+
             if exp_config['store_acts'] and epoch % exp_config['store_acts_every'] == 0:
                 s_tr = sess.run(nn.full_network.summary_op, feed_dict={nn.validate: False})
                 s_va = sess.run(nn.full_network.summary_op, feed_dict={nn.validate: True})
