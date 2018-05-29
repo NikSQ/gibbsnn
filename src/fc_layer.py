@@ -78,7 +78,6 @@ class FCLayer:
             neuron_indices = tf.concat([indices, tf.tile(tf.expand_dims(self.neuron_idx, axis=1),
                                                          multiples=[self.batch_size, 1])], axis=1)
 
-            self.a = neuron_indices
             lookup_ops = [tf.assign(self.new_output, self.output)]
             for lookup_idx, output_val in enumerate(self.act_func.values):
                 with tf.control_dependencies(lookup_ops):
@@ -167,8 +166,9 @@ class FCLayer:
                 self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
 
             else:
+                w_added_activation = w_added_activation - tf.gather_nd(self.b, (0, self.neuron_idx))
                 act_means = tf.reduce_mean(w_added_activation, axis=0)
-                w_added_activation = w_added_activation #- act_means + \
+                w_added_activation = w_added_activation - act_means #+ \
                                      #tf.random_normal(tf.shape(w_added_activation), mean=0.0,
                                      #                 stddev=self.config['act_noise'][self.layer_idx])
                 output_values = self.act_func.get_output(w_added_activation)

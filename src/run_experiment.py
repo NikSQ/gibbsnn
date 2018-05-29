@@ -60,3 +60,6 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
 
 
 
+# TEST1 Bias mean sampling with old fashioned lookuptable
+# TEST2 Just weight sampling with old fashioned lookuptable (where the fuck is the error)
+# TEST3 Bias mean sampling but with argmax

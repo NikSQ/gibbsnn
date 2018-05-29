@@ -33,14 +33,14 @@ act_func2.set_params([3])
 act_funcs = [act_func1, act_func2]
 
 
-nn_config = {'layout': [200, 200],
+nn_config = {'layout': [10, 10],
           'weight_type': 'ternary',
           'act_funcs': act_funcs,
           'bias_vals': [None, None, None],
           'keep_probs': [1.0, 1., 1.],
           'flat_factor': [1., 1., 1.],
           'act_noise': [0.1, .1],
-          'prior_value': [0.8],
+          'prior_value': 0.8,
           'sampling_sequence': 'stochastic'}
 
 start = time.time()
