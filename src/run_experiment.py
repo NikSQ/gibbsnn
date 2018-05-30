@@ -8,10 +8,18 @@ from src.nn import NN
 from src.mnist_data import load_dataset
 from src.tools import print_nn_config, print_run_config, get_init_values
 from src.ensemble import Ensemble
+from src.activation import get_activation_function
 
 
 def run_experiment(exp_config, init_config, nn_config, dataset):
     tf.reset_default_graph()
+
+    act_funcs = []
+    for layer_idx, act_func_name in enumerate(nn_config['act_funcs']):
+        act_func = get_activation_function(act_func_name)
+        act_func.set_params(nn_config['act_func_params'][layer_idx])
+        act_funcs.append(act_func)
+    nn_config['act_funcs'] = act_funcs
 
     print_nn_config(nn_config)
     print_run_config(exp_config)

@@ -6,8 +6,8 @@ sys.path.append('../')
 from src.activation import get_activation_function
 from src.run_experiment import run_experiment
 
-task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
-#task_id = 0
+#task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
+task_id = 0
 path = '../results/nn_test/job_' + str(task_id) + '/'
 
 init_config = {'n_epochs': 100,

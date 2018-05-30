@@ -17,7 +17,7 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 30,
+run_config = {'n_epochs': 10,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 1,
@@ -25,15 +25,9 @@ run_config = {'n_epochs': 30,
               'store_vars_every': 1,
               'store_method': 'both',
               'burn_in': 5,
-              'thinning': 3,
+              'thinning': 1,
               'path': path}
 
-act_func1 = get_activation_function('bs')
-act_func2 = get_activation_function('bs')
-
-act_func1.set_params([])
-act_func2.set_params([])
-act_funcs = [act_func1, act_func2]
 layer_1 = 80
 layer_2 = 50
 keep_probs1 = 0.3 + (0.2 * int(task_id / 4))
@@ -42,7 +36,8 @@ keep_probs2 = .5 + (0.15 * int(task_id % 4))
 
 config = {'layout': [layer_1, layer_2],
           'weight_type': 'binary',
-          'act_funcs': act_funcs,
+          'act_funcs': ['bs', 'bs'],
+          'act_func_params': [[], []],
           'bias_vals': [None, None, None],
           'keep_probs': [keep_probs1, keep_probs2, keep_probs2],
           'flat_factor': [1., 1., 1.],
