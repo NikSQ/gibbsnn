@@ -9,9 +9,9 @@
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-#SBATCH --partition=gpu,gpu2,gpu6
+#SBATCH --partition=gpu,gpu2
 #SBATCH --exclude=diannao
-#SBATCH --array=0-5
+#SBATCH --array=0-25
 
 #################
 # configuration #

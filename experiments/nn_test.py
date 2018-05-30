@@ -31,8 +31,8 @@ act_func2 = get_activation_function('bs')
 act_func1.set_params([])
 act_func2.set_params([])
 act_funcs = [act_func1, act_func2]
-layer_1 = 200 + 20 * int(task_id / 2)
-layer_2 = 200 + 40 * int(task_id % 2)
+layer_1 = 200# + 20 * int(task_id / 2)
+layer_2 = 200# + 40 * int(task_id % 2)
 keep_probs1 = 1.#.5 + (0.2 * int(task_id / 2))
 keep_probs2 = 1.#.7 + (0.2 * int(task_id % 2))
 
