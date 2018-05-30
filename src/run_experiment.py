@@ -15,7 +15,7 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
     tf.reset_default_graph()
 
     act_funcs = []
-    for layer_idx, act_func_name in enumerate(nn_config['act_funcs']):
+    for layer_idx, act_func_name in enumerate(nn_config['act_func_names']):
         act_func = get_activation_function(act_func_name)
         act_func.set_params(nn_config['act_func_params'][layer_idx])
         act_funcs.append(act_func)

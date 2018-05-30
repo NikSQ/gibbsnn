@@ -36,7 +36,7 @@ keep_probs2 = .5 + (0.15 * int(task_id % 4))
 
 config = {'layout': [layer_1, layer_2],
           'weight_type': 'binary',
-          'act_funcs': ['bs', 'bs'],
+          'act_func_names': ['bs', 'bs'],
           'act_func_params': [[], []],
           'bias_vals': [None, None, None],
           'keep_probs': [keep_probs1, keep_probs2, keep_probs2],
