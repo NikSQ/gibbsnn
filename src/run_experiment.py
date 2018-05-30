@@ -11,6 +11,8 @@ from src.ensemble import Ensemble
 
 
 def run_experiment(exp_config, init_config, nn_config, dataset):
+    tf.reset_default_graph()
+
     print_nn_config(nn_config)
     print_run_config(exp_config)
 
@@ -30,8 +32,6 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
     final_ce = None
 
     with tf.Session() as sess:
-        tf.reset_default_graph()
-
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
         writer_va = tf.summary.FileWriter(exp_config['path'] + 'va/')
 
