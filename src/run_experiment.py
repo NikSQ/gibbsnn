@@ -24,6 +24,10 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
     nn.create_gibbs_graph(x_tr.shape[0], x_va.shape[0], exp_config['block_size'])
     ensemble_tr = Ensemble(nn.Y_tr, y_tr.shape, 'tr', nn.full_network.activation)
     ensemble_va = Ensemble(nn.Y_val, y_va.shape, 'va', nn.full_network.activation)
+    final_ensemble_acc = None
+    final_ensemble_ce = None
+    final_acc = None
+    final_ce = None
 
     with tf.Session() as sess:
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
@@ -45,6 +49,8 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
                                               feed_dict={nn.validate: False})
                     va_acc, va_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
                                               feed_dict={nn.validate: True})
+                    final_acc = va_acc
+                    final_ce = va_ce
                     print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(epoch+1,tr_acc, va_acc, tr_ce, va_ce))
 
             if exp_config['store_acts'] and epoch % exp_config['store_acts_every'] == 0:
@@ -56,7 +62,11 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
             if exp_config['burn_in'] <= epoch + 1 and (epoch + 1 - exp_config['burn_in']) % exp_config['thinning'] == 0:
                 tr_acc, tr_ce = sess.run([ensemble_tr.accuracy, ensemble_tr.cross_entropy], feed_dict={nn.validate: False})
                 va_acc, va_ce = sess.run([ensemble_va.accuracy, ensemble_va.cross_entropy], feed_dict={nn.validate: True})
+                final_ensemble_acc = va_acc
+                final_ensemble_ce = va_ce
                 print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
+
+    return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
 
 
 

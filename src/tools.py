@@ -107,3 +107,10 @@ def print_run_config(config):
     print("RUN CONFIG")
     print('Epochs: {}, Blocksize: {}'.format(config['n_epochs'], config['block_size']))
     print('\n===================================\n')
+
+
+def print_stats(text, values):
+    values_arr = np.asarray(values)
+    mean = np.mean(values_arr)
+    std = np.std(values_arr)
+    print(text + ' || Mean: {}\t Std: {}'.format(mean, std))
