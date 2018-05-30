@@ -4,7 +4,6 @@ import numpy as np
 
 sys.path.append('../')
 
-from src.activation import get_activation_function
 from src.run_experiment import run_experiment
 from src.tools import print_stats
 
@@ -17,14 +16,14 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 10,
+run_config = {'n_epochs': 30,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 1,
               'store_vars': True,
               'store_vars_every': 1,
               'store_method': 'both',
-              'burn_in': 5,
+              'burn_in': 15,
               'thinning': 1,
               'path': path}
 

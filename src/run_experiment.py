@@ -1,6 +1,7 @@
 import tensorflow as tf
 import sys
 import numpy as np
+import copy
 
 sys.path.append('../')
 
@@ -11,8 +12,9 @@ from src.ensemble import Ensemble
 from src.activation import get_activation_function
 
 
-def run_experiment(exp_config, init_config, nn_config, dataset):
+def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
     tf.reset_default_graph()
+    nn_config = copy.deepcopy(nn_config_primitive)
 
     act_funcs = []
     for layer_idx, act_func_name in enumerate(nn_config['act_func_names']):
