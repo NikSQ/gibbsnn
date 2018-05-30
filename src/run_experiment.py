@@ -30,6 +30,8 @@ def run_experiment(exp_config, init_config, nn_config, dataset):
     final_ce = None
 
     with tf.Session() as sess:
+        tf.reset_default_graph()
+
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
         writer_va = tf.summary.FileWriter(exp_config['path'] + 'va/')
 

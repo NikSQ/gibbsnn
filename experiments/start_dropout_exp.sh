@@ -2,8 +2,8 @@
 
 #SBATCH --job-name="nn_arch"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/arch%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/arch5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/do%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/do5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00

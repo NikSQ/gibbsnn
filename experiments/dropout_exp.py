@@ -24,7 +24,7 @@ run_config = {'n_epochs': 30,
               'store_vars': True,
               'store_vars_every': 1,
               'store_method': 'both',
-              'burn_in': 10,
+              'burn_in': 5,
               'thinning': 3,
               'path': path}
 
@@ -34,8 +34,8 @@ act_func2 = get_activation_function('bs')
 act_func1.set_params([])
 act_func2.set_params([])
 act_funcs = [act_func1, act_func2]
-layer_1 = 280
-layer_2 = 250
+layer_1 = 80
+layer_2 = 50
 keep_probs1 = 0.3 + (0.2 * int(task_id / 4))
 keep_probs2 = .5 + (0.15 * int(task_id % 4))
 
