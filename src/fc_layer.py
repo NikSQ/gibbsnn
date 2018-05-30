@@ -166,9 +166,10 @@ class FCLayer:
                 self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals)
 
             else:
-                w_added_activation = w_added_activation - tf.gather_nd(self.b, (0, self.neuron_idx))
+                bias_value = tf.gather_nd(self.b, (0, self.neuron_idx))
                 act_means = tf.reduce_mean(w_added_activation, axis=0)
-                w_added_activation = w_added_activation - act_means #+ \
+                correction = act_means * self.config['keep_probs'][self.layer_idx]**2 * 0.1
+                w_added_activation = w_added_activation - correction #+ \
                                      #tf.random_normal(tf.shape(w_added_activation), mean=0.0,
                                      #                 stddev=self.config['act_noise'][self.layer_idx])
                 output_values = self.act_func.get_output(w_added_activation)
@@ -189,7 +190,7 @@ class FCLayer:
                 sample_op = tf.scatter_nd_update(self.W, weight_indices, tf.squeeze(new_weights), name='sample_w')
                 w_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
                                                                 new_output_vals)
-                b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [-act_means[sample_idx]], name='sample_b')
+                b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [bias_value-correction[sample_idx]], name='sample_b')
                 self.sample_op = tf.group(*[w_sample_op, b_sample_op])
 
                 output_values = self.act_func.get_output(b_added_activation)

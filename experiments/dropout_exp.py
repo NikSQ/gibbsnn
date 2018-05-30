@@ -16,19 +16,19 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 30,
+run_config = {'n_epochs': 150,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 1,
               'store_vars': True,
               'store_vars_every': 1,
               'store_method': 'both',
-              'burn_in': 15,
-              'thinning': 1,
+              'burn_in': 25,
+              'thinning': 5,
               'path': path}
 
-layer_1 = 80
-layer_2 = 50
+layer_1 = 280
+layer_2 = 250
 keep_probs1 = 0.3 + (0.2 * int(task_id / 4))
 keep_probs2 = .5 + (0.15 * int(task_id % 4))
 

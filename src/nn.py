@@ -192,7 +192,7 @@ class NN:
                 tries -= 1
                 if tries == 0:
                     raise Exception('Could not generate dropout mask with at least block_size neurons active')
-        #sess.run(self.set_dropout_masks_op, feed_dict={i: d for i, d in zip(self.dropout_masks, dropout_masks)})
+        sess.run(self.set_dropout_masks_op, feed_dict={i: d for i, d in zip(self.dropout_masks, dropout_masks)})
 
         for layer_idx in range(self.n_layers):
             curr_layer = self.layers[layer_idx]
