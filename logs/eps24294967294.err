@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "../experiments/eps2_exp.py", line 10, in <module>
+    task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
+  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/os.py", line 725, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'SLURM_ARRAY_TASK_ID'

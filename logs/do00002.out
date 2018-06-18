@@ -1,0 +1,15 @@
+NN CONFIG
+Weight-type:		binary
+Layout									Layer #1: 280	Layer #2: 250	
+Activation Functions					Layer #1: bs	Layer #2: bs	
+Keep probabilities		Layer #0: 0.8	Layer #1: 0.9	Layer #2: 0.9	
+Flat factors							Layer #1: 1.0	Layer #2: 1.0	Layer #3: 1.0	
+Activation Noise						Layer #1: 0.0	Layer #2: 0.0	Layer #3: 0.0	
+
+===================================
+
+RUN CONFIG
+Epochs: 150, Blocksize: 8
+
+===================================
+

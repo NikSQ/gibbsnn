@@ -1,0 +1,29 @@
+WARNING:tensorflow:From ../src/tools.py:42: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+2018-05-31 11:41:33.430542: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-05-31 11:41:33.616310: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: GeForce GTX 960 major: 5 minor: 2 memoryClockRate(GHz): 1.2405
+pciBusID: 0000:07:00.0
+totalMemory: 3.95GiB freeMemory: 3.90GiB
+2018-05-31 11:41:33.616432: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+WARNING:tensorflow:From ../src/fc_layer.py:137: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From ../src/fc_layer.py:138: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2018-05-31 11:41:41.130626: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-05-31 22:47:28.594477: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-05-31 22:47:31.994488: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-01 09:58:37.072089: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-01 09:58:40.380858: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-01 21:10:33.079942: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-01 21:10:36.996223: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-02 08:20:23.350079: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-02 08:20:26.301984: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)

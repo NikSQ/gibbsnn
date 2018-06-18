@@ -100,6 +100,8 @@ def print_nn_config(config):
     for idx, noise in enumerate(config['act_noise']):
         noise_str += 'Layer #' + str(idx + 1) + ': ' + str(noise) + '\t'
     print(noise_str)
+
+    print('Prior: {}'.format(config['prior_value']))
     print('\n===================================\n')
 
 

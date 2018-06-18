@@ -26,18 +26,14 @@ run_config = {'n_epochs': 5,
               'thinning': 1,
               'path': path}
 
-act_func1 = get_activation_function('bs')
-act_func2 = get_activation_function('bs')
-act_func1.set_params([3])
-act_func2.set_params([3])
-act_funcs = [act_func1, act_func2]
 
 
 nn_config = {'layout': [10, 10],
           'weight_type': 'ternary',
-          'act_funcs': act_funcs,
+          'act_func_names': ['ets', 'ets'],
+          'act_func_params': [[1],[1]],
           'bias_vals': [None, None, None],
-          'keep_probs': [1.0, 1., 1.],
+          'keep_probs': [.95, .8, .8],
           'flat_factor': [1., 1., 1.],
           'act_noise': [0.1, .1],
           'prior_value': 0.8,

@@ -10,7 +10,7 @@ filenames = {'mnist': '../datasets/mnist/mnist.mat',
               'mnist_rotated_background': '../datasets/mnist_rotated_background/mnist_rotated_background',
               'ebp_reuters_i6': '../datasets/ebp_reuters_i6.mat'}
 
-def load_dataset(dataset_name):
+def load_dataset(dataset_name, binarize=False):
     filename = filenames[dataset_name] 
     data = loadmat(filename)
     data['t_tr'] = np.squeeze(data['t_tr']) - 1
@@ -22,8 +22,13 @@ def load_dataset(dataset_name):
     t_va[np.arange(t_va.shape[0]), data['t_va']] = 1
     t_te = np.zeros((data['t_te'].shape[0], 10))
     t_te[np.arange(t_te.shape[0]), data['t_te']] = 1
-    return (binarize_data(data['x_tr']), t_tr, binarize_data(data['x_va']), t_va, 
-            binarize_data(data['x_te']), t_te)
+
+    if binarize:
+        return (binarize_data(data['x_tr']), t_tr, binarize_data(data['x_va']), t_va, 
+                binarize_data(data['x_te']), t_te)
+    else:
+        return data['x_tr'], t_tr, data['x_va'], t_va, data['x_te'], t_te
+
 
 
 def binarize_data(data):

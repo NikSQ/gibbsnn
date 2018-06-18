@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "../experiments/timer.py", line 47, in <module>
+    run_experiment(run_config, init_config, nn_config, 'mnist_basic')
+  File "../src/run_experiment.py", line 20, in run_experiment
+    for layer_idx, act_func_name in enumerate(nn_config['act_func_names']):
+KeyError: 'act_func_names'

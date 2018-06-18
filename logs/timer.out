@@ -1,0 +1,39 @@
+
+
+config:
+
+HOME=/clusterFS/home/student/kopp13
+PATH=/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/bin:/clusterFS/home/student/kopp13/miniconda3/bin:/clusterFS/home/student/kopp13/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+LD_LIBRARY_PATH=
+THEANO_FLAGS=floatX=float32,gpuarray.preallocate=0.9,dnn.library_path=/usr/lib/x86_64-linux-gnu,cxx=clang++-3.8,device=cuda,base_compiledir=/tmp/tmp.FfRo72luCH
+
+
+
+Starting Test
+
+NN CONFIG
+Weight-type:		ternary
+Layout									Layer #1: 10	Layer #2: 10	
+Activation Functions					Layer #1: ets	Layer #2: ets	
+Keep probabilities		Layer #0: 0.95	Layer #1: 0.8	Layer #2: 0.8	
+Flat factors							Layer #1: 1.0	Layer #2: 1.0	Layer #3: 1.0	
+Activation Noise						Layer #1: 0.1	Layer #2: 0.1	
+
+===================================
+
+RUN CONFIG
+Epochs: 5, Blocksize: 2
+
+===================================
+
+Epoch: 1, AccTr: 0.7152000069618225, AccVa: 0.6909999847412109, CeTr: 0.9456198215484619, CeVa: 1.0458377599716187
+ENSEMBLE | Tr_Acc: 0.7152000069618225, Tr_CE: 0.9456198215484619, Va_Acc: 0.6909999847412109, Va_CE: 1.0458377599716187
+Epoch: 2, AccTr: 0.6611999869346619, AccVa: 0.6520000100135803, CeTr: 1.1300455331802368, CeVa: 1.1706167459487915
+ENSEMBLE | Tr_Acc: 0.7297000288963318, Tr_CE: 0.8441869020462036, Va_Acc: 0.715499997138977, Va_CE: 0.9218874573707581
+Epoch: 3, AccTr: 0.7190999984741211, AccVa: 0.6859999895095825, CeTr: 0.9585254192352295, CeVa: 1.0399764776229858
+ENSEMBLE | Tr_Acc: 0.7644000053405762, Tr_CE: 0.7395245432853699, Va_Acc: 0.7409999966621399, Va_CE: 0.8226589560508728
+Epoch: 4, AccTr: 0.6898999810218811, AccVa: 0.6909999847412109, CeTr: 0.9993082880973816, CeVa: 0.9982700347900391
+ENSEMBLE | Tr_Acc: 0.7836999893188477, Tr_CE: 0.6847887635231018, Va_Acc: 0.7634999752044678, Va_CE: 0.7531890273094177
+Epoch: 5, AccTr: 0.7099000215530396, AccVa: 0.7260000109672546, CeTr: 1.0076957941055298, CeVa: 0.9443649053573608
+ENSEMBLE | Tr_Acc: 0.7947999835014343, Tr_CE: 0.6494155526161194, Va_Acc: 0.7760000228881836, Va_CE: 0.6983978748321533
+Elapsed time: 50.46124768257141

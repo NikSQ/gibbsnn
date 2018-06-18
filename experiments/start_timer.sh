@@ -2,8 +2,8 @@
 
 #SBATCH --job-name="tf_profiling"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/job%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/job%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/timer.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/timer.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
@@ -11,7 +11,7 @@
 #SBATCH --gres=gpu
 #SBATCH --partition=gpu,gpu2,gpu6
 #SBATCH --exclude=diannao
-##SBATCH --array=0-9
+##SBATCH --array=0-0
 
 #################
 # configuration #

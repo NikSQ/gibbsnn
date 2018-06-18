@@ -168,10 +168,10 @@ class FCLayer:
             else:
                 bias_value = tf.gather_nd(self.b, (0, self.neuron_idx))
                 act_means = tf.reduce_mean(w_added_activation, axis=0)
-                correction = act_means * self.config['keep_probs'][self.layer_idx]**2 * 0.1
-                w_added_activation = w_added_activation - correction #+ \
-                                     #tf.random_normal(tf.shape(w_added_activation), mean=0.0,
-                                     #                 stddev=self.config['act_noise'][self.layer_idx])
+                correction = act_means
+                w_added_activation = w_added_activation - correction + \
+                                     tf.random_normal(tf.shape(w_added_activation), mean=0.0,
+                                                      stddev=self.config['act_noise'][self.layer_idx])
                 output_values = self.act_func.get_output(w_added_activation)
                 lookup_indices = self.act_func.get_lookup_indices(w_added_activation)
 
