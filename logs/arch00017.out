@@ -1,0 +1,17 @@
+NN CONFIG
+Weight-type:		binary
+Layout									Layer #1: 290	Layer #2: 260	
+Activation Functions					Layer #1: bs	Layer #2: bs	
+Keep probabilities		Layer #0: 1.0	Layer #1: 1.0	Layer #2: 1.0	
+Flat factors							Layer #1: 1.0	Layer #2: 1.0	Layer #3: 1.0	
+Activation Noise						Layer #1: 0.0	Layer #2: 0.0	Layer #3: 0.0	
+Prior: 0.7
+
+===================================
+
+RUN CONFIG
+Epochs: 30, Blocksize: 8
+
+===================================
+
+Input binarization: False
