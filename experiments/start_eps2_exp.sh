@@ -9,9 +9,9 @@
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-#SBATCH --begin=now+5days
-#SBATCH --partition=gpu,gpu2
-#SBATCH --exclude=diannao,sanderling, fritzfantom
+##SBATCH --begin=now+5days
+#SBATCH --partition=gpu6 --exclude=gpu1
+#SBATCH --exclude=diannao,sanderling,fritzfantom
 #SBATCH --array=0-8
 
 #################

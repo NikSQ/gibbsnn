@@ -131,11 +131,11 @@ class NN:
         for layer_idx in range(self.n_layers):
             if layer_idx != self.n_layers - 1:
                 dropout_mask = tf.placeholder(tf.float32, shape=(1, self.config['layout'][layer_idx + 1]))
-                self.layers[layer_idx].create_variables(layer_input, batch_size, dropout_mask)
+                self.layers[layer_idx].create_variables(layer_input, batch_size, log_pw, dropout_mask)
                 self.dropout_masks.append(dropout_mask)
                 set_dropout_ops.append(self.layers[layer_idx].set_dropout_mask_op)
             else:
-                self.layers[layer_idx].create_variables(layer_input, batch_size)
+                self.layers[layer_idx].create_variables(layer_input, batch_size, log_pw)
             layer_input = self.layers[layer_idx].output
         self.set_dropout_masks_op = tf.group(*set_dropout_ops)
 

@@ -6,22 +6,22 @@ into the labels input on backprop by default.
 
 See tf.nn.softmax_cross_entropy_with_logits_v2.
 
-2018-06-08 21:05:45.321213: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
-2018-06-08 21:05:45.535500: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+2018-07-02 08:05:44.337724: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2018-07-02 08:05:45.381548: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
 name: Tesla K40c major: 3 minor: 5 memoryClockRate(GHz): 0.745
-pciBusID: 0000:84:00.0
+pciBusID: 0000:85:00.0
 totalMemory: 11.92GiB freeMemory: 11.84GiB
-2018-06-08 21:05:45.535652: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
+2018-07-02 08:05:45.381638: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
 WARNING:tensorflow:From ../src/fc_layer.py:137: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
 Instructions for updating:
 keep_dims is deprecated, use keepdims instead
 WARNING:tensorflow:From ../src/fc_layer.py:138: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
 Instructions for updating:
 keep_dims is deprecated, use keepdims instead
-2018-06-08 21:05:51.944665: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 01:54:34.673850: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 01:54:37.403801: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 06:46:13.746303: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 06:46:16.388161: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 11:38:40.742671: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
-2018-06-09 11:38:43.544627: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:84:00.0, compute capability: 3.5)
+2018-07-02 08:05:59.572965: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 12:48:51.301949: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 12:48:53.997131: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 17:35:05.921703: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 17:35:08.519455: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 22:20:44.669662: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)
+2018-07-02 22:20:47.466468: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:85:00.0, compute capability: 3.5)

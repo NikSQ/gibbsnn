@@ -2,16 +2,16 @@
 
 #SBATCH --job-name="nn_do"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/d2%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/d2%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/d3%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/d3%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
 #SBATCH --partition=gpu,gpu2
-#SBATCH --exclude=diannao,sanderling
-#SBATCH --array=0-16
+#SBATCH --exclude=diannao,sanderling,fritzfantom
+#SBATCH --array=0-11
 
 #################
 # configuration #

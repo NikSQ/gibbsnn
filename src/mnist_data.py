@@ -22,18 +22,23 @@ def load_dataset(dataset_name, binarize=False):
     t_va[np.arange(t_va.shape[0]), data['t_va']] = 1
     t_te = np.zeros((data['t_te'].shape[0], 10))
     t_te[np.arange(t_te.shape[0]), data['t_te']] = 1
+    data['x_tr'] = data['x_tr'] * 2 - 1
+    data['x_va'] = data['x_va'] * 2 - 1
+    data['x_te'] = data['x_te'] * 2 - 1
+    
+    print('Input binarization: {}'.format(binarize))
 
     if binarize:
         return (binarize_data(data['x_tr']), t_tr, binarize_data(data['x_va']), t_va, 
                 binarize_data(data['x_te']), t_te)
     else:
-        return data['x_tr'], t_tr, data['x_va'], t_va, data['x_te'], t_te
+        return (data['x_tr'], t_tr, data['x_va'], t_va, data['x_te'], t_te)
 
 
 
 def binarize_data(data):
-    data[data < 0.5] = -1
-    data[data >= 0.5] = 1
+    data[data < 0] = -1
+    data[data >= 0] = 1
     return data
 
 

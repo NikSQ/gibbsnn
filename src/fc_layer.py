@@ -180,7 +180,7 @@ class FCLayer:
                 for idx, value in enumerate(self.act_func.values):
                     if idx + 1 != self.act_func.n_values and idx > 0:
                         log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
-                sample_idx = self.calc_sample_idx(log_probs)
+                sample_idx = self.calc_sample_idx(log_probs, log_pw)
 
                 #g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
                 #sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
@@ -223,7 +223,7 @@ class FCLayer:
         if log_pw is None:
             log_probs = tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') / self.config['flat_factor'][self.layer_idx]
         else:
-            log_probs = (tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') + log_pw) / self.config['flat_factor'][self.layer_idx]
+            log_probs = (tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') + self.log_pw) / self.config['flat_factor'][self.layer_idx]
 
         probs = tf.cumsum(tf.exp(log_probs - tf.reduce_max(log_probs)))
         sample_idx = tf.reduce_sum(tf.cast(tf.less(probs, tf.random_uniform((1,))*tf.reduce_max(probs)), tf.int32))
@@ -234,8 +234,9 @@ class FCLayer:
     # Creates TF variables required during Gibbs sampling, for storing input, activation and output.
     # There are two output variables, one actually stores the output, the other is tampered when updating lookup table.
     # This function also creates the operation to fill the variables
-    def create_variables(self, layer_input, batch_size, dropout_mask=None):
+    def create_variables(self, layer_input, batch_size, log_pw, dropout_mask=None):
         self.batch_size = batch_size
+        self.log_pw = log_pw
 
         with tf.variable_scope(self.var_scope):
             var_shape = (self.batch_size, self.n_neurons)

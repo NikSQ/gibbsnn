@@ -9,7 +9,7 @@ from src.tools import print_stats
 
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 #task_id = 0
-path = '../results/dropout2/job_' + str(task_id) + '/'
+path = '../results/dropout/job_' + str(task_id) + '/'
 n_runs = 5
 
 init_config = {'n_epochs': 100,
@@ -29,8 +29,8 @@ run_config = {'n_epochs': 150,
 
 layer_1 = 280
 layer_2 = 200
-keep_probs1 = 0.97 + (0.01 * int(task_id / 4))
-keep_probs2 = 0.7  + (0.1 * int(task_id % 4))
+keep_probs1 = 0.9 + (0.02 * int(task_id / 3))
+keep_probs2 = 0.8  + (0.1 * int(task_id % 3))
 
 
 config = {'layout': [layer_1, layer_2],

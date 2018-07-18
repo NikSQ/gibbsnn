@@ -2,17 +2,17 @@
 
 #SBATCH --job-name="nn_eps"_
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/eps1%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/eps1%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/eps3%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/eps3%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-#SBATCH --begin=now+1days
-#SBATCH --partition=gpu,gpu2,gpu6
+##SBATCH --begin=now+1days
+#SBATCH --partition=gpu,gpu2
 #SBATCH --exclude=diannao,sanderling,fritzfantom
-#SBATCH --array=0-15
+#SBATCH --array=0-5
 
 #################
 # configuration #

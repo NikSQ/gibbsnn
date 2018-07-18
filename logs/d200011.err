@@ -1,46 +1,29 @@
-Traceback (most recent call last):
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow.py", line 58, in <module>
-    from tensorflow.python.pywrap_tensorflow_internal import *
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow_internal.py", line 28, in <module>
-    _pywrap_tensorflow_internal = swig_import_helper()
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow_internal.py", line 24, in swig_import_helper
-    _mod = imp.load_module('_pywrap_tensorflow_internal', fp, pathname, description)
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/imp.py", line 243, in load_module
-    return load_dynamic(name, filename, file)
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/imp.py", line 343, in load_dynamic
-    return _load(spec)
-ImportError: libcublas.so.9.0: cannot open shared object file: No such file or directory
+WARNING:tensorflow:From ../src/tools.py:42: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
 
-During handling of the above exception, another exception occurred:
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
 
-Traceback (most recent call last):
-  File "../experiments/dropout_exp.py", line 7, in <module>
-    from src.run_experiment import run_experiment
-  File "../src/run_experiment.py", line 1, in <module>
-    import tensorflow as tf
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/__init__.py", line 24, in <module>
-    from tensorflow.python import *
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/__init__.py", line 49, in <module>
-    from tensorflow.python import pywrap_tensorflow
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow.py", line 74, in <module>
-    raise ImportError(msg)
-ImportError: Traceback (most recent call last):
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow.py", line 58, in <module>
-    from tensorflow.python.pywrap_tensorflow_internal import *
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow_internal.py", line 28, in <module>
-    _pywrap_tensorflow_internal = swig_import_helper()
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow_internal.py", line 24, in swig_import_helper
-    _mod = imp.load_module('_pywrap_tensorflow_internal', fp, pathname, description)
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/imp.py", line 243, in load_module
-    return load_dynamic(name, filename, file)
-  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/imp.py", line 343, in load_dynamic
-    return _load(spec)
-ImportError: libcublas.so.9.0: cannot open shared object file: No such file or directory
+See tf.nn.softmax_cross_entropy_with_logits_v2.
 
-
-Failed to load the native TensorFlow runtime.
-
-See https://www.tensorflow.org/install/install_sources#common_installation_problems
-
-for some common reasons and solutions.  Include the entire stack trace
-above this error message when asking for help.
+2018-06-19 18:36:48.070910: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-06-19 18:36:48.290749: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: GeForce GTX 960 major: 5 minor: 2 memoryClockRate(GHz): 1.2405
+pciBusID: 0000:07:00.0
+totalMemory: 3.95GiB freeMemory: 3.90GiB
+2018-06-19 18:36:48.290907: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+WARNING:tensorflow:From ../src/fc_layer.py:137: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From ../src/fc_layer.py:138: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2018-06-19 18:36:58.618351: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-20 13:11:49.444269: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-20 13:11:53.574631: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-21 08:05:25.244321: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-21 08:05:28.775686: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-22 02:55:21.329982: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-22 02:55:25.228131: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-22 21:45:30.813721: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)
+2018-06-22 21:45:33.872663: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 960, pci bus id: 0000:07:00.0, compute capability: 5.2)

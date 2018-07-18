@@ -49,6 +49,13 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
         sess.run(nn.load_train_set_op, feed_dict={nn.X_placeholder: x_tr, nn.Y_placeholder: y_tr})
         sess.run(nn.load_val_set_op, feed_dict={nn.X_placeholder: x_va, nn.Y_placeholder: y_va})
 
+        tr_acc, tr_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
+                                              feed_dict={nn.validate: False})
+        va_acc, va_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
+                                              feed_dict={nn.validate: True})
+        print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(0,tr_acc, va_acc, tr_ce, va_ce))
+
+
         for epoch in range(exp_config['n_epochs']):
             nn.perform_gibbs_iteration(sess)
 

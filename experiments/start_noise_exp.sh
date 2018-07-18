@@ -2,17 +2,17 @@
 
 #SBATCH --job-name="nn_noise"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/n1%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/n1%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/n2%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/n2%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-#SBATCH --begin=now+9hours
+##SBATCH --begin=now+9hours
 #SBATCH --partition=gpu,gpu2
-#SBATCH --exclude=diannao,sanderling
-#SBATCH --array=0-15
+#SBATCH --exclude=diannao,sanderling,fritzfantom
+#SBATCH --array=0-3
 
 #################
 # configuration #
@@ -158,11 +158,11 @@ THEANO_FLAGS+=",base_compiledir=${THEANO_TMPDIR}"
 
 
 # print config
-#echo -e "\n\nconfig:\n"
-#echo "HOME=${HOME}"
-#echo "PATH=${PATH}"
-#echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-#echo "THEANO_FLAGS=${THEANO_FLAGS}"
+echo -e "\n\nconfig:\n"
+echo "HOME=${HOME}"
+echo "PATH=${PATH}"
+echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+echo "THEANO_FLAGS=${THEANO_FLAGS}"
 #echo
 
 ####################

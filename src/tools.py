@@ -40,6 +40,8 @@ def get_init_values(nn_config, train_config, x, y):
                     layer_input = tf.nn.sigmoid(activation + neg_act_means)
 
     ce = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=y))
+    prediction = tf.argmax(tf.nn.softmax(activation), axis=1)
+    accuracy = tf.reduce_mean(tf.cast(tf.equal(prediction, tf.argmax(y, axis=1)), dtype=tf.float32))
     train_op = tf.train.AdamOptimizer(learning_rate=train_config['learning_rate'])\
         .minimize(ce + l2_loss * train_config['reg'])
     train_config = train_config
@@ -48,6 +50,7 @@ def get_init_values(nn_config, train_config, x, y):
         sess.run(tf.global_variables_initializer())
         for epoch in range(train_config['n_epochs']):
             sess.run(train_op)
+        print('Pretrained network accuracy: {}'.format(sess.run(accuracy)))
         w_vals = sess.run(w_list)
         b_vals = sess.run(b_list)
 

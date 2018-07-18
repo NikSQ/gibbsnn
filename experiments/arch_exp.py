@@ -25,12 +25,6 @@ run_config = {'n_epochs': 30,
               'thinning': 3,
               'path': path}
 
-act_func1 = get_activation_function('bs')
-act_func2 = get_activation_function('bs')
-
-act_func1.set_params([])
-act_func2.set_params([])
-act_funcs = [act_func1, act_func2]
 layer_1 = 200 + 30 * int(task_id / 5)
 layer_2 = 200 + 30 * int(task_id % 5)
 keep_probs1 = 1.#.5 + (0.2 * int(task_id / 2))
@@ -39,7 +33,8 @@ keep_probs2 = 1.#.7 + (0.2 * int(task_id % 2))
 
 config = {'layout': [layer_1, layer_2],
           'weight_type': 'binary',
-          'act_funcs': act_funcs,
+          'act_func_names': ['bs', 'bs'],
+          'act_func_params': [[],[]],
           'bias_vals': [None, None, None],
           'keep_probs': [keep_probs1, keep_probs2, keep_probs2],
           'flat_factor': [1., 1., 1.],

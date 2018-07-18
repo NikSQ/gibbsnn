@@ -11,8 +11,8 @@
 #SBATCH --gres=gpu
 ##SBATCH --begin=now+8hours
 #SBATCH --partition=gpu,gpu2
-#SBATCH --exclude=diannao,sanderling
-#SBATCH --array=0-14
+#SBATCH --exclude=diannao,sanderling,fritzfantom
+#SBATCH --array=0-7
 
 #################
 # configuration #
