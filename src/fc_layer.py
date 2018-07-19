@@ -69,6 +69,11 @@ class FCLayer:
             summary_ops.append(tf.summary.histogram('biases', self.b))
             self.var_summary_op = tf.summary.merge(summary_ops)
 
+    def create_var_assign_op(self, w_vals):
+        w_assign_op = tf.assign(self.W, tf.cast(w_vals, dtype=tf.float32))
+        return w_assign_op
+        #b_assign_op = tf.assign(self.b, b_vals)
+        #return tf.group(*[w_assign_op, b_assign_op])
 
     # Creates the execution graph for setting all the entries in the lookup table for a given neuron (this neuron is
     # given via a placeholder, which means that it can be set at runtime)
@@ -291,6 +296,17 @@ class FCLayer:
                 if record_variables:
                     return layer_output, act_summary
                 return tf.multiply(layer_output, self.dropout_mask), act_summary
+
+    def adapt_bias(self, layer_input):
+        activation = tf.matmul(layer_input, self.W)
+        act_means = tf.reduce_mean(activation, axis=0, keep_dims=True)
+        assign_op = tf.assign(self.b, act_means)
+        if self.is_output:
+            return activation, assign_op
+
+        output = self.act_func.get_output(activation - act_means)
+        return output, assign_op
+
 
 
 

@@ -6,7 +6,7 @@ import copy
 # This class creates a complete forward pass using the given layers
 # The given layers are reused (shallow copy)
 class SubNN:
-    def __init__(self, layers, input, targets, full_network=False):
+    def __init__(self, layers, input, targets, full_network=False, adapt_bias=False):
         self.n_layers = len(layers)
         self.input = input
         self.targets = targets
@@ -34,6 +34,15 @@ class SubNN:
             summary_ops.append(tf.summary.scalar('accuracy', self.accuracy))
             summary_ops.append(tf.summary.scalar('likelihood', self.total_likelihood))
             self.summary_op = tf.summary.merge(summary_ops)
+
+        if adapt_bias:
+            layer_input = self.input
+            assign_op = tf.no_op()
+            for layer_idx in range(self.n_layers):
+                with tf.control_dependencies([assign_op]):
+                    layer_input, assign_op = self.layers[layer_idx].adapt_bias(layer_input)
+            self.adapt_bias_op = assign_op
+
 
 
 
