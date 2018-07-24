@@ -16,7 +16,7 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 50,
+run_config = {'n_epochs': 150,
               'block_size': 4,
               'store_acts': True,
               'store_acts_every': 1,
@@ -30,11 +30,11 @@ run_config = {'n_epochs': 50,
 layer_1 = 250
 layer_2 = 220
 keep_probs1 = 1.
-keep_probs2 = 1.
-act_noise = 0.1
-prior_value = 0.8
-eps_1 = int(task_id / 3) + 4
-eps_2 = int(task_id % 3) + 4
+keep_probs2 = 0.7 + 0.1 * task_id
+act_noise = 0.0
+prior_value = 0.85
+eps_1 = 2
+eps_2 = 2
 
 
 config = {'layout': [layer_1, layer_2],
