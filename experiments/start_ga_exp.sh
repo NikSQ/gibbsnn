@@ -1,18 +1,18 @@
 #!/bin/bash
 
-#SBATCH --job-name="nn_eps"_
+#SBATCH --job-name="nn_genetic"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/epsdo%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/epsdo%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/g5%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/g5%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
 #SBATCH --mem=8G
 #SBATCH --gres=gpu
-##SBATCH --begin=now+1days
+##SBATCH --begin=now+9hours
 #SBATCH --partition=gpu,gpu2
 #SBATCH --exclude=diannao,sanderling,fritzfantom
-#SBATCH --array=0-0
+#SBATCH --array=0-2
 
 #################
 # configuration #
@@ -158,11 +158,11 @@ THEANO_FLAGS+=",base_compiledir=${THEANO_TMPDIR}"
 
 
 # print config
-#echo -e "\n\nconfig:\n"
-#echo "HOME=${HOME}"
-#echo "PATH=${PATH}"
-#echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-#echo "THEANO_FLAGS=${THEANO_FLAGS}"
+echo -e "\n\nconfig:\n"
+echo "HOME=${HOME}"
+echo "PATH=${PATH}"
+echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+echo "THEANO_FLAGS=${THEANO_FLAGS}"
 #echo
 
 ####################
@@ -174,7 +174,7 @@ export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
 export PYTHONUNBUFFERED=TRUE
 
-python3 ../experiments/eps1_exp.py
+python3 ../experiments/ga_exp.py
 ##################
 # END: user code #
 ##################

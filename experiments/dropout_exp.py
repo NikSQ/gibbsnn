@@ -10,27 +10,27 @@ from src.tools import print_stats
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 #task_id = 0
 path = '../results/dropout/job_' + str(task_id) + '/'
-n_runs = 5
+n_runs = 8
 
 init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-run_config = {'n_epochs': 150,
+run_config = {'n_epochs': 200,
               'block_size': 8,
               'store_acts': True,
               'store_acts_every': 1,
               'store_vars': True,
               'store_vars_every': 1,
               'store_method': 'both',
-              'burn_in': 20,
+              'burn_in': 50,
               'thinning': 5,
               'path': path}
 
 layer_1 = 280
 layer_2 = 200
-keep_probs1 = 0.9 + (0.02 * int(task_id / 3))
-keep_probs2 = 0.8  + (0.1 * int(task_id % 3))
+keep_probs1 = 0.93 + 0.02 * float(task_id)
+keep_probs2 = 0.9
 
 
 config = {'layout': [layer_1, layer_2],
@@ -41,7 +41,7 @@ config = {'layout': [layer_1, layer_2],
           'keep_probs': [keep_probs1, keep_probs2, keep_probs2],
           'flat_factor': [1., 1., 1.],
           'act_noise': [0., 0., 0.],
-          'prior_value': 0.7,
+          'prior_value': 0.85,
           'sampling_sequence': 'stochastic'}
 
 va_acc_list = []
