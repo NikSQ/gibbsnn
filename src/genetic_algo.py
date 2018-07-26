@@ -2,11 +2,13 @@ import tensorflow as tf
 import numpy as np
 from src.individual import Individual
 from src.static_nn import StaticNN
+import copy
 
 class GeneticSolver:
-    def __init__(self, nn_config, ga_config, tr_batch_size, va_batch_size):
+    def __init__(self, nn_config, ga_config, tr_batch_size, va_batch_size, ga_init_pop=None):
         self.nn_config = nn_config
         self.ga_config = ga_config
+        self.ga_init_pop = ga_init_pop
 
         self.x_placeholder = tf.placeholder(tf.float32, [None, self.nn_config['layout'][0]])
         self.y_placeholder = tf.placeholder(tf.float32, [None, self.nn_config['layout'][-1]])
@@ -27,8 +29,16 @@ class GeneticSolver:
         self.population = []
 
     def create_individuals(self, amount):
-        for i in range(amount):
-            self.population.append(Individual(self.create_init_vals()))
+        print('ga init pop len: {}'.format(len(self.ga_init_pop)))
+        if self.ga_init_pop is None:
+            for i in range(amount):
+                self.population.append(Individual(self.create_init_vals()))
+        else:
+            for i in range(amount):
+                if i < len(self.ga_init_pop):
+                    self.population.append(Individual(self.ga_init_pop[i]))
+                else:
+                    self.population.append(Individual(self.create_init_vals()))
 
     def create_init_vals(self):
         w_vals_list = []
@@ -54,18 +64,34 @@ class GeneticSolver:
         print('Generation: {}\nTrAcc: {} +- {}\nTrCE: {} +- {}\nVaAcc: {} +- {}\nVa_CE: {} +- {}'
               .format(generation, result_m[0], result_s[0], result_m[1], result_s[1], result_m[2], result_s[2],
                       result_m[3], result_s[3]))
+        print('pop len {}'.format(len(self.population)))
 
     def recombination(self, pair):
         parent1 = self.population[pair[0]].w_vals
         parent2 = self.population[pair[1]].w_vals
-        offspring1 = []
-        offspring2 = []
-        for layer_idx in range(len(parent1)):
-            heritage_map = np.random.binomial(n=1, p=self.ga_config['crossover_p'], size=parent1[layer_idx].shape)
-            inv_heritage_map = heritage_map * (-1) + 1
-            offspring1.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
-            offspring2.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
-        return [Individual(offspring1), Individual(offspring2)]
+
+        if self.ga_config['recombination'] == 'neuron':
+            offspring1 = copy.deepcopy(parent1)
+            offspring2 = copy.deepcopy(parent2)
+
+            for n_exchanged_neurons in range(self.ga_config['n_neurons']):
+                layer_idx = np.random.randint(0, len(parent1) - 1)
+                neuron_idx = np.random.randint(0, parent1[layer_idx].shape[1])
+                offspring1[layer_idx][:, neuron_idx] = parent2[layer_idx][:, neuron_idx]
+                offspring1[layer_idx+1][neuron_idx, :] = parent2[layer_idx+1][neuron_idx, :]
+                offspring2[layer_idx][:, neuron_idx] = parent1[layer_idx][:, neuron_idx]
+                offspring2[layer_idx+1][neuron_idx, :] = parent1[layer_idx+1][neuron_idx, :]
+            return[Individual(offspring1), Individual(offspring2)]
+
+        else:
+            offspring1 = []
+            offspring2 = []
+            for layer_idx in range(len(parent1)):
+                heritage_map = np.random.binomial(n=1, p=self.ga_config['crossover_p'], size=parent1[layer_idx].shape)
+                inv_heritage_map = heritage_map * (-1) + 1
+                offspring1.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
+                offspring2.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
+            return [Individual(offspring1), Individual(offspring2)]
 
     def mutate_population(self, population):
         for p in range(len(population)):
@@ -93,7 +119,9 @@ class GeneticSolver:
                 offspring = offspring + self.recombination(pair)
 
             n_survivors = self.ga_config['pop_size'] - len(offspring)
-            self.population = self.mutate_population(self.population[:n_survivors] + offspring)
+            print('survivors {}'.format(n_survivors))
+            if n_survivors > 0:
+                self.population = self.mutate_population(self.population[:n_survivors] + offspring)
             print(self.population[0].tr_ce)
 
 

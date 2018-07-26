@@ -13,7 +13,7 @@ from src.activation import get_activation_function
 from src.genetic_algo import GeneticSolver
 
 
-def run_experiment(exp_config, init_config, nn_config_primitive, dataset, is_ga=False):
+def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
     tf.reset_default_graph()
     nn_config = copy.deepcopy(nn_config_primitive)
 
@@ -27,9 +27,6 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset, is_ga=
     x_tr, y_tr, x_va, y_va, x_te, y_te = load_dataset(dataset)
     nn_config['layout'].insert(0, x_tr.shape[1])
     nn_config['layout'].append(y_tr.shape[1])
-
-    if is_ga:
-        run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va)
 
     w_init_vals, b_init_vals = get_init_values(nn_config, init_config, x_tr, y_tr)
 
@@ -45,6 +42,8 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset, is_ga=
     print_nn_config(nn_config)
     print_run_config(exp_config)
 
+    ga_init_pop = []
+
     with tf.Session() as sess:
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
         writer_va = tf.summary.FileWriter(exp_config['path'] + 'va/')
@@ -58,7 +57,6 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset, is_ga=
         va_acc, va_ce = sess.run([nn.full_network.accuracy, nn.full_network.cross_entropy],
                                               feed_dict={nn.validate: True})
         print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(0,tr_acc, va_acc, tr_ce, va_ce))
-
 
         for epoch in range(exp_config['n_epochs']):
             nn.perform_gibbs_iteration(sess)
@@ -89,15 +87,24 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset, is_ga=
                 final_ensemble_ce = va_ce
                 print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
 
+            if exp_config['is_ga'] == True and exp_config['ga_burn_in'] <= epoch+1 and (epoch + 1 - exp_config['ga_burn_in']) % exp_config['ga_thinning'] == 0:
+                ga_init_pop.append(nn.get_weights(sess))
+
+    if exp_config['is_ga'] == True:
+        print('Starting genetic algorithm')
+        run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop)
+
+
     return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
 
 
-def run_ga_solver(ga_config, nn_config, x_tr, y_tr, x_va, y_va):
-    solver = GeneticSolver(nn_config, ga_config, x_tr.shape[0], x_va.shape[0])
+def run_ga_solver(ga_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop):
+    tf.reset_default_graph()
+    solver = GeneticSolver(nn_config, ga_config, x_tr.shape[0], x_va.shape[0], ga_init_pop)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         sess.run(solver.load_train_set_op, feed_dict={solver.x_placeholder: x_tr, solver.y_placeholder: y_tr})
-        sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va , solver.y_placeholder: y_va})
+        sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va, solver.y_placeholder: y_va})
         solver.perform_ga(sess)
 
 

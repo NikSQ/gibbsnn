@@ -161,6 +161,11 @@ class NN:
     def get_misclassification(self, sess, validation):
         return 1 - sess.run(self.full_network.accuracy, feed_dict={self.validate: validation})
 
+    def get_weights(self, sess):
+        weights = []
+        for layer in self.layers:
+            weights.append(sess.run(layer.W))
+        return weights
 
     # Performs a forward pass using the dataset X and returns a list containing the histograms (one per layer) of the
     # activations

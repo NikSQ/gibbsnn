@@ -300,7 +300,7 @@ class FCLayer:
     def adapt_bias(self, layer_input):
         activation = tf.matmul(layer_input, self.W)
         act_means = tf.reduce_mean(activation, axis=0, keep_dims=True)
-        assign_op = tf.assign(self.b, act_means)
+        assign_op = tf.assign(self.b, -act_means)
         if self.is_output:
             return activation, assign_op
 
