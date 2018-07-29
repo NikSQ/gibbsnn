@@ -67,6 +67,15 @@ class GeneticSolver:
                       result_m[3], result_s[3], result_m[4], result_s[4]))
         print('pop len {}'.format(len(self.population)))
 
+    def exchange_weights(self, offspring, parent, layer_idx, ex_input):
+        neuron_idx = np.random.randint(0, parent[layer_idx].shape[ex_input == True])
+        if ex_input:
+            offspring[layer_idx][:, neuron_idx] = parent[layer_idx][:, neuron_idx]
+        else:
+            offspring[layer_idx][neuron_idx, :] = parent[layer_idx][neuron_idx, :]
+        return offspring
+
+
     def recombination(self, pair, current_layer):
         parent1 = self.population[pair[0]].w_vals
         parent2 = self.population[pair[1]].w_vals
@@ -77,17 +86,21 @@ class GeneticSolver:
             offspring2 = copy.deepcopy(parent2)
 
             for n_exchanged_neurons in range(self.ga_config['n_neurons']):
-                if self.ga_config['layer_wise']:
-                    layer_idx = current_layer
+                layer_idx = current_layer
+                if self.ga_config['recombination'] == 'neuron':
+                    if self.ga_config['layer_wise'] == False:
+                        layer_idx = np.random.randint(0, len(parent1) - 1)
+                    offspring1 = self.exchange_weights(offspring1, parent2, layer_idx, True)
+                    offspring1 = self.exchange_weights(offspring1, parent2, layer_idx+1, False)
+                    offspring2 = self.exchange_weights(offspring2, parent1, layer_idx, True)
+                    offspring2 = self.exchange_weights(offspring2, parent1, layer_idx+1, False)
                 else:
-                    layer_idx = np.random.randint(0, len(parent1) - 1)
-                neuron_idx = np.random.randint(0, parent1[layer_idx].shape[1])
-                if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'i_neuron':
-                    offspring1[layer_idx][:, neuron_idx] = parent2[layer_idx][:, neuron_idx]
-                    offspring2[layer_idx][:, neuron_idx] = parent1[layer_idx][:, neuron_idx]
-                if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'o_neuron':
-                    offspring2[layer_idx+1][neuron_idx, :] = parent1[layer_idx+1][neuron_idx, :]
-                    offspring1[layer_idx+1][neuron_idx, :] = parent2[layer_idx+1][neuron_idx, :]
+                    if self.ga_config['layer_wise'] == False:
+                        layer_idx = np.random.randint(0, len(parent1))
+                    ex_input = self.ga_config['recombination'] == 'i_neuron'
+                    offspring1 = self.exchange_weights(offspring1, parent2, layer_idx, ex_input)
+                    offspring2 = self.exchange_weights(offspring2, parent1, layer_idx, ex_input)
+
             return[Individual(offspring1, self.population[pair[0]]), Individual(offspring2, self.population[pair[1]])]
 
         else:
@@ -122,6 +135,7 @@ class GeneticSolver:
     def perform_ga(self, sess):
         self.create_individuals(self.ga_config['pop_size'])
         current_layer = 0
+        self.simplify_pop(current_layer)
 
         for generation in range(self.ga_config['max_generations']):
             self.evaluate_population(sess)
@@ -141,10 +155,16 @@ class GeneticSolver:
 
             if self.ga_config['layer_wise'] == True and (generation + 1) % self.ga_config['gen_per_layer'] == 0:
                 current_layer += 1
-                if current_layer == len(self.nn_config['layout']) - 2:
+                if current_layer == len(self.nn_config['layout']) - 2 and self.ga_config['recombination'] == 'neuron':
                     current_layer = 0
-                self.population = [self.population[0]] * len(self.population)
-                self.population = self.mutate_population(self.population, current_layer, self.ga_config['p_layer_mutation'])
+                elif current_layer == len(self.nn_config['layout']) - 1:
+                    current_layer = 0
+                self.simplify_pop(current_layer)
+
+    def simplify_pop(self, layer_idx):
+        self.population = [self.population[0]] * len(self.population)
+        self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
+
 
 
 

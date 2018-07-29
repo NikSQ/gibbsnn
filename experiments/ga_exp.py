@@ -44,7 +44,7 @@ exp_config = {'n_epochs': 2,
               'pop_size': 50,
               'n_neurons': 1 + task_id,
               'gen_per_layer': 20,
-              'p_layer_mutation': 0.01}
+              'p_layer_mutation': 0.0001}
 
 layer_1 = 10
 layer_2 = 10
