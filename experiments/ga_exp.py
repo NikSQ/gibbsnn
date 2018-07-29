@@ -20,7 +20,7 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-exp_config = {'n_epochs': 50,
+exp_config = {'n_epochs': 2,
               'block_size': 4,
               'store_acts': False,
               'store_acts_every': 1,
@@ -32,19 +32,22 @@ exp_config = {'n_epochs': 50,
               'path': path,
 
               'is_ga': True,
-              'ga_burn_in': 10,
-              'ga_thinning': 3,
+              'ga_burn_in': 0,
+              'ga_thinning': 1,
               'recombination': 'neuron',
               'crossover_p': 0.7,
               'mutation_p': 0.00001,
               'max_generations': 500,
               'n_fit_individuals': 10,
-              'n_recombinations': 40,
+              'n_recombinations': 20,
+              'layer_wise': True,
               'pop_size': 50,
-              'n_neurons': 1 + task_id}
+              'n_neurons': 1 + task_id,
+              'gen_per_layer': 20,
+              'p_layer_mutation': 0.01}
 
-layer_1 = 280
-layer_2 = 200
+layer_1 = 10
+layer_2 = 10
 
 
 config = {'layout': [layer_1, layer_2],

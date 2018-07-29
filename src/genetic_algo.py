@@ -52,36 +52,43 @@ class GeneticSolver:
         return w_vals_list
 
     def print_generations_stats(self, generation):
-        results = np.zeros(shape=(len(self.population), 4), dtype=np.float32)
+        results = np.zeros(shape=(len(self.population), 5), dtype=np.float32)
         for idx, individual in enumerate(self.population):
             results[idx, 0] = individual.tr_acc
             results[idx, 1] = individual.tr_ce
             results[idx, 2] = individual.va_acc
             results[idx, 3] = individual.va_ce
+            results[idx, 4] = individual.n_ancestors
         result_m = np.mean(results, axis=0)
         result_s = np.std(results, axis=0)
 
-        print('Generation: {}\nTrAcc: {} +- {}\nTrCE: {} +- {}\nVaAcc: {} +- {}\nVa_CE: {} +- {}'
+        print('Generation: {}\nTrAcc: {} +- {}\tTrCE: {} +- {}\nVaAcc: {} +- {}\tVa_CE: {} +- {}\nAncestors: {} +- {}'
               .format(generation, result_m[0], result_s[0], result_m[1], result_s[1], result_m[2], result_s[2],
-                      result_m[3], result_s[3]))
+                      result_m[3], result_s[3], result_m[4], result_s[4]))
         print('pop len {}'.format(len(self.population)))
 
-    def recombination(self, pair):
+    def recombination(self, pair, current_layer):
         parent1 = self.population[pair[0]].w_vals
         parent2 = self.population[pair[1]].w_vals
 
-        if self.ga_config['recombination'] == 'neuron':
+        if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'o_neuron' \
+                or self.ga_config['i_neuron']:
             offspring1 = copy.deepcopy(parent1)
             offspring2 = copy.deepcopy(parent2)
 
             for n_exchanged_neurons in range(self.ga_config['n_neurons']):
-                layer_idx = np.random.randint(0, len(parent1) - 1)
+                if self.ga_config['layer_wise']:
+                    layer_idx = current_layer
+                else:
+                    layer_idx = np.random.randint(0, len(parent1) - 1)
                 neuron_idx = np.random.randint(0, parent1[layer_idx].shape[1])
-                offspring1[layer_idx][:, neuron_idx] = parent2[layer_idx][:, neuron_idx]
-                offspring1[layer_idx+1][neuron_idx, :] = parent2[layer_idx+1][neuron_idx, :]
-                offspring2[layer_idx][:, neuron_idx] = parent1[layer_idx][:, neuron_idx]
-                offspring2[layer_idx+1][neuron_idx, :] = parent1[layer_idx+1][neuron_idx, :]
-            return[Individual(offspring1), Individual(offspring2)]
+                if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'i_neuron':
+                    offspring1[layer_idx][:, neuron_idx] = parent2[layer_idx][:, neuron_idx]
+                    offspring2[layer_idx][:, neuron_idx] = parent1[layer_idx][:, neuron_idx]
+                if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'o_neuron':
+                    offspring2[layer_idx+1][neuron_idx, :] = parent1[layer_idx+1][neuron_idx, :]
+                    offspring1[layer_idx+1][neuron_idx, :] = parent2[layer_idx+1][neuron_idx, :]
+            return[Individual(offspring1, self.population[pair[0]]), Individual(offspring2, self.population[pair[1]])]
 
         else:
             offspring1 = []
@@ -93,10 +100,17 @@ class GeneticSolver:
                 offspring2.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
             return [Individual(offspring1), Individual(offspring2)]
 
-    def mutate_population(self, population):
+    def mutate_population(self, population, layer=None, prob=None):
+        mutation_prob = prob
+        if prob is None:
+            mutation_prob = self.ga_config['mutation_p']
+
         for p in range(len(population)):
+            if layer is not None:
+                if layer != p:
+                    continue
             for l in range(len(population[p].w_vals)):
-                mutation_map = np.random.binomial(n=1, p=self.ga_config['mutation_p'],
+                mutation_map = np.random.binomial(n=1, p=mutation_prob,
                                                   size=population[p].w_vals[l].shape) * (-2) + 1
                 population[p].w_vals[l] *= mutation_map
         return population
@@ -107,6 +121,7 @@ class GeneticSolver:
 
     def perform_ga(self, sess):
         self.create_individuals(self.ga_config['pop_size'])
+        current_layer = 0
 
         for generation in range(self.ga_config['max_generations']):
             self.evaluate_population(sess)
@@ -116,13 +131,22 @@ class GeneticSolver:
             offspring = []
             for idx in range(self.ga_config['n_recombinations']):
                 pair = np.random.choice(self.ga_config['n_fit_individuals'], size=(2,), replace=False)
-                offspring = offspring + self.recombination(pair)
+                offspring = offspring + self.recombination(pair, current_layer)
 
             n_survivors = self.ga_config['pop_size'] - len(offspring)
             print('survivors {}'.format(n_survivors))
             if n_survivors > 0:
                 self.population = self.mutate_population(self.population[:n_survivors] + offspring)
             print(self.population[0].tr_ce)
+
+            if self.ga_config['layer_wise'] == True and (generation + 1) % self.ga_config['gen_per_layer'] == 0:
+                current_layer += 1
+                if current_layer == len(self.nn_config['layout']) - 2:
+                    current_layer = 0
+                self.population = [self.population[0]] * len(self.population)
+                self.population = self.mutate_population(self.population, current_layer, self.ga_config['p_layer_mutation'])
+
+
 
 
 
