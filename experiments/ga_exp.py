@@ -8,7 +8,7 @@ from src.run_experiment import run_experiment
 
 #task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 task_id = 0
-path = '../results/dropout/job_' + str(task_id) + '/'
+path = '../results/ga/job_' + str(task_id) + '/'
 n_runs = 1
 
 # 0.8 + id * 0.05
@@ -20,8 +20,12 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-exp_config = {'n_epochs': 2,
-              'block_size': 4,
+recombination = ['neuron', 'o_neuron', 'i_neuron', 'default']
+recomb = recombination[task_id]
+
+
+exp_config = {'n_epochs': 5,
+              'block_size': 8,
               'store_acts': False,
               'store_acts_every': 1,
               'store_vars': True,
@@ -32,9 +36,9 @@ exp_config = {'n_epochs': 2,
               'path': path,
 
               'is_ga': True,
-              'ga_burn_in': 0,
+              'ga_burn_in': 3,
               'ga_thinning': 1,
-              'recombination': 'neuron',
+              'recombination': recomb,
               'crossover_p': 0.7,
               'mutation_p': 0.00001,
               'max_generations': 500,
@@ -43,11 +47,11 @@ exp_config = {'n_epochs': 2,
               'layer_wise': True,
               'pop_size': 50,
               'n_neurons': 1 + task_id,
-              'gen_per_layer': 20,
-              'p_layer_mutation': 0.0001}
+              'gen_per_layer': 10,
+              'p_layer_mutation': 0.0005}
 
-layer_1 = 10
-layer_2 = 10
+layer_1 = 280
+layer_2 = 200
 
 
 config = {'layout': [layer_1, layer_2],

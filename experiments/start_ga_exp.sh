@@ -2,8 +2,8 @@
 
 #SBATCH --job-name="nn_genetic"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/g5%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/g5%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/lwga%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/lwga%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
@@ -12,7 +12,7 @@
 ##SBATCH --begin=now+9hours
 #SBATCH --partition=gpu,gpu2
 #SBATCH --exclude=diannao,sanderling,fritzfantom
-#SBATCH --array=0-2
+#SBATCH --array=0-3
 
 #################
 # configuration #
@@ -174,7 +174,7 @@ export MKL_THREADING_LAYER=GNU
 export THEANO_FLAGS="${THEANO_FLAGS}"
 export PYTHONUNBUFFERED=TRUE
 
-python3 ../experiments/ga_exp.py
+python3 ../experiments/lwga_exp.py
 ##################
 # END: user code #
 ##################

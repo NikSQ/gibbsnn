@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 from src.individual import Individual
 from src.static_nn import StaticNN
+from src.ensemble import Ensemble
 import copy
 
 class GeneticSolver:
@@ -9,6 +10,8 @@ class GeneticSolver:
         self.nn_config = nn_config
         self.ga_config = ga_config
         self.ga_init_pop = ga_init_pop
+        self.tr_batch_size = tr_batch_size
+        self.va_batch_size = va_batch_size
 
         self.x_placeholder = tf.placeholder(tf.float32, [None, self.nn_config['layout'][0]])
         self.y_placeholder = tf.placeholder(tf.float32, [None, self.nn_config['layout'][-1]])
@@ -26,6 +29,8 @@ class GeneticSolver:
         self.load_val_set_op = tf.group(*[op1, op2])
 
         self.static_nn = StaticNN(nn_config, self.x_tr, self.y_tr, self.x_va, self.y_va)
+        self.ensemble_tr = Ensemble(self.y_tr, (self.tr_batch_size, self.nn_config['layout'][-1]), 'tr', self.static_nn.full_network.activation)
+        self.ensemble_va = Ensemble(self.y_va, (self.va_batch_size, self.nn_config['layout'][-1]), 'va', self.static_nn.full_network.activation)
         self.population = []
 
     def create_individuals(self, amount):
@@ -81,7 +86,7 @@ class GeneticSolver:
         parent2 = self.population[pair[1]].w_vals
 
         if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'o_neuron' \
-                or self.ga_config['i_neuron']:
+                or self.ga_config['recombination'] == 'i_neuron':
             offspring1 = copy.deepcopy(parent1)
             offspring2 = copy.deepcopy(parent2)
 
@@ -111,7 +116,7 @@ class GeneticSolver:
                 inv_heritage_map = heritage_map * (-1) + 1
                 offspring1.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
                 offspring2.append(np.multiply(parent1[layer_idx], heritage_map) + np.multiply(parent2[layer_idx], inv_heritage_map))
-            return [Individual(offspring1), Individual(offspring2)]
+            return [Individual(offspring1, self.population[pair[0]]), Individual(offspring2, self.population[pair[1]])]
 
     def mutate_population(self, population, layer=None, prob=None):
         mutation_prob = prob
@@ -119,13 +124,11 @@ class GeneticSolver:
             mutation_prob = self.ga_config['mutation_p']
 
         for p in range(len(population)):
-            if layer is not None:
-                if layer != p:
-                    continue
             for l in range(len(population[p].w_vals)):
-                mutation_map = np.random.binomial(n=1, p=mutation_prob,
-                                                  size=population[p].w_vals[l].shape) * (-2) + 1
-                population[p].w_vals[l] *= mutation_map
+                if layer is None or (layer == l or (layer == l-1 and self.ga_config['recombination'] == 'neuron')):
+                    mutation_map = np.random.binomial(n=1, p=mutation_prob,
+                                                      size=population[p].w_vals[l].shape) * (-2) + 1
+                    population[p].w_vals[l] *= mutation_map
         return population
 
     def evaluate_population(self, sess):
@@ -136,11 +139,26 @@ class GeneticSolver:
         self.create_individuals(self.ga_config['pop_size'])
         current_layer = 0
         self.simplify_pop(current_layer)
+        final_ensemble_acc = None
+        final_ensemble_ce = None
+        final_acc = None
+        final_ce = None
 
         for generation in range(self.ga_config['max_generations']):
             self.evaluate_population(sess)
-            self.print_generations_stats(generation)
+            if generation % 10 == 0:
+                self.print_generations_stats(generation)
             self.population.sort(key=lambda x: x.tr_ce, reverse=False)
+            final_acc = self.population[0].va_acc
+            final_ce = self.population[0].va_ce
+
+            if self.ga_config['ens_burn_in'] <= generation + 1 and (generation - 1 - self.ga_config['ens_burn_in']) % self.ga_config['ens_thinning'] == 0:
+                self.static_nn.evaluate(sess, self.population[0].w_vals)
+                tr_acc, tr_ce = sess.run([self.ensemble_tr.accuracy, self.ensemble_tr.cross_entropy], feed_dict={self.static_nn.validate: False})
+                va_acc, va_ce = sess.run([self.ensemble_va.accuracy, self.ensemble_va.cross_entropy], feed_dict={self.static_nn.validate: True})
+                final_ensemble_acc = va_acc
+                final_ensemble_ce = va_ce
+                print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
 
             offspring = []
             for idx in range(self.ga_config['n_recombinations']):
@@ -148,10 +166,8 @@ class GeneticSolver:
                 offspring = offspring + self.recombination(pair, current_layer)
 
             n_survivors = self.ga_config['pop_size'] - len(offspring)
-            print('survivors {}'.format(n_survivors))
             if n_survivors > 0:
                 self.population = self.mutate_population(self.population[:n_survivors] + offspring)
-            print(self.population[0].tr_ce)
 
             if self.ga_config['layer_wise'] == True and (generation + 1) % self.ga_config['gen_per_layer'] == 0:
                 current_layer += 1
@@ -160,8 +176,11 @@ class GeneticSolver:
                 elif current_layer == len(self.nn_config['layout']) - 1:
                     current_layer = 0
                 self.simplify_pop(current_layer)
+        return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
 
     def simplify_pop(self, layer_idx):
+        if self.ga_config['recombination'] == 'default':
+            return
         self.population = [self.population[0]] * len(self.population)
         self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
 

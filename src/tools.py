@@ -37,7 +37,7 @@ def get_init_values(nn_config, train_config, x, y):
 
                 neg_act_means = -tf.reduce_mean(activation, axis=0)
                 with tf.control_dependencies([tf.assign(b, tf.expand_dims(neg_act_means, axis=0))]):
-                    layer_input = tf.nn.sigmoid(activation + neg_act_means)
+                    layer_input = tf.nn.tanh(activation + neg_act_means)
 
     ce = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=activation, labels=y))
     prediction = tf.argmax(tf.nn.softmax(activation), axis=1)

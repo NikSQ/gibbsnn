@@ -92,7 +92,7 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
 
     if exp_config['is_ga'] == True:
         print('Starting genetic algorithm')
-        run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop)
+        return run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop)
 
 
     return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
@@ -105,7 +105,7 @@ def run_ga_solver(ga_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop):
         sess.run(tf.global_variables_initializer())
         sess.run(solver.load_train_set_op, feed_dict={solver.x_placeholder: x_tr, solver.y_placeholder: y_tr})
         sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va, solver.y_placeholder: y_va})
-        solver.perform_ga(sess)
+        return solver.perform_ga(sess)
 
 
 
