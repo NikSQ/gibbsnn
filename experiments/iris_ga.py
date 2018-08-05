@@ -4,6 +4,7 @@ import os
 sys.path.append('../')
 
 from src.run_experiment import run_experiment
+from src.tools import print_stats
 
 
 #task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
@@ -24,7 +25,7 @@ recombination = ['o_neuron', 'i_neuron', 'default']
 recomb = recombination[task_id]
 
 
-exp_config = {'n_epochs': 0,
+run_config = {'n_epochs': 0,
               'block_size': 8,
               'store_acts': False,
               'store_acts_every': 1,
@@ -45,12 +46,12 @@ exp_config = {'n_epochs': 0,
               'n_fit_individuals': 10,
               'n_recombinations': 20,
               'layer_wise': True,
-              'pop_size': 50,
+              'pop_size': 5000,
               'n_neurons': 1 + task_id,
               'gen_per_layer': 10,
               'p_layer_mutation': 0.5,
               'ens_burn_in': 10,
-              'ens_thinning': 1}
+              'ens_thinning': 5}
 
 
 config = {'layout': [],
@@ -64,5 +65,19 @@ config = {'layout': [],
           'prior_value': 0.9,
           'sampling_sequence': 'stochastic'}
 
-run_experiment(exp_config, init_config, config, 'mnist_basic')
+va_acc_list = []
+va_ce_list = []
+ens_acc_list = []
+ens_ce_list = []
+for run in range(n_runs):
+    ens_acc, ens_ce, va_acc, va_ce = run_experiment(run_config, init_config, config, 'uci_iris')
+    va_acc_list.append(va_acc)
+    va_ce_list.append(va_ce)
+    ens_acc_list.append(ens_acc)
+    ens_ce_list.append(ens_ce)
+
+print_stats('Mod Accuracy', va_acc_list)
+print_stats('Ens Accuracy', ens_acc_list)
+print_stats('Mod CE', va_ce_list)
+print_stats('Ens CE', ens_ce_list)
 

@@ -175,13 +175,15 @@ class GeneticSolver:
                     current_layer = 0
                 elif current_layer == len(self.nn_config['layout']) - 1:
                     current_layer = 0
+                print('current_layer {}'.format(current_layer))
                 self.simplify_pop(current_layer)
         return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
 
     def simplify_pop(self, layer_idx):
-        if self.ga_config['recombination'] == 'default':
+        if self.ga_config['recombination'] == 'default' or self.ga_config['layer_wise'] == False:
             return
-        self.population = [self.population[0]] * len(self.population)
+        for i in range(1, len(self.population)):
+            self.population[i].w_vals = copy.deepcopy(self.population[0].w_vals)
         self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
 
 
