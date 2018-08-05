@@ -9,7 +9,8 @@ filenames = {'mnist': '../datasets/mnist/mnist.mat',
              'mnist_rotated': '../datasets/mnist_rotated/mnist_rotated.mat',
              'mnist_rotated_background': '../datasets/mnist_rotated_background/mnist_rotated_background',
              'ebp_reuters_i6': '../datasets/ebp_reuters_i6.mat',
-             'uci_iris': '../datasets/uci_iris/iris.mat'}
+             'uci_iris': '../datasets/uci_iris/iris.mat',
+             'uci_cancer': '../datasets/uci_breast_cancer_wisconsin/breast_cancer_wisconsin_diagnostic.mat'}
 
 def load_dataset(dataset_name, binarize=False):
     if 'mnist' in dataset_name:
@@ -20,7 +21,10 @@ def load_dataset(dataset_name, binarize=False):
 def load_uci_dataset(dataset_name):
     filename = filenames[dataset_name]
     data = loadmat(filename)
-    data['t'] = np.squeeze(data['t']) - 1
+    if dataset_name == 'uci_cancer':
+        data['t'] = ((np.squeeze(data['t']) - 1) / 255).astype(dtype=np.int32)
+    else:
+        data['t'] = np.squeeze(data['t'] - 1)
     n_samples = data['x'].shape[0]
     tr_batch_size = int(n_samples * 0.7)
     va_batch_size = n_samples - tr_batch_size
