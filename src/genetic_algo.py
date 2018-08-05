@@ -181,7 +181,8 @@ class GeneticSolver:
     def simplify_pop(self, layer_idx):
         if self.ga_config['recombination'] == 'default':
             return
-        self.population = [self.population[0]] * len(self.population)
+        for i in range(1, len(self.population)):
+            self.population[i].w_vals = copy.deepcopy(self.population[0].w_vals)
         self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
 
 
