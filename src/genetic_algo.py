@@ -86,7 +86,7 @@ class GeneticSolver:
         parent2 = self.population[pair[1]].w_vals
 
         if self.ga_config['recombination'] == 'neuron' or self.ga_config['recombination'] == 'o_neuron' \
-                or self.ga_config['recombination'] == 'i_neuron':
+                or self.ga_config['recombination'] == 'i_neuron' or self.ga_config['recombination'] == 'io_neuron':
             offspring1 = copy.deepcopy(parent1)
             offspring2 = copy.deepcopy(parent2)
 
@@ -103,6 +103,8 @@ class GeneticSolver:
                     if self.ga_config['layer_wise'] == False:
                         layer_idx = np.random.randint(0, len(parent1))
                     ex_input = self.ga_config['recombination'] == 'i_neuron'
+                    if self.ga_config['recombination'] == 'io_neuron':
+                        ex_input = bool(np.random.randint(0, 2))
                     offspring1 = self.exchange_weights(offspring1, parent2, layer_idx, ex_input)
                     offspring2 = self.exchange_weights(offspring2, parent1, layer_idx, ex_input)
 
@@ -146,7 +148,7 @@ class GeneticSolver:
 
         for generation in range(self.ga_config['max_generations']):
             self.evaluate_population(sess)
-            if generation % 10 == 0:
+            if generation % 1 == 0:
                 self.print_generations_stats(generation)
             self.population.sort(key=lambda x: x.tr_ce, reverse=False)
             final_acc = self.population[0].va_acc
@@ -180,11 +182,15 @@ class GeneticSolver:
         return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
 
     def simplify_pop(self, layer_idx):
+
+        self.population[0].print_counts()
         if self.ga_config['recombination'] == 'default' or self.ga_config['layer_wise'] == False:
             return
         for i in range(1, len(self.population)):
             self.population[i].w_vals = copy.deepcopy(self.population[0].w_vals)
         self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
+
+
 
 
 
