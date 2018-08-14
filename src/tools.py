@@ -110,8 +110,29 @@ def print_nn_config(config):
 
 def print_run_config(config):
     print("RUN CONFIG")
-    print('Epochs: {}, Blocksize: {}'.format(config['n_epochs'], config['block_size']))
+    print('Gibbs  Epochs: {}, Blocksize: {}'.format(config['n_epochs'], config['block_size']))
     print('\n===================================\n')
+    print('Gibbs Ensemble | Burn In: {}, Thinning: {}'.format(config['burn_in'], config['thinning']))
+
+    if config['mode'] == 'ga':
+        print('GA Init Pop | Burn In: {}, Thinning: {}'.format(config['init_burn_in'], config['init_thinning']))
+        if config['recombination'] == 'default':
+            print('Recombination Method: {}, Crossover_P: {}, Mutation_P: {}'.format(config['recombination'], config['crossover_p'], config['mutation_p']))
+        else:
+            print('Recombination Method: {}, N_Neurons: {}, Layer-Wise: {}'.format(config['recombination'], config['n_neurons'], config['layer_wise']))
+            if config['layer_wise'] == True:
+                print('Gen Per Layer: {}, Layer Mutation: {}'.format(config['gen_per_layer'], config['p_layer_mutation']))
+        print('Max GA Generations: {}, Population Size: {}, Fit_Individuals: {}, N_Recombinations: {}'.format(config['max_generations'], config['pop_size'], config['n_fit_individuals'], config['n_recombinations']))
+        print('GA Ensemble | Burn In: {}, Thinning: {}'.format(config['ens_burn_in'], config['ens_thinning']))
+    if config['mode'] == 'sa':
+        print('SA Init Pop | Burn In: {}, Thinning: {}'.format(config['init_burn_in'], config['init_thinning']))
+        print('Temperature | Start: {}, Epochs Per T: {}, Decrement: {}'.format(config['T_start'], config['epochs_per_T'], config['T_decremental']))
+        print('Max Epochs: {}, Non Zero Temperature Epochs: {}'.format(config['max_epochs'], np.minimum(config['max_epochs'], int(np.ceil(config['T_start'] / config['T_decremental']) * config['epochs_per_T']))))
+        print('SA Ensemble | Population Size: {}, Calculate Every {}th Epoch'.format(config['pop_size'], config['ens_calc']))
+        print('Mutation P: {}'.format(config['mutation_p']))
+
+
+
 
 
 def print_stats(text, values):

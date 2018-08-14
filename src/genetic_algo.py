@@ -183,7 +183,7 @@ class GeneticSolver:
 
     def simplify_pop(self, layer_idx):
 
-        self.population[0].print_counts()
+        #self.population[0].print_counts()
         if self.ga_config['recombination'] == 'default' or self.ga_config['layer_wise'] == False:
             return
         for i in range(1, len(self.population)):

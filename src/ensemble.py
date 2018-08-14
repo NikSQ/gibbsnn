@@ -12,6 +12,7 @@ class Ensemble:
         add_op = tf.assign(self.activation_sum, self.activation_sum + activation).op
         inc_counter_op = tf.assign(self.counter, self.counter + 1)
         add_model_op = tf.group(*[add_op, inc_counter_op])
+        self.clear_activation_op = tf.group(*[tf.assign(self.activation_sum, tf.zeros(y_shape)), tf.assign(self.counter, [0])])
 
         with tf.control_dependencies([add_model_op]):
             mean_activation = tf.divide(self.activation_sum, self.counter)
