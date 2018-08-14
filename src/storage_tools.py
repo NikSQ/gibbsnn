@@ -26,6 +26,12 @@ class Saver:
         file_handle = open(file=file_path + '.seq', mode='wb')
         np.save(file_handle, data_to_store, allow_pickle=False)
 
+    def store_connections(self, name, w_vals):
+        for layer_idx in range(len(w_vals)):
+            file_path = self.path + name + str(layer_idx) + '.vals'
+            file_handle = open(file=file_path, mode='wb')
+            np.save(file_handle, w_vals(layer_idx), allow_pickle)
+
 
 class Loader:
     def __init__(self, exp_name, job_name):

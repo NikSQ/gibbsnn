@@ -11,6 +11,7 @@ from src.tools import print_nn_config, print_run_config, get_init_values
 from src.ensemble import Ensemble
 from src.activation import get_activation_function
 from src.genetic_algo import GeneticSolver
+from src.simulated_annealing import SASolver
 
 
 def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
@@ -42,7 +43,7 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
     print_nn_config(nn_config)
     print_run_config(exp_config)
 
-    ga_init_pop = []
+    init_pop = []
 
     with tf.Session() as sess:
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
@@ -87,12 +88,16 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
                 final_ensemble_ce = va_ce
                 print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
 
-            if exp_config['is_ga'] == True and exp_config['ga_burn_in'] <= epoch+1 and (epoch + 1 - exp_config['ga_burn_in']) % exp_config['ga_thinning'] == 0:
-                ga_init_pop.append(nn.get_weights(sess))
+            if (exp_config['mode'] == 'ga' or exp_config['mode'] == 'sa') and exp_config['init_burn_in'] <= epoch+1 and (epoch + 1 - exp_config['init_burn_in']) % exp_config['ga_thinning'] == 0:
+                init_pop.append(nn.get_weights(sess))
 
-    if exp_config['is_ga'] == True:
+    if exp_config['mode'] == 'ga':
         print('Starting genetic algorithm')
-        return run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop)
+        return run_ga_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, init_pop)
+
+    if exp_config['mode'] == 'sa':
+        print('Starting simulated annealing')
+        return run_sa_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, init_pop)
 
 
     return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
@@ -106,6 +111,16 @@ def run_ga_solver(ga_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop):
         sess.run(solver.load_train_set_op, feed_dict={solver.x_placeholder: x_tr, solver.y_placeholder: y_tr})
         sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va, solver.y_placeholder: y_va})
         return solver.perform_ga(sess)
+
+
+def run_sa_solver(sa_config, nn_config, x_tr, y_tr, x_va, y_va, sa_init_pop):
+    tf.reset_default_graph()
+    solver = SASolver(nn_config, sa_config, x_tr.shape[0], x_va.shape[0], sa_init_pop)
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+        sess.run(solver.load_train_set_op, feed_dict={solver.x_placeholder: x_tr, solver.y_placeholder: y_tr})
+        sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va, solver.y_placeholder: y_va})
+        return solver.perform_sa(sess)
 
 
 
