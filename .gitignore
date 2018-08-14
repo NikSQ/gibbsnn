@@ -1,4 +1,8 @@
 /src/__pycache__/*
 /data/*
 /experiments/*
+/results/*
+/logs/*
+/datasets/*
+
 

@@ -25,6 +25,7 @@ class Individual:
         self.tr_acc, self.tr_ce, self.va_acc, self.va_ce = static_nn.evaluate(sess, self.w_vals)
 
     def print_counts(self):
+        return
         for layer_idx in range(len(self.w_vals)):
             plt.subplot(len(self.w_vals), 1, layer_idx + 1)
             plt.imshow(self.w_change_count[layer_idx], cmap='gray')
