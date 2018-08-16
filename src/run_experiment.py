@@ -88,7 +88,7 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
                 final_ensemble_ce = va_ce
                 print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
 
-            if (exp_config['mode'] == 'ga' or exp_config['mode'] == 'sa') and exp_config['init_burn_in'] <= epoch+1 and (epoch + 1 - exp_config['init_burn_in']) % exp_config['ga_thinning'] == 0:
+            if (exp_config['mode'] == 'ga' or exp_config['mode'] == 'sa') and exp_config['init_burn_in'] <= epoch+1 and (epoch + 1 - exp_config['init_burn_in']) % exp_config['init_thinning'] == 0:
                 init_pop.append(nn.get_weights(sess))
 
     if exp_config['mode'] == 'ga':

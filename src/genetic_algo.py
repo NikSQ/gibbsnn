@@ -154,6 +154,8 @@ class GeneticSolver:
             final_acc = self.population[0].va_acc
             final_ce = self.population[0].va_ce
 
+            print('Best Individual | TrAcc: {}, TrCE: {}, VaAcc: {}, VaCE: {}'.format(self.population[0].tr_acc, self.population[0].tr_ce, final_acc, final_ce))
+
             if self.ga_config['ens_burn_in'] <= generation + 1 and (generation - 1 - self.ga_config['ens_burn_in']) % self.ga_config['ens_thinning'] == 0:
                 self.static_nn.evaluate(sess, self.population[0].w_vals)
                 tr_acc, tr_ce = sess.run([self.ensemble_tr.accuracy, self.ensemble_tr.cross_entropy], feed_dict={self.static_nn.validate: False})
@@ -170,6 +172,8 @@ class GeneticSolver:
             n_survivors = self.ga_config['pop_size'] - len(offspring)
             if n_survivors > 0:
                 self.population = self.mutate_population(self.population[:n_survivors] + offspring)
+            else:
+                self.population = self.mutate_population(offspring)
 
             if self.ga_config['layer_wise'] == True and (generation + 1) % self.ga_config['gen_per_layer'] == 0:
                 current_layer += 1

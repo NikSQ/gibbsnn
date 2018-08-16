@@ -16,12 +16,10 @@ init_config = {'n_epochs': 100,
                'reg': 0.0001}
 
 recombination = ['neuron', 'io_neuron', 'default']
-mutation = [0., 0., 0.0001]
-mutation_p = mutation[task_id]
 recomb = recombination[task_id]
 
 
-exp_config = {'n_epochs': 10,
+exp_config = {'n_epochs': 0,
               'block_size': 8,
               'store_acts': False,
               'store_acts_every': 1,
@@ -37,15 +35,15 @@ exp_config = {'n_epochs': 10,
               'init_thinning': 1,
               'recombination': recomb,
               'crossover_p': 0.7,
-              'mutation_p': mutation_p,
+              'mutation_p': 0.00001,
               'max_generations': 100,
               'n_fit_individuals': 40,
-              'n_recombinations': 99,
+              'n_recombinations': 100,
               'layer_wise': True,
               'pop_size': 200,
               'n_neurons': 1,
               'gen_per_layer': 5,
-              'p_layer_mutation': 0.0002,
+              'p_layer_mutation': 0.001,
               'ens_burn_in': 30,
               'ens_thinning': 5}
 

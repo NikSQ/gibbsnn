@@ -15,49 +15,48 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-recombination = ['neuron', 'io_neuron', 'default']
-mutation = [0., 0., 0.0001]
-mutation_p = mutation[task_id]
-recomb = recombination[task_id]
+recombination = ['neuron', 'o_neuron', 'i_neuron', 'default']
+#recomb = recombination[task_id]
+recomb = 'io_neuron'
 
 
-exp_config = {'n_epochs': 10,
+run_config = {'n_epochs': 0,
               'block_size': 8,
               'store_acts': False,
               'store_acts_every': 1,
               'store_vars': True,
               'store_vars_every': 1,
               'store_method': 'log',
-              'burn_in': 50,
+              'burn_in': 30,
               'thinning': 3,
               'path': path,
 
-              'mode': 'ga',
-              'init_burn_in': 0,
-              'init_thinning': 1,
+              'is_ga': True,
+              'ga_burn_in': 100,
+              'ga_thinning': 10,
               'recombination': recomb,
               'crossover_p': 0.7,
-              'mutation_p': mutation_p,
-              'max_generations': 100,
-              'n_fit_individuals': 40,
-              'n_recombinations': 99,
+              'mutation_p': 0.0,
+              'max_generations': 500,
+              'n_fit_individuals': 10,
+              'n_recombinations': 20,
               'layer_wise': True,
-              'pop_size': 200,
+              'pop_size': 50,
               'n_neurons': 1,
-              'gen_per_layer': 5,
-              'p_layer_mutation': 0.0002,
-              'ens_burn_in': 30,
-              'ens_thinning': 5}
+              'gen_per_layer': 10,
+              'p_layer_mutation': 0.5**float(task_id + 1),
+              'ens_burn_in': 100,
+              'ens_thinning': 10}
 
 
-config = {'layout': [280, 200],
+config = {'layout': [20],
           'weight_type': 'binary',
-          'act_func_names': ['bs', 'bs'],
-          'act_func_params': [[], []],
-          'bias_vals': [None, None, None],
-          'keep_probs': [.9, 1., 1.],
-          'flat_factor': [1., 1., 1.],
-          'act_noise': [0., 0., 0.],
+          'act_func_names': ['bs'],
+          'act_func_params': [[]],
+          'bias_vals': [None, None],
+          'keep_probs': [.9, 1.],
+          'flat_factor': [1., 1.],
+          'act_noise': [0., 0.],
           'prior_value': 0.9,
           'sampling_sequence': 'stochastic'}
 
@@ -66,7 +65,7 @@ va_ce_list = []
 ens_acc_list = []
 ens_ce_list = []
 for run in range(n_runs):
-    ens_acc, ens_ce, va_acc, va_ce = run_experiment(exp_config, init_config, config, 'mnist_basic')
+    ens_acc, ens_ce, va_acc, va_ce = run_experiment(run_config, init_config, config, 'uci_cancer')
     va_acc_list.append(va_acc)
     va_ce_list.append(va_ce)
     ens_acc_list.append(ens_acc)
@@ -76,6 +75,4 @@ print_stats('Mod Accuracy', va_acc_list)
 print_stats('Ens Accuracy', ens_acc_list)
 print_stats('Mod CE', va_ce_list)
 print_stats('Ens CE', ens_ce_list)
-
-
 
