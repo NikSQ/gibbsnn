@@ -1,0 +1,29 @@
+
+
+config:
+
+HOME=/clusterFS/home/student/kopp13
+PATH=/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/bin:/clusterFS/home/student/kopp13/miniconda3/bin:/clusterFS/home/student/kopp13/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+LD_LIBRARY_PATH=
+THEANO_FLAGS=floatX=float32,gpuarray.preallocate=0.9,dnn.library_path=/usr/lib/x86_64-linux-gnu,cxx=clang++-3.8,device=cuda,base_compiledir=/tmp/tmp.AyTYWqSPDD
+Input binarization: False
+Pretrained network accuracy: 0.9969000220298767
+NN CONFIG
+Weight-type:		binary
+Layout									Layer #1: 784	Layer #2: 280	Layer #3: 200	Layer #4: 10	
+Activation Functions					Layer #1: bs	Layer #2: bs	
+Keep probabilities		Layer #0: 0.9	Layer #1: 1.0	Layer #2: 1.0	
+Flat factors							Layer #1: 1.0	Layer #2: 1.0	Layer #3: 1.0	
+Activation Noise						Layer #1: 0.0	Layer #2: 0.0	Layer #3: 0.0	
+Prior: 0.9
+
+===================================
+
+RUN CONFIG
+Epochs: 0, Blocksize: 8
+
+===================================
+
+Epoch: 0, AccTr: 0.27880001068115234, AccVa: 0.28200000524520874, CeTr: 11.080011367797852, CeVa: 11.045567512512207
+Starting genetic algorithm
+ga init pop len: 0

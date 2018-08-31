@@ -10,7 +10,7 @@ from src.tools import print_stats
 task_id = int(os.environ['SLURM_ARRAY_TASK_ID'])
 #task_id = 0
 path = '../results/prior1/job_' + str(task_id) + '/'
-n_runs = 5
+n_runs = 1
 
 init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
@@ -25,7 +25,8 @@ run_config = {'n_epochs': 200,
               'store_method': 'both',
               'burn_in': 20,
               'thinning': 5,
-              'path': path}
+              'path': path,
+              'mode': 'any'}
 
 layer_1 = 250
 layer_2 = 220
@@ -33,6 +34,7 @@ keep_probs1 = 1.
 keep_probs2 = 1.
 act_noise = 0.
 prior_value = 0.4 + task_id * 0.08
+prior_value = 0.96
 
 
 

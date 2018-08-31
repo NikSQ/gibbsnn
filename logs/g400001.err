@@ -1,0 +1,25 @@
+WARNING:tensorflow:From ../src/fc_layer.py:292: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+WARNING:tensorflow:From ../src/fc_layer.py:302: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2018-07-24 13:34:53.205873: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2018-07-24 13:34:53.343313: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: GeForce GTX 1060 6GB major: 6 minor: 1 memoryClockRate(GHz): 1.7085
+pciBusID: 0000:04:00.0
+totalMemory: 5.94GiB freeMemory: 5.86GiB
+2018-07-24 13:34:53.343393: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:04:00.0, compute capability: 6.1)
+Traceback (most recent call last):
+  File "../experiments/ga_exp.py", line 32, in <module>
+    run_experiment(ga_config, None, config, 'mnist_basic', True)
+  File "../src/run_experiment.py", line 34, in run_experiment
+    w_init_vals, b_init_vals = get_init_values(nn_config, init_config, x_tr, y_tr)
+  File "../src/tools.py", line 45, in get_init_values
+    train_op = tf.train.AdamOptimizer(learning_rate=train_config['learning_rate'])\
+TypeError: 'NoneType' object is not subscriptable

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#SBATCH --job-name="nn_arch"
+#SBATCH --job-name="nn"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
 #SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/arch%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/arch5a.err
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/arch%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00
@@ -11,7 +11,7 @@
 #SBATCH --gres=gpu
 #SBATCH --partition=gpu,gpu2
 #SBATCH --exclude=diannao
-#SBATCH --array=0-25
+#SBATCH --array=0-0
 
 #################
 # configuration #
