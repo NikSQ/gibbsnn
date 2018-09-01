@@ -1,0 +1,35 @@
+WARNING:tensorflow:From ../src/tools.py:42: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+2018-08-31 21:06:14.688451: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2018-08-31 21:06:14.872853: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: GeForce GTX 1060 6GB major: 6 minor: 1 memoryClockRate(GHz): 1.7085
+pciBusID: 0000:04:00.0
+totalMemory: 5.94GiB freeMemory: 5.86GiB
+2018-08-31 21:06:14.872970: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:04:00.0, compute capability: 6.1)
+WARNING:tensorflow:From ../src/fc_layer.py:142: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From ../src/fc_layer.py:143: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2018-08-31 21:06:22.728310: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:04:00.0, compute capability: 6.1)
+WARNING:tensorflow:From ../src/fc_layer.py:302: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2018-08-31 21:06:23.166124: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:04:00.0, compute capability: 6.1)
+Traceback (most recent call last):
+  File "../experiments/uci_genetic_io.py", line 80, in <module>
+    print_stats('Ens Accuracy', ens_acc_list)
+  File "../src/tools.py", line 140, in print_stats
+    mean = np.mean(values_arr)
+  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/numpy/core/fromnumeric.py", line 2957, in mean
+    out=out, **kwargs)
+  File "/clusterFS/home/student/kopp13/miniconda3/envs/tensorflow/lib/python3.5/site-packages/numpy/core/_methods.py", line 82, in _mean
+    ret = ret / rcount
+TypeError: unsupported operand type(s) for /: 'NoneType' and 'int'
