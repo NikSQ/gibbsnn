@@ -15,10 +15,9 @@ init_config = {'n_epochs': 100,
                'learning_rate': 0.1,
                'reg': 0.0001}
 
-recombination = ['neuron', 'io_neuron', 'default']
-mutation = [0., 0., 0.0001]
-mutation_p = mutation[task_id]
-recomb = recombination[task_id]
+recomb = 'neuron'
+mutation_p = 0
+n_neurons = [10, 30, 100]
 
 
 exp_config = {'n_epochs': 10,
@@ -39,13 +38,13 @@ exp_config = {'n_epochs': 10,
               'crossover_p': 0.7,
               'mutation_p': mutation_p,
               'max_generations': 100,
-              'n_fit_individuals': 40,
-              'n_recombinations': 99,
+              'n_fit_individuals': 10,
+              'n_recombinations': 50,
               'layer_wise': True,
-              'pop_size': 200,
-              'n_neurons': 1,
+              'pop_size': 100,
+              'n_neurons': n_neurons[task_id],
               'gen_per_layer': 5,
-              'p_layer_mutation': 0.0002,
+              'p_layer_mutation': 0.005,
               'ens_burn_in': 30,
               'ens_thinning': 5}
 
