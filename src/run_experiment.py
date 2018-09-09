@@ -14,7 +14,7 @@ from src.genetic_algo import GeneticSolver
 from src.simulated_annealing import SASolver
 
 
-def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
+def run_experiment(exp_config, init_config, nn_config_primitive, dataset, run=0):
     tf.reset_default_graph()
     nn_config = copy.deepcopy(nn_config_primitive)
 
@@ -44,6 +44,8 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
     print_run_config(exp_config)
 
     init_pop = []
+    tr_accs = []
+    va_accs = []
 
     with tf.Session() as sess:
         writer_tr = tf.summary.FileWriter(exp_config['path'] + 'tr/')
@@ -73,6 +75,8 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
                                               feed_dict={nn.validate: True})
                     final_acc = va_acc
                     final_ce = va_ce
+                    tr_accs.append(tr_acc)
+                    va_accs.append(va_acc)
                     print('Epoch: {}, AccTr: {}, AccVa: {}, CeTr: {}, CeVa: {}'.format(epoch+1,tr_acc, va_acc, tr_ce, va_ce))
 
             if exp_config['store_acts'] and epoch % exp_config['store_acts_every'] == 0:
@@ -98,6 +102,10 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset):
     if exp_config['mode'] == 'sa':
         print('Starting simulated annealing')
         return run_sa_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, init_pop)
+
+    if len(tr_accs) != 0:
+        np.save('../training/tr_accs' + str(run), tr_accs)
+        np.save('../training/va_accs' + str(run), va_accs)
 
 
     return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce

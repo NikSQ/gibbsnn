@@ -94,9 +94,10 @@ class SASolver:
         self.create_individuals(self.sa_config['pop_size'], sess)
         final_ensemble_acc = None
         final_ensemble_ce = None
-        final_acc = None
-        final_ce = None
+        best_acc = 0
+        generation = None
         T = self.sa_config['T_start']
+
 
         for epoch in range(self.sa_config['max_epochs']):
             if epoch % self.sa_config['print_every_n_epochs'] == 0:
@@ -104,6 +105,9 @@ class SASolver:
             self.population.sort(key=lambda x: x.tr_ce, reverse=False)
             final_acc = self.population[0].va_acc
             final_ce = self.population[0].va_ce
+            if final_acc > best_acc:
+                best_acc = final_acc
+                generation = epoch
 
             if epoch % self.sa_config['ens_calc'] == 0:
                 sess.run([self.ensemble_tr.clear_activation_op, self.ensemble_va.clear_activation_op])
@@ -122,7 +126,7 @@ class SASolver:
                 if T <= 0:
                     T = 0
 
-        return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
+        return final_ensemble_acc, final_ensemble_ce, best_acc, generation
 
 
 

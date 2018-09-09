@@ -2,8 +2,8 @@
 
 #SBATCH --job-name="nn_genetic"
 #SBATCH --workdir="/clusterFS/home/student/kopp13/gibbsnn/src"
-#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/ganeuron_mnist%5a.out
-#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/ganeuron_mnist%5a.err
+#SBATCH --output=/clusterFS/home/student/kopp13/gibbsnn/logs/ga2_mnist%5a.out
+#SBATCH --error=/clusterFS/home/student/kopp13/gibbsnn/logs/ga2_mnist%5a.err
 #SBATCH --open-mode=truncate
 #SBATCH --cpus-per-task=1
 #SBATCH --time=07-00

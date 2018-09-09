@@ -145,6 +145,8 @@ class GeneticSolver:
         final_ensemble_ce = None
         final_acc = None
         final_ce = None
+        best_individual = 0
+        best_generation = None
 
         for generation in range(self.ga_config['max_generations']):
             self.evaluate_population(sess)
@@ -153,6 +155,10 @@ class GeneticSolver:
             self.population.sort(key=lambda x: x.tr_ce, reverse=False)
             final_acc = self.population[0].va_acc
             final_ce = self.population[0].va_ce
+
+            if best_individual < final_acc:
+                best_individual = final_acc
+                best_generation = generation
 
             print('Best Individual | TrAcc: {}, TrCE: {}, VaAcc: {}, VaCE: {}'.format(self.population[0].tr_acc, self.population[0].tr_ce, final_acc, final_ce))
 
@@ -183,7 +189,7 @@ class GeneticSolver:
                     current_layer = 0
                 print('current_layer {}'.format(current_layer))
                 self.simplify_pop(current_layer)
-        return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
+        return best_individual, best_generation, final_acc, final_ce
 
     def simplify_pop(self, layer_idx):
 
