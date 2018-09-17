@@ -103,13 +103,10 @@ def run_experiment(exp_config, init_config, nn_config_primitive, dataset, run=0)
         print('Starting simulated annealing')
         return run_sa_solver(exp_config, nn_config, x_tr, y_tr, x_va, y_va, init_pop)
 
-    if len(tr_accs) != 0:
-        np.save('../training/tr_accs' + str(run), tr_accs)
-        np.save('../training/va_accs' + str(run), va_accs)
-
-
     return final_ensemble_acc, final_ensemble_ce, final_acc, final_ce
-
+    if len(tr_accs) != 0:
+        np.save('../training/' + exp_config['expname'] + '_tr_accs' + str(run), tr_accs)
+        np.save('../training/' + exp_config['expname'] + '_va_accs' + str(run), va_accs)
 
 def run_ga_solver(ga_config, nn_config, x_tr, y_tr, x_va, y_va, ga_init_pop):
     tf.reset_default_graph()
@@ -129,7 +126,6 @@ def run_sa_solver(sa_config, nn_config, x_tr, y_tr, x_va, y_va, sa_init_pop):
         sess.run(solver.load_train_set_op, feed_dict={solver.x_placeholder: x_tr, solver.y_placeholder: y_tr})
         sess.run(solver.load_val_set_op, feed_dict={solver.x_placeholder: x_va, solver.y_placeholder: y_va})
         return solver.perform_sa(sess)
-
 
 
 

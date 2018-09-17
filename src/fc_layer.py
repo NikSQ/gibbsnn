@@ -185,6 +185,8 @@ class FCLayer:
                 for idx, value in enumerate(self.act_func.values):
                     if idx + 1 != self.act_func.n_values and idx > 0:
                         log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
+                
+                log_probs += self.config['act_reg'] * tf.log(tf.log(w_added_activation + 0.5))
                 sample_idx = self.calc_sample_idx(log_probs, log_pw)
 
                 #g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
