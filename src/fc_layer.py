@@ -33,8 +33,6 @@ class FCLayer:
         self.var_summary_op = None
 
         if self.bias_vals is None:
-            #bits = int(np.log2(shape[0]))
-            #self.bias_vals = np.power(np.arange(-bits, bits), 2).astype(np.int32)
             b_range = 10 * int(np.sqrt(shape[0]))
             self.bias_vals = np.arange(-b_range, b_range)
 
@@ -64,7 +62,7 @@ class FCLayer:
             self.neuron_idx = tf.placeholder(name='neuron_idx', dtype=np.int32)
             self.input_indices = None
 
-            summary_ops = []
+            summary_ops = list()
             summary_ops.append(tf.summary.histogram('weights', self.W))
             summary_ops.append(tf.summary.histogram('biases', self.b))
             self.var_summary_op = tf.summary.merge(summary_ops)
@@ -72,8 +70,6 @@ class FCLayer:
     def create_var_assign_op(self, w_vals):
         w_assign_op = tf.assign(self.W, tf.cast(w_vals, dtype=tf.float32))
         return w_assign_op
-        #b_assign_op = tf.assign(self.b, b_vals)
-        #return tf.group(*[w_assign_op, b_assign_op])
 
     # Creates the execution graph for setting all the entries in the lookup table for a given neuron (this neuron is
     # given via a placeholder, which means that it can be set at runtime)
@@ -186,11 +182,7 @@ class FCLayer:
                     if idx + 1 != self.act_func.n_values and idx > 0:
                         log_probs = tf.where(tf.equal(lookup_indices, idx), self.lookup_table[:, idx, :], log_probs)
                 
-                log_probs += self.config['act_reg'] * tf.log(tf.log(w_added_activation + 0.5))
                 sample_idx = self.calc_sample_idx(log_probs, log_pw)
-
-                #g_lookup_indices = tf.concat((w_batch_range, tf.expand_dims(lookup_indices, axis=2, name='lookup_exp')), axis=2, name='look_ind_concat')
-                #sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_w'), log_pw)
                 new_weights = tf.slice(connection_matrix, begin=[0, sample_idx], size=[block_size, 1], name='get_new_weight')
                 new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
                 new_activation_vals = tf.slice(w_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
@@ -200,21 +192,10 @@ class FCLayer:
                 b_sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [bias_value-correction[sample_idx]], name='sample_b')
                 self.sample_op = tf.group(*[w_sample_op, b_sample_op])
 
-                output_values = self.act_func.get_output(b_added_activation)
-                lookup_indices = self.act_func.get_lookup_indices(b_added_activation)
-                g_lookup_indices = tf.concat((b_batch_range, tf.expand_dims(lookup_indices, axis=2)), axis=2, name='look_ind_concat')
-                sample_idx = self.calc_sample_idx(tf.gather_nd(self.lookup_table, g_lookup_indices, name='lookup_b'))
-                new_weight = tf.gather_nd(self.bias_vals, [0, sample_idx], name='get_new_weight')
-                new_output_vals = tf.slice(output_values, begin=[0, sample_idx], size=[self.batch_size, 1])
-                new_activation_vals = tf.slice(b_added_activation, begin=[0, sample_idx], size=[self.batch_size, 1])
-                sample_op = tf.scatter_nd_update(self.b, [[0, self.neuron_idx]], [new_weight], name='sample_b')
-                #self.b_sample_op = self.create_update_var_graph(sample_op, update_var_indices, new_activation_vals,
-                                                                #new_output_vals)
-
-    # This updates activation and output variables after the sampling operation
-    # As a control dependency is made on control op, the returned operation both performs sampling and the update
-    # of variables
     def create_update_var_graph(self, control_op, update_indices, new_activation_vals, new_output_vals=None):
+        # This updates activation and output variables after the sampling operation
+        # As a control dependency is made on control op, the returned operation both performs sampling and the update
+        # of variables
         new_ops = []
         with tf.control_dependencies([control_op]):
             new_ops.append(tf.scatter_nd_update(self.activation, update_indices, tf.squeeze(new_activation_vals), name='activation_update'))
@@ -225,7 +206,6 @@ class FCLayer:
 
     # Calculate the sample index for given logprobs (before it is reduced over batch)
     # Currently prior is ignored and mode is taken instead of sampling for testint
-    # TODO: After testing remove taking the mode and add those priors
     def calc_sample_idx(self, log_probs, log_pw=None):
         if log_pw is None:
             log_probs = tf.reduce_sum(log_probs, axis=0, name='calc_mean_log_prob') / self.config['flat_factor'][self.layer_idx]
@@ -234,7 +214,7 @@ class FCLayer:
 
         probs = tf.cumsum(tf.exp(log_probs - tf.reduce_max(log_probs)))
         sample_idx = tf.reduce_sum(tf.cast(tf.less(probs, tf.random_uniform((1,))*tf.reduce_max(probs)), tf.int32))
-        #sample_idx = tf.argmax(log_probs)
+        # sample_idx = tf.argmax(log_probs)
         return sample_idx
 
 

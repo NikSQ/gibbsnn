@@ -132,9 +132,6 @@ def print_run_config(config):
         print('Mutation P: {}'.format(config['mutation_p']))
 
 
-
-
-
 def print_stats(text, values):
     values_arr = np.asarray(values)
     mean = np.mean(values_arr)

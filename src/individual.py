@@ -1,5 +1,6 @@
 import copy
 import numpy as np
+import matplotlib.pyplot as plt
 
 class Individual:
     def __init__(self, w_vals, main_parent=None):
@@ -24,11 +25,10 @@ class Individual:
         self.tr_acc, self.tr_ce, self.va_acc, self.va_ce = static_nn.evaluate(sess, self.w_vals)
 
     def print_counts(self):
-        return
-        for layer_idx in range(len(self.w_vals)):
-            plt.subplot(len(self.w_vals), 1, layer_idx + 1)
-            plt.imshow(self.w_change_count[layer_idx], cmap='gray')
-            plt.colorbar()
+        plt.imshow(self.w_change_count[0], cmap='gray', interpolation='none')
+        plt.xlabel('neuron')
+        plt.ylabel('input')
+        plt.colorbar()
         plt.show()
 
 

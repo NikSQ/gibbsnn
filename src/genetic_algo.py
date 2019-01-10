@@ -80,7 +80,6 @@ class GeneticSolver:
             offspring[layer_idx][neuron_idx, :] = parent[layer_idx][neuron_idx, :]
         return offspring
 
-
     def recombination(self, pair, current_layer):
         parent1 = self.population[pair[0]].w_vals
         parent2 = self.population[pair[1]].w_vals
@@ -93,14 +92,14 @@ class GeneticSolver:
             for n_exchanged_neurons in range(self.ga_config['n_neurons']):
                 layer_idx = current_layer
                 if self.ga_config['recombination'] == 'neuron':
-                    if self.ga_config['layer_wise'] == False:
+                    if self.ga_config['layer_wise'] is False:
                         layer_idx = np.random.randint(0, len(parent1) - 1)
                     offspring1 = self.exchange_weights(offspring1, parent2, layer_idx, True)
                     offspring1 = self.exchange_weights(offspring1, parent2, layer_idx+1, False)
                     offspring2 = self.exchange_weights(offspring2, parent1, layer_idx, True)
                     offspring2 = self.exchange_weights(offspring2, parent1, layer_idx+1, False)
                 else:
-                    if self.ga_config['layer_wise'] == False:
+                    if self.ga_config['layer_wise'] is False:
                         layer_idx = np.random.randint(0, len(parent1))
                     ex_input = self.ga_config['recombination'] == 'i_neuron'
                     if self.ga_config['recombination'] == 'io_neuron':
@@ -141,8 +140,6 @@ class GeneticSolver:
         self.create_individuals(self.ga_config['pop_size'])
         current_layer = 0
         self.simplify_pop(current_layer)
-        final_ensemble_acc = None
-        final_ensemble_ce = None
         final_acc = None
         final_ce = None
         best_individual = 0
@@ -166,8 +163,6 @@ class GeneticSolver:
                 self.static_nn.evaluate(sess, self.population[0].w_vals)
                 tr_acc, tr_ce = sess.run([self.ensemble_tr.accuracy, self.ensemble_tr.cross_entropy], feed_dict={self.static_nn.validate: False})
                 va_acc, va_ce = sess.run([self.ensemble_va.accuracy, self.ensemble_va.cross_entropy], feed_dict={self.static_nn.validate: True})
-                final_ensemble_acc = va_acc
-                final_ensemble_ce = va_ce
                 print('ENSEMBLE | Tr_Acc: {}, Tr_CE: {}, Va_Acc: {}, Va_CE: {}'.format(tr_acc, tr_ce, va_acc, va_ce))
 
             offspring = []
@@ -192,12 +187,12 @@ class GeneticSolver:
         return best_individual, best_generation, final_acc, final_ce
 
     def simplify_pop(self, layer_idx):
-
-        #self.population[0].print_counts()
+        self.population[0].print_counts()
         if self.ga_config['recombination'] == 'default' or self.ga_config['layer_wise'] == False:
             return
         for i in range(1, len(self.population)):
             self.population[i].w_vals = copy.deepcopy(self.population[0].w_vals)
+            self.population[i].w_change_count = copy.deepcopy(self.population[0].w_change_count)
         self.population = self.mutate_population(self.population, layer_idx, self.ga_config['p_layer_mutation'])
 
 

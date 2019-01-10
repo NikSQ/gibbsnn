@@ -49,7 +49,6 @@ class NN:
             self.log_prior_w = np.log(np.asarray([pv_side, pv, pv_side], dtype=np.float32))
 
     # This function creates the execution graph for Gibbs Sampling (lookup table updates, weight update, bias update)
-    # TODO: Load validation set into gpu
     def create_gibbs_graph(self, batch_size, n_val_samples, block_size):
         with tf.variable_scope('global'):
             self.X_placeholder = tf.placeholder(tf.float32, [None, self.config['layout'][0]])
@@ -314,8 +313,6 @@ class NN:
                     if neuron_idx == profile_neuron_idx:
                         lookup_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
 
-                #sess.run(curr_layer.b_sample_op, feed_dict={curr_layer.neuron_idx: neuron_perm[neuron_idx]},
-                #         options=options, run_metadata=run_metadata)
                 if neuron_idx == profile_neuron_idx:
                     sample_bias_traces.append(timeline.Timeline(run_metadata.step_stats).generate_chrome_trace_format())
 
